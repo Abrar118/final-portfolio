@@ -16,7 +16,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 14% 9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -43,7 +43,7 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 210 14% 9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -72,9 +72,20 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border !scroll-smooth;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  button {
+    @apply active:outline-none;
+  }
+}
+
+@layer utilities {
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center;
   }
 }

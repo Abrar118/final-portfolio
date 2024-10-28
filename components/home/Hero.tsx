@@ -22,9 +22,11 @@ const Hero = () => {
       </div>
 
       <div className="flex justify-center relative my-20 z-10">
-        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col items-center justify-center">
-          <p className="tracking-widest text-xs text-center text-foreground max-w-80">
-            Hi! I am Abrar Mahir Esam. I am a
+        <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[65vw] flex flex-col items-center justify-center">
+          <p className="tracking-widest text-lg text-center text-foreground max-w-[22rem]">
+            Hi! I am{" "}
+            <span className="text-chart3 font-bold">Abrar Mahir Esam</span>. I'm
+            a
           </p>
 
           <TextGenerateEffect
@@ -33,11 +35,12 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            I am passionate about building{" "}
-            <span className="text-chart1 font-bold">Web applications</span>,{" "}
-            <span className="text-chart2 font-bold">Desktop applications</span>,{" "}
+            I specialize in building{" "}
+            <span className="text-chart1 font-bold">Web</span>,{" "}
+            <span className="text-chart2 font-bold">Desktop</span>, and{" "}
             <span className="text-chart3 font-bold">Mobile applications</span>,{" "}
-            <span className="text-chart5 font-bold">System Designs</span>, and{" "}
+            exploring{" "}
+            <span className="text-chart5 font-bold">System Designing</span> and{" "}
             <span className="text-chart4 font-bold">
               Competitive Programming
             </span>

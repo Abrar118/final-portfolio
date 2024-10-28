@@ -4,10 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import Navbar from "@/components/shared/Navbar";
-import { FloatingNav } from "@/components/ui/floating-navbar";
-import { Home } from "lucide-react";
-import { navItems } from "@/data/home/navItems";
-import { FloatingMenu } from "@/components/shared/FloatingMenu";
+import Footer from "@/components/shared/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -41,9 +38,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <FloatingNav navItems={navItems} />
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

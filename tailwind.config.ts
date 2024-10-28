@@ -24,6 +24,7 @@ const config = {
     extend: {
       backgroundImage: {
         hero: "url('/hero.jpeg')",
+        footer: "url('/footer-grid.svg')",
         "custom-gradient-chart1":
           "linear-gradient(90deg, rgba(231,110,80,1) 0%, rgba(235,132,106,1) 46%, rgba(237,153,133,1) 100%)",
         "custom-gradient-chart2":
@@ -89,8 +90,9 @@ const config = {
         third: "moveInCircle 40s linear infinite",
         fourth: "moveHorizontal 40s ease infinite",
         fifth: "moveInCircle 20s ease infinite",
-        scroll:
-          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        scroll: "scroll var(--animation-duration, 15s) linear infinite",
+        "scroll-reverse":
+          "scroll var(--animation-duration, 15s) var(--animation-direction, reverse) linear infinite",
       },
 
       keyframes: {
@@ -154,8 +156,11 @@ const config = {
           },
         },
         scroll: {
-          to: {
-            transform: "translate(calc(-50% - 0.5rem))",
+          "0%": {
+            transform: "translateY(0)",
+          },
+          "100%": {
+            transform: "translateY(-100%)",
           },
         },
       },
