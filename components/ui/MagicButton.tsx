@@ -21,7 +21,7 @@ const MagicButton = ({
       onClick={() => {
         if (callResume) {
           window.open(
-            "https://drive.google.com/file/d/12_1_g9lBGwI7m-vyNcnTlfdknHULLFJn/view?usp=sharing"
+            "https://drive.google.com/file/d/1AYn2nMGXRqGINsbqdSPRSwsnkw1y-VGe/view?usp=sharing"
           );
         } else {
           handleClick?.();
