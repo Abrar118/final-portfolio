@@ -23,7 +23,7 @@ async function email(
     );
 
     toast.success("Email sent successfully");
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.text);
   }
 }

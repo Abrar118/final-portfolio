@@ -23,7 +23,7 @@ export default function Contact() {
       setLoading(true);
       await _email(email, "abrarme118@gmail.com", name, message);
       setLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       toast.error("Failed to send email", {
         description: error.message,
