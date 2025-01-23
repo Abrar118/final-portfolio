@@ -1,4 +1,4 @@
-import GridLayout from "@/components/home/GridLayout";
+import SkillsSection from "@/components/home/GridLayout";
 import Hero from "@/components/home/Hero";
 import ProjectSection from "@/components/home/ProjectSection";
 import ParticlesContainer from "@/components/shared/Particles";
@@ -16,7 +16,7 @@ export default function Home() {
       <div className="w-full">
         <ParticlesContainer />
         <Hero />
-        <GridLayout />
+        <SkillsSection />
         <ProjectSection />
       </div>
     </main>
