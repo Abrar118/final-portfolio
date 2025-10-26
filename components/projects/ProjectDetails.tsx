@@ -23,13 +23,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
         >
           <Heading>{project.title}</Heading>
           <p className="text-foreground/60 mt-2">{project.description}</p>
-          <div className="flex flex-wrap gap-2 mt-4">
-            {project.stack.map((tech) => (
-              <Badge key={tech.name} variant="secondary">
-                {tech.name}
-              </Badge>
-            ))}
-          </div>
+          {project.stack && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {project.stack.map((tech) => (
+                <Badge key={tech.name} variant="secondary">
+                  {tech.name}
+                </Badge>
+              ))}
+            </div>
+          )}
           <Link
             href={`/projects/${project.slug}`}
             className="text-sm text-foreground/60 hover:text-foreground transition-colors flex items-center gap-2 mt-4"
