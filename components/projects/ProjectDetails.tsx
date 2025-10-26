@@ -32,9 +32,33 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
               ))}
             </div>
           )}
+          {project.features && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">Features</h3>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project.features.map((feature) => (
+                  <Badge key={feature} variant="outline">
+                    {feature}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.pages && (
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold">Pages</h3>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project.pages.map((page) => (
+                  <Badge key={page} variant="outline">
+                    {page}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
           <Link
             href={`/projects/${project.slug}`}
-            className="text-sm text-foreground/60 hover:text-foreground transition-colors flex items-center gap-2 mt-4"
+            className="text-sm text-foreground/60 hover:text-foreground transition-colors flex items-center gap-2 mt-6"
           >
             View Project <FiExternalLink />
           </Link>

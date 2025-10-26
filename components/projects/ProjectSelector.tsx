@@ -21,9 +21,9 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = ({
           key={project.slug}
           onMouseOver={() => onProjectSelect(project)}
           className={cn(
-            "cursor-pointer p-2 rounded-lg hover:bg-muted/50 transition-all duration-300 flex items-center gap-4",
+            "cursor-pointer p-2 rounded-lg transition-all duration-300 flex items-center gap-4",
             {
-              "bg-muted/50": activeProject.href === project.href,
+              "bg-muted/50": activeProject.slug === project.slug,
             }
           )}
         >
@@ -33,14 +33,14 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = ({
             width={80}
             height={80}
             className={cn("rounded-lg object-cover transition-all duration-300", {
-              "scale-110": activeProject.href === project.href,
-              "scale-90 opacity-50": activeProject.href !== project.href,
+              "scale-110": activeProject.slug === project.slug,
+              "scale-90 opacity-50": activeProject.slug !== project.slug,
             })}
           />
           <h3
             className={cn("text-lg font-semibold transition-all duration-300", {
-              "text-foreground": activeProject.href === project.href,
-              "text-foreground/50": activeProject.href !== project.href,
+              "text-foreground": activeProject.slug === project.slug,
+              "text-foreground/50": activeProject.slug !== project.slug,
             })}
           >
             {project.title}
