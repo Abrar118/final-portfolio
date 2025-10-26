@@ -7,6 +7,7 @@ import { projects } from "@/data/home/projects";
 import type { Project } from "@/types/project";
 import { Heading } from "@/components/ui/Heading";
 import { Badge } from "@/components/ui/badge";
+import ProjectCard from "@/components/projects/ProjectCard";
 
 
 const Projects = () => {
@@ -28,65 +29,11 @@ const Projects = () => {
         learn more.
       </p>
 
-      <div className="grid grid-cols-1  gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project: Project, idx: number) => (
-          <motion.div
-            key={project.slug}
-            initial={{
-              opacity: 0,
-              x: -50,
-            }}
-            animate={
-              inView
-                ? {
-                    opacity: 1,
-                    x: 0,
-                  }
-                : {
-                    opacity: 0,
-                    x: -50,
-                  }
-            }
-            transition={{ duration: 0.2, delay: idx * 0.1 }}
-          >
-            <Link
-              href={`/projects/${project.slug}`}
-              key={project.href}
-              className="group flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4
-         dark:hover:bg-muted/30 hover:bg-muted rounded-2xl transition duration-200"
-            >
-              <Image
-                src={project.thumbnail}
-                alt="thumbnail"
-                height="200"
-                width="200"
-                className="rounded-md h-[200px] w-[300px]"
-              />
-              <div className="flex flex-col justify-between">
-                <div>
-                  <Heading
-                    as="h4"
-                    className="text-foreground text-lg md:text-lg lg:text-lg mt-2"
-                  >
-                    {project.title}
-                  </Heading>
-                  <p className="max-w-[90%] text-foreground/60">
-                    {project.description}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2 space-x-2 md:mb-1 md:mt-0 max-w-[90%]">
-                  {project.stack?.map((stack) => (
-                    <Badge key={stack.name}>{stack.name}</Badge>
-                  ))}
-                  {/* {project.stack?.map((stack) => (
-                    <Badge className="bg-chart1" key={stack.name}>
-                      {stack.Icon}
-                    </Badge>
-                  ))} */}
-                </div>
-              </div>
-            </Link>
-          </motion.div>
+          <Link href={`/projects/${project.slug}`} key={project.href}>
+            <ProjectCard project={project} idx={idx} />
+          </Link>
         ))}
       </div>
     </div>
