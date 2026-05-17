@@ -24,7 +24,7 @@ export default function SkillsCard({
       whileHover={{ y: -2, scale: 1.02 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className={`group relative flex items-center gap-4 p-4 rounded-xl
-        bg-card/60 border border-border/30
+        bg-card border border-border/30
         hover:border-accent/30 hover:bg-card/80
         transition-colors duration-200 cursor-default
         ${size === "lg" ? "col-span-2 p-5" : ""}`}

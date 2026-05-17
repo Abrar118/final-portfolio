@@ -1,10 +1,12 @@
 import type { StaticImageData } from "next/image";
 
+export type ProjectCategory = "web" | "mobile" | "desktop" | "backend";
+
 export type Project = {
   title: string;
   description: string;
-  thumbnail: StaticImageData;
-  images: StaticImageData[] | string[];
+  thumbnail: StaticImageData | string;
+  images: (StaticImageData | string)[];
   href?: string;
   slug?: string;
   stack?: {
@@ -16,4 +18,7 @@ export type Project = {
   github?: string;
   tags?: string[];
   pages?: string[];
+  category?: ProjectCategory;
+  year?: string;
+  context?: string;
 };

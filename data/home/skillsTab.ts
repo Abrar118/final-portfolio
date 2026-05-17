@@ -1,7 +1,8 @@
 import type { IconType } from "react-icons/lib";
 import { BiLogoPostgresql, BiLogoTypescript } from "react-icons/bi";
 import {
-  SiAndroidstudio,
+  SiFastapi,
+  SiFirebase,
   SiFlutter,
   SiKotlin,
   SiMongodb,
@@ -15,10 +16,11 @@ import {
   FaDocker,
   FaGitAlt,
   FaJava,
-  FaLaravel,
+  FaPython,
   FaReact,
+  FaRust,
 } from "react-icons/fa6";
-import { TbBrandCoinbase, TbBrandCpp } from "react-icons/tb";
+import { TbBrandCpp } from "react-icons/tb";
 
 type Tab = {
   title: string;
@@ -73,11 +75,18 @@ export const skillsTabs: Tab[] = [
         bgColor: "#1e5c59",
       },
       {
-        img: FaLaravel,
-        desc: "PHP web framework",
-        name: "Laravel",
-        iconColor: "#FF2D20",
-        bgColor: "#fff",
+        img: SiFastapi,
+        desc: "High-performance Python API",
+        name: "FastAPI",
+        iconColor: "#009688",
+        bgColor: "#004d40",
+      },
+      {
+        img: FaRust,
+        desc: "Systems programming",
+        name: "Rust",
+        iconColor: "#DEA584",
+        bgColor: "#6e4a38",
       },
     ],
   },
@@ -100,11 +109,11 @@ export const skillsTabs: Tab[] = [
         bgColor: "#4a2f94",
       },
       {
-        img: SiAndroidstudio,
-        desc: "Android IDE",
-        name: "Android Studio",
-        iconColor: "#3DDC84",
-        bgColor: "#1f7344",
+        img: SiKotlin,
+        desc: "Kotlin Multiplatform",
+        name: "KMP",
+        iconColor: "#7F52FF",
+        bgColor: "#4a2f94",
       },
     ],
   },
@@ -147,6 +156,20 @@ export const skillsTabs: Tab[] = [
         iconColor: "#F05032",
         bgColor: "#7a2515",
       },
+      {
+        img: FaRust,
+        desc: "Systems programming",
+        name: "Rust",
+        iconColor: "#DEA584",
+        bgColor: "#6e4a38",
+      },
+      {
+        img: FaPython,
+        desc: "General-purpose language",
+        name: "Python",
+        iconColor: "#3776AB",
+        bgColor: "#1e3d57",
+      },
     ],
   },
   {
@@ -173,6 +196,13 @@ export const skillsTabs: Tab[] = [
         name: "PostgreSQL",
         iconColor: "#336791",
         bgColor: "#1e3c55",
+      },
+      {
+        img: SiFirebase,
+        desc: "Backend-as-a-Service",
+        name: "Firebase",
+        iconColor: "#FFCA28",
+        bgColor: "#7a6114",
       },
     ],
   },

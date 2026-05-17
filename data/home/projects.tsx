@@ -14,15 +14,11 @@ import {
   Firebase,
   Flutter,
   Python,
-  OpenAI,
   Tensorflow,
-  ClaudeAI,
   VisualStudioCode,
   TailwindCSS,
   VercelDark,
   Java,
-  Oracle,
-  ESLint,
   MySQL,
 } from "developer-icons";
 
@@ -59,41 +55,49 @@ import elyriaLanding from "@/public/projects/landing-elyria.png";
 import promptLanding from "@/public/projects/landing-prompt.png";
 import sniffPawsLanding from "@/public/projects/foster.png";
 
-export const iconSize = 30;
+export const iconSize = 24;
 
 export const projects: Project[] = [
   {
     href: "https://therap-lms.vercel.app/",
     title: "EduVerse",
     description:
-      "An Online Learning Management platform with AI Course Creation and Unlimited online meeting features",
+      "AI-powered Learning Management platform with automated course creation, real-time virtual classrooms, forums, and admin analytics",
     thumbnail: eduVerse,
     images: [eduVerse, edu2, edu3, edu4, edu5, edu6, edu7, edu8],
     stack: [
-      { name: "NextJs", Icon: <NextJs size={iconSize} /> },
+      { name: "Next.js", Icon: <NextJs size={iconSize} /> },
+      { name: "Spring Boot", Icon: <Spring size={iconSize} /> },
+      { name: "Hono", Icon: <NodeJs size={iconSize} /> },
       { name: "MongoDB", Icon: <MongoDB size={iconSize} /> },
       { name: "Cloudinary", Icon: <Cloudinary size={iconSize} /> },
       { name: "Jitsi Meet", Icon: <ViteJS size={iconSize} /> },
-      { name: "Hono", Icon: <NodeJs size={iconSize} /> },
-      { name: "SpringBoot", Icon: <Spring size={iconSize} /> },
     ],
     slug: "eduverse",
+    category: "web",
+    year: "2024",
+    context: "Therap JavaFest",
     content: (
-      <div>
+      <div className="space-y-3">
         <p>
-          An Online Learning Management platform with AI Course Creation and
-          Unlimited online meeting features. The platform includes forums,
-          chatrooms, and extensive analytics for administrators. Built during
-          Therap JavaFest, it showcases seamless integration of modern web
-          technologies.
+          Built during Therap JavaFest — an end-to-end learning management
+          platform where instructors can generate entire course curricula using
+          AI, host unlimited live video classes via Jitsi Meet, and manage
+          student interactions through forums and chatrooms.
+        </p>
+        <p>
+          The admin dashboard provides comprehensive analytics on course
+          engagement, student performance, and platform usage. Cloudinary
+          handles on-the-fly media optimization for course materials.
         </p>
       </div>
     ),
     features: [
-      "Course creation with AI assistance",
-      "Unlimited online meeting capabilities",
-      "Interactive forums and chatrooms",
-      "Comprehensive admin analytics",
+      "AI-driven course creation automating curriculum generation",
+      "Unlimited real-time virtual classrooms via Jitsi Meet",
+      "Interactive forums and chatrooms for student collaboration",
+      "Comprehensive admin analytics dashboard",
+      "On-the-fly media optimization with Cloudinary",
     ],
     pages: [
       "Home",
@@ -104,49 +108,180 @@ export const projects: Project[] = [
       "Admin Dashboard",
       "Profile",
       "Newsletters",
-      "Settings",
-      "About",
-      "Contact",
       "Course Management",
+    ],
+  },
+  {
+    github: "https://github.com/ShadmanShafeen/Green-Cycle",
+    title: "GreenCycle",
+    description:
+      "Gamified recycling app with TensorFlow/YOLOv8 object recognition, Gemini-powered guidance, and Firebase push notifications",
+    thumbnail: greenCycleLanding,
+    images: [greenCycleLanding, greenCycle2, greenCycle3, greenCycle1],
+    stack: [
+      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
+      { name: "Python", Icon: <Python size={iconSize} /> },
+      { name: "TensorFlow", Icon: <Tensorflow size={iconSize} /> },
+      { name: "Node.js", Icon: <NodeJs size={iconSize} /> },
+      { name: "Firebase", Icon: <Firebase size={iconSize} /> },
+    ],
+    slug: "greencycle",
+    category: "mobile",
+    year: "2024",
+    context: "IEEE QPAIN 2025 Published · SDP-II",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A gamified recycling app that uses AI to make waste disposal engaging.
+          Point your camera at any object and the TensorFlow + YOLOv8 model
+          identifies whether it&apos;s recyclable, what category it belongs to,
+          and where to dispose of it.
+        </p>
+        <p>
+          Gemini generates contextual tips and guides. Users earn rewards for
+          recycling activities, compete on leaderboards, and connect with local
+          recycling vendors. This project was published at the 2025 IEEE QPAIN
+          conference.
+        </p>
+      </div>
+    ),
+    features: [
+      "TensorFlow + YOLOv8 object recognition for waste classification",
+      "Gemini AI for dynamic recycling guidance",
+      "Gamified reward system with leaderboards",
+      "Vendor marketplace connecting recyclers and collectors",
+      "Firebase Cloud Messaging for task reminders",
+    ],
+    pages: [
+      "Home",
+      "Classify Waste",
+      "Find Vendor",
+      "Leaderboard",
+      "Community",
+      "Profile",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/QuickDev",
+    title: "QuickDev",
+    description:
+      "Desktop developer workspace manager built with Tauri + Rust — persist and restore open files, terminals, and editor sessions instantly",
+    thumbnail: elyriaLanding,
+    images: [elyriaLanding],
+    stack: [
+      { name: "Tauri", Icon: <Bash size={iconSize} /> },
+      { name: "Rust", Icon: <Bash size={iconSize} /> },
+      { name: "React", Icon: <React size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+    ],
+    slug: "quickdev",
+    category: "desktop",
+    year: "2025",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A Windows PowerToys Workspaces alternative built from scratch with
+          Tauri and Rust. Save your entire workspace state — open files,
+          terminal sessions, editor windows — and restore them with one click.
+        </p>
+        <p>
+          Uses SQLite to serialize workspace state and user context between
+          sessions. Tokio handles asynchronous I/O for seamless UX without
+          blocking the UI thread.
+        </p>
+      </div>
+    ),
+    features: [
+      "Persist and restore complete workspace state",
+      "Asynchronous Rust backend via Tokio runtime",
+      "SQLite-backed session serialization",
+      "Cross-platform native desktop app via Tauri",
     ],
   },
   {
     href: "https://pioneer-mist-two.vercel.app/",
     title: "MIST Pioneers",
     description:
-      "A Blog Website for The Martyrs of the Student Movement Memorial Project",
+      "AES-encrypted memorial blog for the student movement martyrs, built with MDX content authoring and Velite parsing",
     thumbnail: pioLanding,
     images: [pioLanding, pio1, pio2],
     stack: [
-      { name: "NextJs", Icon: <NextJs size={iconSize} /> },
+      { name: "Next.js", Icon: <NextJs size={iconSize} /> },
       { name: "AES", Icon: <Bash size={iconSize} /> },
-      { name: "Velite", Icon: <Markdown size={iconSize} /> },
-      { name: "Rehype", Icon: <Prettier size={iconSize} /> },
+      { name: "MDX", Icon: <Markdown size={iconSize} /> },
+      { name: "Velite", Icon: <Prettier size={iconSize} /> },
     ],
     slug: "mist-pioneers",
+    category: "web",
+    year: "2024",
     content: (
-      <div>
+      <div className="space-y-3">
         <p>
-          Honoring the brave students who fought for rights and justice at
-          Military Institute of Science and Technology. A website for creating
-          stories and memories as blogs using modern web technologies and secure
-          content management.
+          A memorial website honoring the brave students who fought for rights
+          and justice at MIST. Built as a blog platform where contributors can
+          write stories and memories using MDX — Markdown with JSX components
+          for rich content.
+        </p>
+        <p>
+          Sensitive memorial data is secured with AES encryption. Velite and
+          Rehype handle efficient Markdown parsing and semantic formatting for
+          consistent, accessible content presentation.
         </p>
       </div>
     ),
     features: [
-      "Secure and encrypted content management",
-      "AES encryption for data security",
-      "Markdown and Rehype for content/ code formatting",
-      "Velite for efficient Markdown parsing",
+      "MDX-based content authoring with JSX components",
+      "AES encryption for sensitive memorial data",
+      "Velite + Rehype for semantic formatting",
+      "Admin dashboard for content management",
     ],
     pages: ["Home", "Blog", "About", "Contact", "Admin Dashboard", "Profile"],
   },
   {
-    href: "https://rhub-6bde5.web.app/",
-    title: "MIST Central Resource Hub",
+    href: "https://elyria-edu-dev.web.app/",
+    title: "Elyria",
     description:
-      "A resource management archive for students of universities and colleges",
+      "Real-time collaborative code editor with project file management, built with Monaco Editor and Socket.IO during BUET DevSprint",
+    thumbnail: elyriaLanding,
+    images: [elyriaLanding],
+    stack: [
+      { name: "React", Icon: <React size={iconSize} /> },
+      { name: "Node.js", Icon: <NodeJs size={iconSize} /> },
+      { name: "MongoDB", Icon: <MongoDB size={iconSize} /> },
+      { name: "Socket.IO", Icon: <ViteJS size={iconSize} /> },
+      { name: "Monaco", Icon: <VisualStudioCode size={iconSize} /> },
+    ],
+    slug: "elyria",
+    category: "web",
+    year: "2024",
+    context: "BUET DevSprint 2024 Finalist",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A collaborative development platform built in 24 hours during BUET
+          DevSprint 2024 (where our team was a finalist). Multiple developers
+          can edit the same codebase in real-time through Monaco Editor with
+          Socket.IO syncing changes instantly.
+        </p>
+        <p>
+          Includes project file management, course organization, and integrated
+          chatrooms for team communication.
+        </p>
+      </div>
+    ),
+    features: [
+      "Real-time collaborative code editing via Monaco + Socket.IO",
+      "Project file management and organization",
+      "Integrated team chatrooms",
+      "Course management capabilities",
+    ],
+    pages: ["Home", "Courses", "Projects", "Code Editor", "Chatrooms"],
+  },
+  {
+    href: "https://rhub-6bde5.web.app/",
+    title: "MIST Resource Hub",
+    description:
+      "Community-driven academic resource archive with structured categorization, search, and cloud-based file management",
     thumbnail: rhubLanding,
     images: [rhubLanding, rhub2, rhub3, rhub4, rhub1],
     stack: [
@@ -157,213 +292,131 @@ export const projects: Project[] = [
       { name: "Firebase", Icon: <Firebase size={iconSize} /> },
     ],
     slug: "resource-hub",
+    category: "web",
+    year: "2023",
     content: (
-      <div>
+      <div className="space-y-3">
         <p>
-          A structured community-based resource storing website which
-          categorizes materials intuitively and enables students to find
-          academic books and slides efficiently. Features comprehensive search
-          and organization systems.
+          A structured community-based resource platform where students can
+          upload, categorize, and discover academic materials — books, slides,
+          notes, and past exam papers organized by department, course, and
+          semester.
+        </p>
+        <p>
+          Features full-text search, Cloudinary-powered file hosting, and
+          Firebase authentication. Used actively by MIST students.
         </p>
       </div>
     ),
     features: [
-      "Comprehensive resource management",
-      "Structured categorization of materials",
-      "Efficient search and organization systems",
-      "Community-based resource storing",
+      "Structured categorization by department and course",
+      "Full-text search across all resources",
+      "Cloud-based file hosting via Cloudinary",
+      "Community upload and curation system",
     ],
-    pages: [
-      "Home",
-      "Resources",
-      "Search",
-      "Categories",
-      "Upload",
-      "Profile",
-      "Settings",
-      "About",
-      "Contact",
-    ],
-  },
-  {
-    github: "https://github.com/ShadmanShafeen/Green-Cycle",
-    title: "GreenCycle",
-    description: "A Gamified Recycling App with AI-powered object recognition",
-    thumbnail: greenCycleLanding,
-    images: [greenCycleLanding, greenCycle2, greenCycle3, greenCycle1],
-    stack: [
-      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
-      { name: "Python", Icon: <Python size={iconSize} /> },
-      { name: "OpenCV", Icon: <OpenAI size={iconSize} /> },
-      { name: "TensorFlow", Icon: <Tensorflow size={iconSize} /> },
-      { name: "Gemini", Icon: <ClaudeAI size={iconSize} /> },
-      { name: "Firebase", Icon: <Firebase size={iconSize} /> },
-    ],
-    slug: "greencycle",
-    content: (
-      <div>
-        <p>
-          A Recycling app for the contemporary generation which focuses on a
-          gamified UI and reward base approach for environmental activities.
-          Features Object Recognition and AI-powered text generation.
-        </p>
-      </div>
-    ),
-    features: [
-      "Object Recognition",
-      "AI-powered text generation",
-      "Reward-based environmental activities",
-    ],
-    pages: [
-      "Home",
-      "Level Tracking",
-      "Classify Waste",
-      "Find Vendor",
-      "Play Games",
-      "Waste Item Listing",
-      "Community",
-      "Profile",
-      "Settings",
-    ],
-  },
-  {
-    href: "https://elyria-edu-dev.web.app/",
-    title: "Elyria",
-    description:
-      "A Code and Project Management Website with real-time collaboration",
-    thumbnail: elyriaLanding,
-    images: [elyriaLanding],
-    stack: [
-      { name: "React", Icon: <React size={iconSize} /> },
-      { name: "NodeJs", Icon: <NodeJs size={iconSize} /> },
-      { name: "MongoDB", Icon: <MongoDB size={iconSize} /> },
-      { name: "Cloudinary", Icon: <Cloudinary size={iconSize} /> },
-      { name: "SocketIo", Icon: <ViteJS size={iconSize} /> },
-      { name: "Monaco", Icon: <VisualStudioCode size={iconSize} /> },
-    ],
-    slug: "elyria",
-    content: (
-      <div>
-        <p>
-          A website featuring real-time code editing with multiple team members,
-          project file management, and course management capabilities. Built
-          during Devsprint BUET using modern web technologies.
-        </p>
-      </div>
-    ),
-    features: [
-      "Real-time code editing",
-      "Project file management",
-      "Course management capabilities",
-      "Course management capabilities",
-    ],
-    pages: [
-      "Home",
-      "Courses",
-      "Projects",
-      "Chatrooms",
-      "Code Editor",
-      "Profile",
-      "Settings",
-      "About",
-      "Contact",
-    ],
-  },
-  {
-    href: "https://ai-prompt-ebon.vercel.app/",
-    title: "Prompt Finder",
-    description: "An AI Powered Prompt Sharing Website",
-    thumbnail: promptLanding,
-    images: [promptLanding],
-    stack: [
-      { name: "NextJs", Icon: <NextJs size={iconSize} /> },
-      { name: "Vercel", Icon: <VercelDark size={iconSize} /> },
-      { name: "Tailwind", Icon: <TailwindCSS size={iconSize} /> },
-    ],
-    slug: "prompt-finder",
-    content: (
-      <div>
-        <p>
-          A platform to share all those big and complicated AI prompts that
-          efficiently brings out the best of large language models like ChatGPT,
-          Claude, Copilot and others.
-        </p>
-      </div>
-    ),
-    features: [
-      "AI Prompt Sharing",
-      "Efficiently brings out the best of large language models",
-    ],
-    pages: [
-      "Home",
-      "Prompt Listing",
-      "Prompt Details",
-      "Create Prompt",
-      "Profile",
-    ],
+    pages: ["Home", "Resources", "Search", "Categories", "Upload", "Profile"],
   },
   {
     github: "https://github.com/Abrar118/Final_bank",
     title: "Bank Management System",
-    description: "A comprehensive banking system with JavaFX interface",
+    description:
+      "Desktop banking application with AES-encrypted transactions, multi-threaded sessions, and automated JavaMail alerts",
     thumbnail: javaLanding,
     images: [javaLanding, java2, java4, java5],
     stack: [
-      { name: "JavaFX", Icon: <ESLint size={iconSize} /> },
-      { name: "Maven", Icon: <Oracle size={iconSize} /> },
-      { name: "Java", Icon: <Java size={iconSize} /> },
+      { name: "JavaFX", Icon: <Java size={iconSize} /> },
+      { name: "Maven", Icon: <Java size={iconSize} /> },
+      { name: "JavaMail", Icon: <Java size={iconSize} /> },
     ],
     slug: "bank-system",
+    category: "desktop",
+    year: "2023",
+    context: "SDP-II Course Project",
     content: (
-      <div>
+      <div className="space-y-3">
         <p>
-          A desktop banking application built with JavaFX that provides complete
-          banking operations management. Features include transaction handling,
-          account management, and automated email notifications.
+          A desktop banking application built with JavaFX for the Software
+          Development Project course. Implements secure transaction workflows
+          using AES-based data encryption and multi-threaded session handling
+          for concurrent customer operations.
+        </p>
+        <p>
+          JavaMail API sends automated transaction alerts, and NIO file-based
+          persistence manages account records.
         </p>
       </div>
     ),
     features: [
-      "Transaction handling",
-      "Account management",
-      "Automated email notifications",
+      "AES-based data encryption for secure transactions",
+      "Multi-threaded concurrent customer session handling",
+      "Automated transaction alerts via JavaMail API",
+      "NIO file-based persistence layer for account records",
     ],
-    pages: [
-      "Home",
-      "Accounts",
-      "Transactions",
-      "Email Notifications",
-      "Profile",
-      "Settings",
+    pages: ["Home", "Accounts", "Transactions", "Email Notifications"],
+  },
+  {
+    href: "https://ai-prompt-ebon.vercel.app/",
+    title: "Prompt Finder",
+    description:
+      "Platform for sharing and discovering AI prompts optimized for ChatGPT, Claude, and other LLMs",
+    thumbnail: promptLanding,
+    images: [promptLanding],
+    stack: [
+      { name: "Next.js", Icon: <NextJs size={iconSize} /> },
+      { name: "Vercel", Icon: <VercelDark size={iconSize} /> },
+      { name: "Tailwind", Icon: <TailwindCSS size={iconSize} /> },
     ],
+    slug: "prompt-finder",
+    category: "web",
+    year: "2023",
+    content: (
+      <div>
+        <p>
+          A community platform to share and discover complex AI prompts that
+          get the best out of large language models. Browse by category, save
+          favorites, and contribute your own prompt engineering techniques.
+        </p>
+      </div>
+    ),
+    features: [
+      "Community-driven prompt sharing and discovery",
+      "Category-based browsing and search",
+      "Optimized for multiple LLMs",
+    ],
+    pages: ["Home", "Prompt Listing", "Prompt Details", "Create Prompt"],
   },
   {
     github: "https://github.com/Abrar118/sniff-n-paws",
-    title: "Sniff-n-paws",
-    description: "A Foster Home for Pets with comprehensive management system",
+    title: "Sniff-n-Paws",
+    description:
+      "Pet foster home management system with daycare scheduling, veterinary tracking, and Oracle database backend",
     thumbnail: sniffPawsLanding,
     images: [sniffPawsLanding],
     stack: [
       { name: "React", Icon: <React size={iconSize} /> },
-      { name: "Oracle", Icon: <Oracle size={iconSize} /> },
-      { name: "NodeJs", Icon: <NodeJs size={iconSize} /> },
-      { name: "MySQL", Icon: <MySQL size={iconSize} /> },
+      { name: "Node.js", Icon: <NodeJs size={iconSize} /> },
+      { name: "Oracle", Icon: <MySQL size={iconSize} /> },
     ],
     slug: "sniff-n-paws",
+    category: "web",
+    year: "2023",
+    context: "DBMS Course Project",
     content: (
       <div>
         <p>
-          A web-based management system for a pet foster home, featuring daycare
-          scheduling and veterinary management. Built with React frontend and
-          Oracle database backend.
+          A web-based management system for a pet foster home, featuring
+          daycare scheduling, veterinary record tracking, and adoption
+          management. Built with React frontend and Oracle database backend
+          as a Database Management System course project.
         </p>
       </div>
     ),
     features: [
-      "Daycare scheduling",
-      "Veterinary management",
-      "Comprehensive pet management system",
+      "Daycare scheduling and management",
+      "Veterinary record tracking",
+      "Adoption management workflow",
+      "Oracle DB with complex relational schema",
     ],
-    pages: ["Home", "Pets", "Veterinary", "Daycare", "Profile", "Settings"],
+    pages: ["Home", "Pets", "Veterinary", "Daycare", "Profile"],
   },
 ];

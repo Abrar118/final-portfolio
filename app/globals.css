@@ -4,11 +4,11 @@
 
 ::-webkit-scrollbar {
   width: 8px;
-  background-color: #0F0F23;
+  background-color: hsl(var(--background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #4C1D95;
+  background-color: hsl(var(--border));
   border-radius: 10px;
 }
 
@@ -24,31 +24,31 @@
 
 @layer base {
   :root {
-    --background: 240 6% 10%;
-    --foreground: 214 32% 91%;
-    --card: 249 18% 16%;
-    --card-foreground: 214 32% 91%;
-    --popover: 249 18% 16%;
-    --popover-foreground: 214 32% 91%;
-    --primary: 263 70% 71%;
-    --primary-foreground: 240 33% 10%;
-    --secondary: 239 84% 67%;
+    --background: 270 20% 98%;
+    --foreground: 263 50% 12%;
+    --card: 270 25% 95%;
+    --card-foreground: 263 50% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 263 50% 12%;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 239 60% 55%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 247 18% 19%;
-    --muted-foreground: 215 17% 63%;
-    --accent: 263 83% 58%;
+    --muted: 270 15% 92%;
+    --muted-foreground: 260 10% 44%;
+    --accent: 263 83% 50%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 347 77% 60%;
+    --destructive: 347 77% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 267 79% 35%;
-    --input: 247 18% 19%;
-    --ring: 263 83% 58%;
+    --border: 270 15% 85%;
+    --input: 270 15% 92%;
+    --ring: 263 83% 50%;
     --radius: 0.75rem;
-    --chart-1: 263 70% 71%;
-    --chart-2: 239 84% 67%;
-    --chart-3: 263 83% 58%;
-    --chart-4: 267 79% 35%;
-    --chart-5: 347 77% 60%;
+    --chart-1: 263 70% 50%;
+    --chart-2: 239 60% 55%;
+    --chart-3: 263 83% 50%;
+    --chart-4: 267 50% 40%;
+    --chart-5: 347 77% 50%;
   }
 
   .dark {
@@ -99,7 +99,21 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 40%,
+      hsl(var(--accent)) 70%,
+      hsl(var(--primary)) 100%
+    );
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
   }
 
   .glow-purple {

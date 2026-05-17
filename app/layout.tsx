@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Archivo } from "next/font/google";
+import { Space_Grotesk, Archivo, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -18,6 +18,13 @@ const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-body",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
 const geistMono = localFont({
@@ -40,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${archivo.variable} ${geistMono.variable} font-body antialiased`}
+        className={`${spaceGrotesk.variable} ${archivo.variable} ${playfair.variable} ${geistMono.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"

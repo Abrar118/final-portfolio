@@ -58,24 +58,30 @@ export default function About() {
         className="max-w-4xl space-y-4 text-muted-foreground leading-relaxed"
       >
         <p>
-          Hey there, I&apos;m Abrar Mahir Esam — a passionate developer, avid
-          artist, and a connoisseur of awesome design. I&apos;m a CSE
-          undergraduate at Military Institute of Science and Technology with a
-          passion for software development, competitive programming, and system
-          design. Currently working as the Executive Director at MIST Computer
-          Club.
+          Hey there, I&apos;m Abrar Mahir Esam — a Software Engineer currently
+          at Bengal Byte, working on a German psychiatric facility&apos;s
+          patient management system. I graduated with a BSc in CSE from
+          Military Institute of Science and Technology (CGPA: 3.56/4.00) and
+          am now pursuing my MSc.
         </p>
         <p>
-          Since the early days of my journey, I have been captivated by the vast
-          world of Mathematics. In my school days I participated in various math
-          competitions and Olympiads. Later on, I found my interest in
-          programming and started competitive programming on platforms like
-          Codeforces, AtCoder, and LeetCode.
+          I&apos;ve shipped production software across the stack — fullstack
+          web apps with Next.js and Spring Boot, cross-platform desktop tools
+          with Tauri + Rust, mobile apps with Flutter, and scalable backend
+          systems with microservices. I also did contractual work for the
+          Chief Advisor&apos;s Office of Bangladesh, engineering a horizontally
+          scalable backend with Spring Boot and PostgreSQL.
         </p>
         <p>
-          But my journey doesn&apos;t stop at coding. With a heart full of words
-          and a mind brimming with ideas, I&apos;ve ventured into the realm of
-          writing and art — poems and sketches for Inktobers and beyond.
+          On the competitive side, I hold a Specialist rank on Codeforces
+          (rating 1425) and mentored three batches of juniors in competitive
+          programming at MIST Computer Club. My research on AI-enhanced waste
+          recycling was published at the 2025 IEEE QPAIN conference.
+        </p>
+        <p>
+          Beyond code, I&apos;m an avid artist — poems and sketches for
+          Inktobers and beyond. I believe great software is where engineering
+          meets thoughtful design.
         </p>
       </motion.div>
 
