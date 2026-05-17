@@ -27,6 +27,7 @@ const Hero = () => {
       />
 
       <div className="absolute inset-0 bg-gradient-glow pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none dark:hidden bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.12)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.1)_0%,transparent_50%)]" />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
