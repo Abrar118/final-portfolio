@@ -1,16 +1,13 @@
 "use client";
-import { Paragraph } from "@/components/ui/Paragraph";
-import Image from "next/image";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heading } from "../ui/Heading";
 import { IconCircleCheckFilled } from "@tabler/icons-react";
 import { timeline } from "@/data/about/timeline";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tab2";
-import { FcTimeline } from "react-icons/fc";
-import { GrAchievement } from "react-icons/gr";
+import { Briefcase, Trophy } from "lucide-react";
 import { achievements } from "@/data/about/achievements";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
   const images = [
@@ -19,143 +16,164 @@ export default function About() {
     "/avatar4.jpg",
     "/avatar5.jpg",
   ];
+
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 my-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
+          About Me
+        </h1>
+      </motion.div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-10">
         {images.map((image, index) => (
           <motion.div
             key={image}
-            initial={{
-              opacity: 0,
-              y: -50,
-              rotate: 0,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              rotate: index % 2 === 0 ? 3 : -3,
-            }}
-            transition={{ duration: 0.2, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.08 }}
           >
             <Image
               src={image}
               width={200}
               height={400}
               alt="about"
-              className="rounded-md object-cover rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 transition duration-200"
+              className="rounded-xl object-cover shadow-lg block w-full h-40 md:h-60
+                hover:scale-[1.02] transition-transform duration-200
+                border border-border/20"
+              style={{ rotate: `${index % 2 === 0 ? 2 : -2}deg` }}
             />
           </motion.div>
         ))}
       </div>
 
-      <div className="max-w-4xl">
-        <Paragraph className=" mt-4 text-foreground">
-          Hey there, I&apos;m Abrar Mahir Esam - a passionate developer, avid
-          artist, and a connoisseur of awesome design. Welcome to my corner of
-          the digital world! I'm a CSE undergraduate at Military Institute of
-          Science and Technology with a passion for software development,
-          competitive programming, and system design. Currently working as the
-          Executive Director at MIST Computer Club.
-        </Paragraph>
-        <Paragraph className=" mt-4 text-foreground">
-          Since the early days of my journey, I have captivate by the vast world
-          of Mathematics. So, in my school days I used to participate in various
-          math competitions and Olympiads. Later on, I found my interest in
-          programming and started competitive programming. I have been
-          participating in various online contests and have been solving
-          problems from various online judges like Codeforces, AtCoder,
-          LeetCode, etc.
-        </Paragraph>
-
-        <Paragraph className=" mt-4 text-foreground">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+        className="max-w-4xl space-y-4 text-muted-foreground leading-relaxed"
+      >
+        <p>
+          Hey there, I&apos;m Abrar Mahir Esam — a passionate developer, avid
+          artist, and a connoisseur of awesome design. I&apos;m a CSE
+          undergraduate at Military Institute of Science and Technology with a
+          passion for software development, competitive programming, and system
+          design. Currently working as the Executive Director at MIST Computer
+          Club.
+        </p>
+        <p>
+          Since the early days of my journey, I have been captivated by the vast
+          world of Mathematics. In my school days I participated in various math
+          competitions and Olympiads. Later on, I found my interest in
+          programming and started competitive programming on platforms like
+          Codeforces, AtCoder, and LeetCode.
+        </p>
+        <p>
           But my journey doesn&apos;t stop at coding. With a heart full of words
           and a mind brimming with ideas, I&apos;ve ventured into the realm of
-          writing an art. I have been writing poems and doing sketches for a
-          long time for leisure and for Inktobers.
-        </Paragraph>
+          writing and art — poems and sketches for Inktobers and beyond.
+        </p>
+      </motion.div>
 
-        <Paragraph className=" mt-4 text-foreground">
-          Join me on this journey of bytes and narratives, logic and creativity,
-          code and prose. Together, we can explore the boundless possibilities
-          of technology and storytelling, all while reveling in the sheer beauty
-          of thoughtful design.
-        </Paragraph>
-        <Paragraph className=" mt-4 text-foreground">
-          Thank you for being here, and I can&apos;t wait to embark on this
-          adventure with you.
-        </Paragraph>
-      </div>
-
-      <div className="mt-20">
-        <span className="text-4xl">💼</span>
-        <Heading className="font-black mb-5">Work History</Heading>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+        className="mt-20"
+      >
+        <h2 className="font-heading text-2xl font-bold mb-6">Experience</h2>
 
         <Tabs defaultValue="timeline">
-          <TabsList className="w-full">
-            <TabsTrigger value="timeline" className="w-full">
-              <FcTimeline size={20} className="mr-3" /> Timeline
+          <TabsList className="w-full bg-card/60 border border-border/30">
+            <TabsTrigger value="timeline" className="w-full gap-2">
+              <Briefcase className="h-4 w-4" /> Timeline
             </TabsTrigger>
-            <TabsTrigger value="achievements" className="w-full">
-              <GrAchievement size={20} className="mr-3" /> Achievements
+            <TabsTrigger value="achievements" className="w-full gap-2">
+              <Trophy className="h-4 w-4" /> Achievements
             </TabsTrigger>
           </TabsList>
+
           <TabsContent value="timeline">
-            <div>
+            <div className="mt-8 space-y-0">
               {timeline.map((item, index) => (
                 <div
-                  className="flex md:flex-row flex-col space-y-10 md:space-y-0 space-x-10 my-20 relative"
-                  key={item.company}
+                  className="relative flex gap-6 pb-10 last:pb-0"
+                  key={`${item.company}-${index}`}
                 >
-                  <Paragraph className="w-40 text-foreground">
-                    {item.date}
-                  </Paragraph>
-                  <div>
-                    <Heading
-                      as="h5"
-                      className="text-lg md:text-lg lg:text-lg text-chart2"
-                    >
-                      {item.company}
-                    </Heading>
-                    <Paragraph className="text-base md:text-base lg:text-base font-semibold text-foreground">
-                      {item.title}
-                    </Paragraph>
-                    <Paragraph className="text-sm md:text-sm lg:text-sm mb-4 text-foreground">
-                      {item.description}
-                    </Paragraph>
+                  <div className="flex flex-col items-center">
+                    <div className="h-3 w-3 rounded-full bg-accent flex-shrink-0 mt-1.5" />
+                    {index < timeline.length - 1 && (
+                      <div className="w-px flex-1 bg-border/50 mt-2" />
+                    )}
+                  </div>
 
-                    {item.responsibilities.map((responsibility, index) => (
-                      <Step key={responsibility}>{responsibility}</Step>
+                  <div className="pb-2">
+                    <p className="text-xs text-muted-foreground mb-1">
+                      {item.date}
+                    </p>
+                    <h3 className="font-heading font-semibold text-accent">
+                      {item.company}
+                    </h3>
+                    <p className="text-sm font-medium text-foreground">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-1 mb-3">
+                      {item.description}
+                    </p>
+
+                    {item.responsibilities.map((r) => (
+                      <div
+                        key={r}
+                        className="flex items-start gap-2 my-1.5"
+                      >
+                        <IconCircleCheckFilled className="h-3.5 w-3.5 mt-0.5 text-accent/60 flex-shrink-0" />
+                        <span className="text-sm text-muted-foreground">
+                          {r}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
           </TabsContent>
+
           <TabsContent value="achievements">
-            <div>
-              {achievements.map((achievement, index) => (
+            <div className="mt-8 space-y-0">
+              {achievements.map((a, index) => (
                 <div
-                  className="flex md:flex-row flex-col space-y-10 md:space-y-0 space-x-10 my-20 relative"
-                  key={`achievement-${achievement.title}`}
+                  className="relative flex gap-6 pb-10 last:pb-0"
+                  key={`${a.title}-${index}`}
                 >
-                  <Paragraph className="w-40 text-foreground">
-                    {achievement.date}
-                  </Paragraph>
-                  <div>
-                    <Heading
-                      as="h5"
-                      className="text-lg md:text-lg lg:text-lg text-chart2"
+                  <div className="flex flex-col items-center">
+                    <div className="h-3 w-3 rounded-full bg-accent flex-shrink-0 mt-1.5" />
+                    {index < achievements.length - 1 && (
+                      <div className="w-px flex-1 bg-border/50 mt-2" />
+                    )}
+                  </div>
+
+                  <div className="pb-2">
+                    <p className="text-xs text-muted-foreground mb-1">
+                      {a.date}
+                    </p>
+                    <h3 className="font-heading font-semibold text-accent">
+                      {a.title}
+                    </h3>
+                    <p className="text-sm font-medium text-foreground">
+                      {a.organization}
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {a.description}
+                    </p>
+                    <Badge
+                      variant="secondary"
+                      className="mt-2 text-xs bg-accent/10 text-accent border-none"
                     >
-                      {achievement.title}
-                    </Heading>
-                    <Paragraph className="text-base md:text-base lg:text-base font-semibold text-foreground">
-                      {achievement.organization}
-                    </Paragraph>
-                    <Paragraph className="text-sm md:text-sm lg:text-sm mb-4 text-foreground">
-                      {achievement.description}
-                    </Paragraph>
-                    <Badge variant="secondary" className="mt-2">
-                      {achievement.type}
+                      {a.type}
                     </Badge>
                   </div>
                 </div>
@@ -163,18 +181,7 @@ export default function About() {
             </div>
           </TabsContent>
         </Tabs>
-      </div>
+      </motion.div>
     </div>
   );
 }
-
-const Step = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex space-x-1 items-start my-2">
-      <IconCircleCheckFilled className="h-3 w-4 mt-1 text-foreground" />
-      <Paragraph className="text-sm md:text-sm lg:text-sm text-foreground">
-        {children}
-      </Paragraph>
-    </div>
-  );
-};

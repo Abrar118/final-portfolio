@@ -1,6 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
+"use client";
+
 import type { IconType } from "react-icons/lib";
+import { motion } from "framer-motion";
 
 interface SkillCardProps {
   Icon: IconType;
@@ -8,6 +9,7 @@ interface SkillCardProps {
   description: string;
   color: string;
   bgColor: string;
+  size?: "sm" | "lg";
 }
 
 export default function SkillsCard({
@@ -15,37 +17,32 @@ export default function SkillsCard({
   name,
   description,
   color,
-  bgColor,
+  size = "sm",
 }: SkillCardProps) {
   return (
-    <Card
-      className="w-full transition-all hover:shadow-lg bg-card/20 border-border hover:border-gray-600
-    hover:bg-card"
+    <motion.div
+      whileHover={{ y: -2, scale: 1.02 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className={`group relative flex items-center gap-4 p-4 rounded-xl
+        bg-card/60 border border-border/30
+        hover:border-accent/30 hover:bg-card/80
+        transition-colors duration-200 cursor-default
+        ${size === "lg" ? "col-span-2 p-5" : ""}`}
     >
-      <CardContent className="py-3 pr-8">
-        <div className="flex items-start gap-3">
-          <div
-            className={"rounded p-2"}
-            style={{ color: color.trim(), backgroundColor: bgColor.trim() }}
-          >
-            {typeof Icon === "string" ? (
-              <Image
-                src={Icon}
-                alt={name}
-                width={40}
-                height={40}
-                layout="fixed"
-              />
-            ) : (
-              <Icon size={40} />
-            )}
-          </div>
-          <div className="flex flex-col">
-            <h3 className="text-lg text-foreground">{name}</h3>
-            <p className="text-sm text-muted-foreground">{description}</p>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      <div
+        className="flex-shrink-0 flex items-center justify-center rounded-lg p-2.5"
+        style={{ backgroundColor: `${color}15` }}
+      >
+        <Icon size={size === "lg" ? 28 : 22} style={{ color }} />
+      </div>
+      <div className="min-w-0">
+        <h3 className="font-heading font-semibold text-sm text-foreground">
+          {name}
+        </h3>
+        <p className="text-xs text-muted-foreground mt-0.5 truncate">
+          {description}
+        </p>
+      </div>
+    </motion.div>
   );
 }

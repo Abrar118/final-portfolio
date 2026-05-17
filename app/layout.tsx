@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Space_Grotesk, Archivo } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -7,11 +8,18 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
 });
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -19,8 +27,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Abrar's Portfolio",
-  description: "Developer portfolio of Abrar Mahir Esam",
+  title: "Abrar Mahir Esam",
+  description:
+    "Fullstack Software Developer and Competitive Programmer based in Dhaka, Bangladesh.",
 };
 
 export default function RootLayout({
@@ -29,9 +38,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${archivo.variable} ${geistMono.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"

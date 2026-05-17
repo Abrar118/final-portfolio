@@ -1,5 +1,4 @@
 import type React from "react";
-
 import { twMerge } from "tailwind-merge";
 
 export const Paragraph = ({
@@ -12,7 +11,7 @@ export const Paragraph = ({
   return (
     <p
       className={twMerge(
-        "text-sm lg:text-base font-normal text-secondary",
+        "text-sm lg:text-base font-normal text-muted-foreground",
         className
       )}
     >

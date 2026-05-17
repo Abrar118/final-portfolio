@@ -1,5 +1,4 @@
 "use client";
-import Transition from "@/components/shared/Transition";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -12,8 +11,13 @@ const Template = ({
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div key={path}>
-        <Transition />
+      <motion.div
+        key={path}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
         {children}
       </motion.div>
     </AnimatePresence>

@@ -6,12 +6,12 @@ import {
   SiKotlin,
   SiMongodb,
   SiNextdotjs,
-  SiOracle,
   SiSpringboot,
   SiTailwindcss,
   SiTauri,
 } from "react-icons/si";
 import {
+  FaDatabase,
   FaDocker,
   FaGitAlt,
   FaJava,
@@ -154,7 +154,7 @@ export const skillsTabs: Tab[] = [
     value: "databases",
     contents: [
       {
-        img: SiOracle,
+        img: FaDatabase,
         desc: "Enterprise SQL database",
         name: "Oracle",
         iconColor: "#F80000",

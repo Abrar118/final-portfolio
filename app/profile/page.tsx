@@ -1,4 +1,3 @@
-import { Heading } from "@/components/ui/Heading";
 import type { Metadata } from "next";
 import About from "@/components/about/profileDetails";
 
@@ -10,9 +9,7 @@ export const metadata: Metadata = {
 
 export default function Profile() {
   return (
-    <main className="max-w-4xl w-full mx-auto py-20 px-4 md:px-10">
-      <span className="text-4xl text-chart1">💬</span>
-      <Heading className="text-foreground">About Me</Heading>
+    <main className="max-w-4xl w-full mx-auto py-20 px-4 md:px-10 pb-32">
       <About />
     </main>
   );

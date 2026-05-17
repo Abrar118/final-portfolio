@@ -3,26 +3,12 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ChevronDown,
-  ChevronRight,
-  Clock,
-  Eye,
-  MessageSquare,
-  Plus,
-  MessageCircleQuestion,
-  Flag,
-} from "lucide-react";
+import { ChevronRight, ExternalLink, Github, ArrowLeft } from "lucide-react";
 import type { Project } from "@/types/project";
-
 import { Button } from "@/components/ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { motion } from "framer-motion";
 
 export default function ProjectDetailsContainer({
   project,
@@ -30,183 +16,198 @@ export default function ProjectDetailsContainer({
   project: Project;
 }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="border-b border-border p-4">
-        <div className="flex items-center gap-2 text-sm text-primary">
-          <Link href="/projects" className="hover:text-chart1">
+    <div className="min-h-screen bg-background text-foreground pb-32">
+      <nav className="border-b border-border/30 px-4 md:px-[5%] lg:px-[10%] xl:px-[15%] py-4">
+        <div className="flex items-center gap-2 text-sm">
+          <Link
+            href="/projects"
+            className="text-muted-foreground hover:text-accent transition-colors duration-200 flex items-center gap-1"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
             Projects
           </Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-chart3">{project.title}</span>
+          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50" />
+          <span className="text-foreground font-medium">{project.title}</span>
         </div>
       </nav>
 
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="mb-4 text-4xl font-bold">{project.title}</h1>
-          <p className="text-lg text-muted-foreground">{project.description}</p>
+      <div className="mx-auto max-w-5xl px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="mb-10"
+        >
+          <h1 className="font-heading text-3xl md:text-5xl font-bold">
+            {project.title}
+          </h1>
+          <p className="text-lg text-muted-foreground mt-3 max-w-2xl">
+            {project.description}
+          </p>
 
-          <div className="mt-6 flex gap-4">
+          <div className="flex gap-3 mt-6">
             {project.href && (
-              <Link href={project.href}>
-                <Button variant="outline">Preview</Button>
+              <Link href={project.href} target="_blank">
+                <Button
+                  variant="default"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full gap-2 font-medium"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  Live Preview
+                </Button>
               </Link>
             )}
             {project.github && (
-              <Link href={project.github}>
-                <Button variant="outline">Github</Button>
+              <Link href={project.github} target="_blank">
+                <Button
+                  variant="outline"
+                  className="rounded-full gap-2 border-border/50"
+                >
+                  <Github className="h-4 w-4" />
+                  Source Code
+                </Button>
               </Link>
             )}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Stats */}
-        <div className="mb-8 grid grid-cols-4 gap-8">
-          <div className="flex flex-col items-center">
-            <div className="mb-2 h-10 w-10 rounded-full bg-foreground" />
-            <p className="text-sm font-medium">Creator</p>
-            <p className="text-xs text-muted-foreground">Abrar Mahir Esam</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <Clock className="mb-2 h-10 w-10" />
-            <p className="text-sm font-medium">Completion</p>
-            <p className="text-xs text-muted-foreground">Completed</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-foreground">
-              8
-            </div>
-            <p className="text-sm font-medium">Pages</p>
-            <p className="text-xs text-muted-foreground">
-              {project.pages?.length || 0}
-            </p>
-          </div>
-          <div className="flex flex-col items-center">
-            <Eye className="mb-2 h-10 w-10" />
-            <p className="text-sm font-medium">253</p>
-            <p className="text-xs text-muted-foreground">Views</p>
-          </div>
-        </div>
-
-        {/* Preview Images */}
-        <div className="mb-8 grid gap-4 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
+          className="grid gap-3 grid-cols-1 md:grid-cols-2 mb-12"
+        >
           {project.images.map((image, index) => (
             <Dialog key={index}>
               <DialogTrigger asChild>
-                <Image
-                  src={typeof image === "string" ? image : image.src}
-                  alt={`Preview ${index + 1}`}
-                  width={800}
-                  height={600}
-                  className="object-cover"
-                />
+                <div
+                  className={`relative overflow-hidden rounded-xl cursor-pointer group
+                    ${index === 0 ? "md:col-span-2 aspect-video" : "aspect-video"}`}
+                >
+                  <Image
+                    src={typeof image === "string" ? image : image.src}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/10 transition-colors duration-200" />
+                </div>
               </DialogTrigger>
-              <DialogContent className="max-w-[90vw] max-h-[90vh]">
+              <DialogContent className="max-w-[90vw] max-h-[90vh] p-2 bg-card border-border/30">
                 <Image
                   src={typeof image === "string" ? image : image.src}
-                  alt={`Preview ${index + 1}`}
+                  alt={`${project.title} screenshot ${index + 1}`}
                   width={1920}
                   height={1080}
-                  className="md:w-[90vw] md:h-[85vh]"
+                  className="rounded-lg w-full h-auto max-h-[85vh] object-contain"
                 />
               </DialogContent>
             </Dialog>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-[1fr,300px]">
-          <div className="space-y-8">
-            {/* Description */}
-            <div className="prose prose-invert max-w-none">
-              {typeof project.content === "string" ? (
-                <p>{project.content}</p>
-              ) : (
-                project.content
-              )}
-            </div>
+        <div className="grid gap-10 md:grid-cols-[1fr,280px]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+            className="space-y-8"
+          >
+            {project.content && (
+              <div>
+                <h2 className="font-heading text-xl font-semibold mb-3">
+                  About
+                </h2>
+                <div className="text-muted-foreground leading-relaxed">
+                  {typeof project.content === "string" ? (
+                    <p>{project.content}</p>
+                  ) : (
+                    project.content
+                  )}
+                </div>
+              </div>
+            )}
 
-            {/* Features */}
-            <div>
-              <h2 className="mb-4 text-2xl font-bold">Features</h2>
-              <div className="space-y-2">
-                {project.features?.map((feature, index) => (
-                  <Collapsible key={feature} defaultOpen={index === 0}>
-                    <CollapsibleTrigger
-                      className="flex w-full items-center justify-between 
-                    rounded-lg bg-muted/40 p-4 hover:bg-muted"
+            {project.features && project.features.length > 0 && (
+              <div>
+                <h2 className="font-heading text-xl font-semibold mb-3">
+                  Key Features
+                </h2>
+                <ul className="space-y-2">
+                  {project.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-3 text-muted-foreground"
                     >
-                      <span>{feature}</span>
-                      <ChevronDown className="h-5 w-5" />
-                    </CollapsibleTrigger>
-                    <CollapsibleContent className="p-4 text-muted-foreground">
-                      Feature details will be displayed here ...
-                    </CollapsibleContent>
-                  </Collapsible>
-                ))}
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          </div>
+            )}
+          </motion.div>
 
-          <div className="space-y-8">
-            {/* Categories */}
-            <div>
-              <h3 className="mb-4 text-lg font-semibold">Categories</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.stack?.map((stack) => (
-                  <Badge
-                    key={stack.name}
-                    variant="secondary"
-                    className="bg-muted"
-                  >
-                    {stack.name}
-                  </Badge>
-                ))}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
+            className="space-y-8"
+          >
+            {project.stack && project.stack.length > 0 && (
+              <div>
+                <h3 className="font-heading text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  Tech Stack
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.stack.map((tech) => (
+                    <Badge
+                      key={tech.name}
+                      variant="secondary"
+                      className="bg-muted/60 border border-border/30 font-normal gap-1.5 py-1.5 px-3"
+                    >
+                      <span className="flex-shrink-0">{tech.Icon}</span>
+                      {tech.name}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Pages */}
-            <div>
-              <h3 className="mb-4 text-lg font-semibold">Pages</h3>
-              <div className="flex flex-wrap gap-2 text-muted-foreground">
-                {project.pages?.map((page) => (
-                  <div key={page}>
-                    {page}
-                    {","}
-                  </div>
-                ))}
+            {project.pages && project.pages.length > 0 && (
+              <div>
+                <h3 className="font-heading text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  Pages
+                </h3>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.pages.map((page) => (
+                    <Badge
+                      key={page}
+                      variant="outline"
+                      className="border-border/30 text-muted-foreground font-normal text-xs"
+                    >
+                      {page}
+                    </Badge>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Support */}
             <div>
-              <h3 className="mb-4 text-lg font-semibold">Support</h3>
-              <div className="space-y-4">
-                <Button variant="outline" className="w-full justify-start">
-                  <MessageSquare className="mr-2 h-4 w-4" />
-                  Contact{" "}
-                  <span className="italic text-chart1">
-                    abrarme118@gmail.com
-                  </span>
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <MessageCircleQuestion className="mr-2 h-4 w-4" />
-                  React at number{" "}
-                  <span className="text-chart2">+8801558075365</span>
-                </Button>
-              </div>
-            </div>
-
-            {/* Refund Policy */}
-            <div>
-              <h3 className="mb-4 text-lg font-semibold">Copyright Policy</h3>
+              <h3 className="font-heading text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                Contact
+              </h3>
               <p className="text-sm text-muted-foreground">
-                All rights reserved to the owner of the project. You can use the
-                project for educational purposes only.
+                Interested in this project? Reach out at{" "}
+                <Link
+                  href="/contact"
+                  className="text-accent hover:underline"
+                >
+                  abrarme118@gmail.com
+                </Link>
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
