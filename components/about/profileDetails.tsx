@@ -2,12 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IconCircleCheckFilled } from "@tabler/icons-react";
 import { timeline } from "@/data/about/timeline";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tab2";
-import { Briefcase, Trophy } from "lucide-react";
 import { achievements } from "@/data/about/achievements";
-import { Badge } from "@/components/ui/badge";
+import { SectionHeading } from "@/components/ui/ornaments";
 
 export default function About() {
   const images = [
@@ -24,16 +21,18 @@ export default function About() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
-        <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-          About Me
-        </h1>
+        <SectionHeading
+          rubric="Folio I"
+          title="The Chronicle"
+          subtitle="Of the life, studies, and service of Abrar Mahir Esam."
+        />
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-10">
+      <div className="my-12 grid grid-cols-2 gap-4 md:grid-cols-4">
         {images.map((image, index) => (
           <motion.div
             key={image}
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.08 }}
           >
@@ -41,11 +40,11 @@ export default function About() {
               src={image}
               width={200}
               height={400}
-              alt="about"
-              className="rounded-xl object-cover shadow-lg block w-full h-40 md:h-60
-                hover:scale-[1.02] transition-transform duration-200
-                border border-border/20"
-              style={{ rotate: `${index % 2 === 0 ? 2 : -2}deg` }}
+              alt="Portrait miniature of Abrar"
+              className="block h-40 w-full border border-border bg-card object-cover p-1.5 md:h-60
+                shadow-sm transition-transform duration-200 hover:scale-[1.02]
+                [filter:sepia(0.12)_saturate(0.95)]"
+              style={{ rotate: `${index % 2 === 0 ? 1.5 : -1.5}deg` }}
             />
           </motion.div>
         ))}
@@ -55,139 +54,137 @@ export default function About() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-        className="max-w-4xl space-y-4 text-muted-foreground leading-relaxed"
+        className="mx-auto max-w-3xl space-y-4 font-body text-base leading-relaxed text-muted-foreground md:text-lg"
       >
-        <p>
-          Hey there, I&apos;m Abrar Mahir Esam — a Software Engineer currently
-          at Bengal Byte, working on a German psychiatric facility&apos;s
-          patient management system. I graduated with a BSc in CSE from
-          Military Institute of Science and Technology (CGPA: 3.56/4.00) and
-          am now pursuing my MSc.
+        <p className="drop-cap">
+          Here begins the account of Abrar Mahir Esam — a software engineer
+          presently at Bengal Byte, building a privacy-focused patient
+          management platform for a European healthcare provider. He earned
+          his BSc in Computer Science and Engineering from the Military
+          Institute of Science and Technology (CGPA 3.56/4.00) and now
+          pursues his MSc at the same institution.
         </p>
         <p>
-          I&apos;ve shipped production software across the stack — fullstack
-          web apps with Next.js and Spring Boot, cross-platform desktop tools
-          with Tauri + Rust, mobile apps with Flutter, and scalable backend
-          systems with microservices. I also did contractual work for the
-          Chief Advisor&apos;s Office of Bangladesh, engineering a horizontally
-          scalable backend with Spring Boot and PostgreSQL.
+          He has shipped production software across the whole of the stack —
+          web applications with Next.js and Spring Boot, cross-platform
+          desktop tools with Tauri and Rust, mobile apps with Flutter, and
+          horizontally scalable backends. In contractual service to the
+          Government of Bangladesh, he architected a Spring Boot and
+          PostgreSQL platform for large-scale personnel and duty management,
+          hardened with Redis-backed caching, JWT auth, and rate limiting.
         </p>
         <p>
-          On the competitive side, I hold a Specialist rank on Codeforces
-          (rating 1425) and mentored three batches of juniors in competitive
-          programming at MIST Computer Club. My research on AI-enhanced waste
-          recycling was published at the 2025 IEEE QPAIN conference.
+          In contest he holds the rank of Specialist upon Codeforces (highest
+          rating 1425) and mentored three batches of juniors in competitive
+          programming at the MIST Computer Club. His research on AI-enhanced
+          waste recycling was published at the 2025 IEEE QPAIN conference.
         </p>
         <p>
-          Beyond code, I&apos;m an avid artist — poems and sketches for
-          Inktobers and beyond. I believe great software is where engineering
-          meets thoughtful design.
+          Beyond the craft of code, he is an avid artist — of poems and
+          sketches, Inktobers and beyond — holding that great software is
+          where engineering meets thoughtful design.
         </p>
       </motion.div>
 
-      <motion.div
+      <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-        className="mt-20"
+        className="mt-24"
       >
-        <h2 className="font-heading text-2xl font-bold mb-6">Experience</h2>
+        <SectionHeading
+          rubric="Folio II"
+          title="Deeds & Service"
+          className="mb-12"
+        />
 
-        <Tabs defaultValue="timeline">
-          <TabsList className="w-full bg-card/60 border border-border/30">
-            <TabsTrigger value="timeline" className="w-full gap-2">
-              <Briefcase className="h-4 w-4" /> Timeline
-            </TabsTrigger>
-            <TabsTrigger value="achievements" className="w-full gap-2">
-              <Trophy className="h-4 w-4" /> Achievements
-            </TabsTrigger>
-          </TabsList>
+        <div className="mx-auto max-w-3xl">
+          {timeline.map((item, index) => (
+            <div
+              className="relative flex gap-6 pb-12 last:pb-0"
+              key={`${item.company}-${index}`}
+            >
+              <div className="flex flex-col items-center">
+                <span
+                  aria-hidden="true"
+                  className="mt-1 h-2.5 w-2.5 flex-shrink-0 rotate-45 border border-gold bg-card"
+                />
+                {index < timeline.length - 1 && (
+                  <div className="mt-2 w-px flex-1 bg-border" />
+                )}
+              </div>
 
-          <TabsContent value="timeline">
-            <div className="mt-8 space-y-0">
-              {timeline.map((item, index) => (
-                <div
-                  className="relative flex gap-6 pb-10 last:pb-0"
-                  key={`${item.company}-${index}`}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="h-3 w-3 rounded-full bg-accent flex-shrink-0 mt-1.5" />
-                    {index < timeline.length - 1 && (
-                      <div className="w-px flex-1 bg-border/50 mt-2" />
-                    )}
-                  </div>
+              <div className="pb-2">
+                <p className="rubric !text-[10px] mb-1.5">{item.date}</p>
+                <h3 className="font-heading font-semibold tracking-wide text-primary">
+                  {item.company}
+                </h3>
+                <p className="font-body text-sm font-medium italic text-foreground">
+                  {item.title}
+                </p>
+                <p className="mb-3 mt-1 font-body text-sm text-muted-foreground">
+                  {item.description}
+                </p>
 
-                  <div className="pb-2">
-                    <p className="text-xs text-muted-foreground mb-1">
-                      {item.date}
-                    </p>
-                    <h3 className="font-heading font-semibold text-accent">
-                      {item.company}
-                    </h3>
-                    <p className="text-sm font-medium text-foreground">
-                      {item.title}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-1 mb-3">
-                      {item.description}
-                    </p>
-
-                    {item.responsibilities.map((r) => (
-                      <div
-                        key={r}
-                        className="flex items-start gap-2 my-1.5"
+                <ul>
+                  {item.responsibilities.map((r) => (
+                    <li key={r} className="my-1.5 flex items-start gap-2.5">
+                      <span
+                        aria-hidden="true"
+                        className="mt-0.5 flex-shrink-0 text-xs leading-relaxed text-gold"
                       >
-                        <IconCircleCheckFilled className="h-3.5 w-3.5 mt-0.5 text-accent/60 flex-shrink-0" />
-                        <span className="text-sm text-muted-foreground">
-                          {r}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                        ❧
+                      </span>
+                      <span className="font-body text-sm text-muted-foreground">
+                        {r}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </TabsContent>
+          ))}
+        </div>
+      </motion.section>
 
-          <TabsContent value="achievements">
-            <div className="mt-8 space-y-0">
-              {achievements.map((a, index) => (
-                <div
-                  className="relative flex gap-6 pb-10 last:pb-0"
-                  key={`${a.title}-${index}`}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="h-3 w-3 rounded-full bg-accent flex-shrink-0 mt-1.5" />
-                    {index < achievements.length - 1 && (
-                      <div className="w-px flex-1 bg-border/50 mt-2" />
-                    )}
-                  </div>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4, ease: "easeOut" }}
+        className="mt-24"
+      >
+        <SectionHeading
+          rubric="Folio III"
+          title="Honours & Feats"
+          className="mb-12"
+        />
 
-                  <div className="pb-2">
-                    <p className="text-xs text-muted-foreground mb-1">
-                      {a.date}
-                    </p>
-                    <h3 className="font-heading font-semibold text-accent">
-                      {a.title}
-                    </h3>
-                    <p className="text-sm font-medium text-foreground">
-                      {a.organization}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {a.description}
-                    </p>
-                    <Badge
-                      variant="secondary"
-                      className="mt-2 text-xs bg-accent/10 text-accent border-none"
-                    >
-                      {a.type}
-                    </Badge>
-                  </div>
-                </div>
-              ))}
+        <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+          {achievements.map((a, index) => (
+            <div
+              key={`${a.title}-${index}`}
+              className="border border-border/70 bg-card p-4 transition-colors duration-200 hover:border-gold/60"
+            >
+              <p className="rubric !text-[10px] flex items-center gap-2">
+                <span>{a.type}</span>
+                <span aria-hidden="true" className="text-gold">
+                  ·
+                </span>
+                <span className="text-muted-foreground">{a.date}</span>
+              </p>
+              <h3 className="mt-1.5 font-heading text-sm font-semibold tracking-wide text-foreground">
+                {a.title}
+              </h3>
+              <p className="mt-0.5 font-body text-sm italic text-secondary">
+                {a.organization}
+              </p>
+              <p className="mt-1 font-body text-sm text-muted-foreground">
+                {a.description}
+              </p>
             </div>
-          </TabsContent>
-        </Tabs>
-      </motion.div>
+          ))}
+        </div>
+      </motion.section>
     </div>
   );
 }

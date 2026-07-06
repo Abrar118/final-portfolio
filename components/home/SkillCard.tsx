@@ -12,37 +12,40 @@ interface SkillCardProps {
   size?: "sm" | "lg";
 }
 
+/* Each skill is a small stone tablet: chiseled corners, carved face,
+   letterpress-engraved name. Icons render in ink, not brand colors. */
 export default function SkillsCard({
   Icon,
   name,
   description,
-  color,
-  bgColor,
   size = "sm",
 }: SkillCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -2, scale: 1.02 }}
+      whileHover={{ y: -2 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className={`group relative flex items-center gap-4 p-4 rounded-xl
-        bg-card border border-border/30
-        hover:border-accent/30
-        transition-colors duration-200 cursor-default
-        ${size === "lg" ? "col-span-2 p-5" : ""}`}
+      className={`tablet-frame cursor-default ${size === "lg" ? "col-span-2" : ""}`}
     >
       <div
-        className="flex-shrink-0 flex items-center justify-center rounded-lg p-2.5"
-        style={{ backgroundColor: `${color}25`, color }}
+        className={`tablet flex items-center gap-3.5 p-3.5 ${
+          size === "lg" ? "p-5" : ""
+        }`}
       >
-        <Icon size={size === "lg" ? 28 : 22} />
-      </div>
-      <div className="min-w-0">
-        <h3 className="font-heading font-semibold text-sm text-foreground">
-          {name}
-        </h3>
-        <p className="text-xs text-muted-foreground mt-0.5 truncate">
-          {description}
-        </p>
+        <div
+          className="flex h-10 w-10 flex-shrink-0 items-center justify-center
+            bg-black/[0.07] text-foreground/70 shadow-[inset_0_1px_3px_rgba(0,0,0,0.28)]
+            dark:bg-black/30"
+        >
+          <Icon size={size === "lg" ? 24 : 19} />
+        </div>
+        <div className="min-w-0">
+          <h3 className="engraved font-heading text-[13px] font-semibold tracking-wide text-foreground">
+            {name}
+          </h3>
+          <p className="mt-0.5 truncate font-body text-xs italic text-muted-foreground">
+            {description}
+          </p>
+        </div>
       </div>
     </motion.div>
   );

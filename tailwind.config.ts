@@ -22,18 +22,10 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-heading)", "sans-serif"],
-        body: ["var(--font-body)", "sans-serif"],
+        heading: ["var(--font-heading)", "serif"],
+        body: ["var(--font-body)", "serif"],
         display: ["var(--font-display)", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
-      },
-      backgroundImage: {
-        "gradient-purple":
-          "linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #A78BFA 100%)",
-        "gradient-purple-dark":
-          "linear-gradient(135deg, #4C1D95 0%, #3B0764 50%, #1E1B4B 100%)",
-        "gradient-glow":
-          "radial-gradient(ellipse at center, rgba(124,58,237,0.15) 0%, transparent 70%)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -69,20 +61,9 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        violet: {
-          DEFAULT: "#7C3AED",
-          50: "#F5F3FF",
-          100: "#EDE9FE",
-          200: "#DDD6FE",
-          300: "#C4B5FD",
-          400: "#A78BFA",
-          500: "#8B5CF6",
-          600: "#7C3AED",
-          700: "#6D28D9",
-          800: "#5B21B6",
-          900: "#4C1D95",
-          950: "#2E1065",
-        },
+        gold: "hsl(var(--gold))",
+        oxblood: "hsl(var(--oxblood))",
+        forest: "hsl(var(--forest))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -97,6 +78,7 @@ const config = {
         "slide-in-right": "slideInRight 0.4s ease-out forwards",
         float: "float 6s ease-in-out infinite",
         "pulse-glow": "pulseGlow 3s ease-in-out infinite",
+        "spin-slow": "spin 90s linear infinite",
       },
       keyframes: {
         spotlight: {
@@ -130,8 +112,8 @@ const config = {
           "50%": { transform: "translateY(-10px)" },
         },
         pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(124,58,237,0.2)" },
-          "50%": { boxShadow: "0 0 40px rgba(124,58,237,0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(42 55% 40% / 0.15)" },
+          "50%": { boxShadow: "0 0 40px hsl(42 55% 40% / 0.3)" },
         },
       },
     },

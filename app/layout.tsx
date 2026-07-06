@@ -1,30 +1,35 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Archivo, Playfair_Display } from "next/font/google";
+import { Cinzel, Cinzel_Decorative, EB_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import Navbar from "@/components/shared/Navbar";
+import SiteHeader from "@/components/shared/SiteHeader";
 import Footer from "@/components/shared/Footer";
+import RouteProgress from "@/components/shared/RouteProgress";
 import { Toaster } from "@/components/ui/sonner";
 
-const spaceGrotesk = Space_Grotesk({
+const cinzel = Cinzel({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const playfair = Playfair_Display({
+const cinzelDecorative = Cinzel_Decorative({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "700", "900"],
+  display: "swap",
+});
+
+const ebGaramond = EB_Garamond({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const geistMono = localFont({
@@ -34,9 +39,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Abrar Mahir Esam",
+  title: "Abrar Mahir Esam — Software Engineer",
   description:
-    "Fullstack Software Developer and Competitive Programmer based in Dhaka, Bangladesh.",
+    "Full-stack software engineer and competitive programmer based in Dhaka, Bangladesh. Building web, mobile, and desktop systems with Spring Boot, Next.js, Flutter, and Rust.",
 };
 
 export default function RootLayout({
@@ -47,14 +52,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${spaceGrotesk.variable} ${archivo.variable} ${playfair.variable} ${geistMono.variable} font-body antialiased`}
+        className={`${cinzel.variable} ${cinzelDecorative.variable} ${ebGaramond.variable} ${geistMono.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
+          <RouteProgress />
+          <SiteHeader />
           <Navbar />
           {children}
           <Footer />

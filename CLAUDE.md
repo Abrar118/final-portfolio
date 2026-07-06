@@ -22,19 +22,21 @@ Next.js 14 App Router with React 18. Uses `@/*` path alias mapped to project roo
 
 ### Routes
 
-- `/` — Home: Hero with spotlight effects, bento grid skills, featured project cards
+- `/` — Home: illuminated title-page hero, "The Armory" skills grid, "Quests & Works" featured project cards
 - `/profile` — About page with bio, timeline, achievements (server component with metadata)
-- `/projects` — Full grid of all projects as cards
+- `/projects` — Game-style showcase: vertical "quest index" tablist (roman-numeral spines) selects one project into a large stage panel with image, features, stack, and links; category filters on top. Keyboard-navigable (arrow keys), horizontal rail on mobile.
 - `/projects/[slug]` — Individual project detail with image gallery, features, breadcrumb nav (server component with dynamic metadata via `generateMetadata`)
 - `/contact` — Contact form using EmailJS (client-side email via `@emailjs/browser`)
 
 ### Design System
 
-Dark purple-centered color theme. Primary accent: violet (`#7C3AED`). All colors defined as HSL CSS variables in `app/globals.css` with light and dark variants. The `chart1`–`chart5` tokens map to the purple scale for backwards compatibility.
+Medieval / illuminated-manuscript aesthetic. Light mode (default) is aged parchment with iron-gall ink text; dark mode is a "candlelit scriptorium" (warm near-black, parchment text). Accents: oxblood (`--primary`/`--accent`/`--oxblood`), forest green (`--secondary`/`--forest`), restrained gold-leaf (`--gold`, `--ring`). All colors are HSL CSS variables in `app/globals.css`; in dark mode `--accent` shifts to gold ("rubrication by day, gilding by night"). No neon, no pure white; keep gold decorative (borders, large display text) — it fails AA for body text.
 
-Typography: Space Grotesk (headings, `font-heading`) + Archivo (body, `font-body`) + Geist Mono (code, `font-mono`). Loaded via `next/font/google` in `app/layout.tsx`.
+Typography: Cinzel (section headings, `font-heading`) + Cinzel Decorative (hero name and drop caps, `font-display`) + EB Garamond (body, `font-body`) + Geist Mono (`font-mono`, legacy). Loaded via `next/font/google` in `app/layout.tsx`.
 
-Utility classes: `text-gradient` (purple gradient text), `glow-purple` / `glow-purple-sm` (box-shadow glow effects).
+Manuscript utilities in `globals.css`: `text-gilded` (gold-leaf gradient text), `rubric` (red-ink small-caps eyebrow), `drop-cap` (illuminated first letter), `frame-double` (double-rule frame), `wax-seal` (oxblood seal social buttons). A fixed SVG-noise paper grain overlays the whole page via `body::after`. Shared ornament components (Crest, FiligreeDivider, SectionHeading, WaxSeal, CornerOrnaments) live in `components/ui/ornaments.tsx`.
+
+Sections use medieval framing: Home hero (illuminated title page) → "The Armory" (skills) → "Quests & Works" (projects); `/profile` is "The Chronicle" + "Deeds & Service" + "Honours & Feats"; `/contact` is "Send Word". Nav labels: Home / Chronicle / Quests / Send Word. Decorative numerals are Roman (with Arabic equivalents for screen readers).
 
 ### Page transitions
 
@@ -61,7 +63,7 @@ To add a new project: add an entry to `data/home/projects.tsx` with a unique `sl
 
 ### Styling
 
-Tailwind CSS 3 with `tailwindcss-animate`. shadcn/ui with "default" style, CSS variables. Custom violet color scale (`violet-50` through `violet-950`) in tailwind config. Custom animations: `fade-in`, `slide-up`, `slide-in-right`, `float`, `pulse-glow`, `spotlight`, `shimmer`.
+Tailwind CSS 3 with `tailwindcss-animate`. shadcn/ui with "default" style, CSS variables. Palette colors `gold`, `oxblood`, `forest` map to CSS variables in tailwind config. Custom animations: `fade-in`, `slide-up`, `slide-in-right`, `float`, `pulse-glow`, `spotlight`, `shimmer`. `--radius` is 0.25rem (rectilinear, manuscript-like); `prefers-reduced-motion` is respected globally (CSS media query + `MotionConfig reducedMotion="user"` in `app/template.tsx`).
 
 ### Key dependencies
 

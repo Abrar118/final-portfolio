@@ -1,218 +1,246 @@
 "use client";
 
-import { Spotlight } from "@/components/ui/spotlight";
-import { ArrowRight, Download, Briefcase, Trophy, Code2 } from "lucide-react";
+import { ArrowRight, Download, Cog, Compass, ScrollText } from "lucide-react";
 import { Button } from "../ui/button";
-import { socialMedia } from "@/data/home/socials";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
+import {
+  CornerOrnaments,
+  FiligreeDivider,
+  AstrolabeRing,
+} from "../ui/ornaments";
 
 const stats = [
-  { icon: Briefcase, value: "3+", label: "Companies" },
-  { icon: Code2, value: "9+", label: "Projects" },
-  { icon: Trophy, value: "8+", label: "Awards" },
+  { value: "IV", arabic: "4", label: "Companies served" },
+  { value: "XIII", arabic: "13", label: "Works completed" },
+  { value: "X", arabic: "10", label: "Honours earned" },
 ];
 
+const fadeUp = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, delay, ease: "easeOut" as const },
+});
+
 const Hero = () => {
+  const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  // Transform-only parallax: each layer drifts at its own rate on the
+  // compositor — no layout work, no scroll listeners of our own.
+  const drift1 = useTransform(scrollY, [0, 700], [0, -170]);
+  const drift2 = useTransform(scrollY, [0, 700], [0, -110]);
+  const drift3 = useTransform(scrollY, [0, 700], [0, 130]);
+  const drift4 = useTransform(scrollY, [0, 700], [0, -70]);
+  const cardFade = useTransform(scrollY, [0, 500], [1, 0]);
+  const portraitDrift = useTransform(scrollY, [0, 800], [0, 40]);
+  // The great astrolabe turns and swells behind the title page…
+  const ringRotate = useTransform(scrollY, [0, 1200], [0, 120]);
+  const ringScale = useTransform(scrollY, [0, 800], [1, 1.3]);
+  // …while the page itself recedes like a closing folio.
+  const pageScale = useTransform(scrollY, [0, 700], [1, 0.93]);
+  const pageY = useTransform(scrollY, [0, 700], [0, 80]);
+  const pageFade = useTransform(scrollY, [100, 750], [1, 0.25]);
+
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-16 pb-32 overflow-x-clip">
-      <Spotlight
-        className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-        fill="#7C3AED"
-      />
-      <Spotlight
-        className="h-[80vh] w-[50vw] top-10 left-full"
-        fill="#A78BFA"
-      />
+    <section className="relative flex min-h-[88vh] items-center justify-center px-4 py-16 md:py-20">
+      {/* The great astrolabe — turns with the reader's scroll */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+      >
+        <motion.div
+          style={reduceMotion ? undefined : { rotate: ringRotate, scale: ringScale }}
+        >
+          <AstrolabeRing className="h-[560px] w-[560px] text-gold/[0.14] md:h-[780px] md:w-[780px]" />
+        </motion.div>
+      </div>
 
-      <div className="absolute inset-0 bg-gradient-glow pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none dark:hidden bg-[radial-gradient(ellipse_at_top_left,rgba(139,92,246,0.12)_0%,transparent_50%),radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.1)_0%,transparent_50%)]" />
+      {/* Marginalia — instruments in the margins (decorative, wide screens) */}
+      <motion.div
+        aria-hidden="true"
+        style={reduceMotion ? undefined : { y: drift1, opacity: cardFade }}
+        className="pointer-events-none absolute left-[3%] top-[16%] hidden xl:block 2xl:left-[7%]"
+      >
+        <div className="w-52 -rotate-3 animate-float border border-border/80 bg-card/90 p-4 shadow-sm">
+          <p className="rubric !text-[9px] flex items-center gap-1.5">
+            <Cog className="h-3 w-3" /> Guild Rank
+          </p>
+          <p className="mt-2 font-heading text-sm font-semibold text-foreground">
+            Codeforces · Specialist
+          </p>
+          <p className="mt-0.5 font-body text-xs italic text-muted-foreground">
+            highest rating 1425
+          </p>
+        </div>
+      </motion.div>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Text */}
-          <div className="order-2 lg:order-1">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full
-                bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-              </span>
-              Open to opportunities
-            </motion.div>
+      <motion.div
+        aria-hidden="true"
+        style={reduceMotion ? undefined : { y: drift2, opacity: cardFade }}
+        className="pointer-events-none absolute right-[3%] top-[20%] hidden xl:block 2xl:right-[7%]"
+      >
+        <div className="w-56 rotate-2 animate-float border border-border/80 bg-card/90 p-4 shadow-sm [animation-delay:-2s]">
+          <p className="rubric !text-[9px] flex items-center gap-1.5">
+            <Compass className="h-3 w-3" /> Current Commission
+          </p>
+          <p className="mt-2 font-heading text-sm font-semibold text-foreground">
+            Bengal Byte
+          </p>
+          <p className="mt-0.5 font-body text-xs italic text-muted-foreground">
+            patient platform for a European healthcare provider
+          </p>
+        </div>
+      </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.08, ease: "easeOut" }}
-              className="leading-[0.95] overflow-visible"
-            >
-              <span className="block font-display text-5xl md:text-6xl lg:text-7xl font-medium text-foreground">
-                Abrar
-              </span>
-              <span className="block font-display text-5xl md:text-6xl lg:text-7xl font-bold italic text-gradient mt-1 whitespace-nowrap">
-                Mahir Esam
-              </span>
-              <span className="block font-mono text-xs md:text-sm tracking-[0.25em] uppercase text-muted-foreground mt-5">
-                Full Stack Software Engineer
-              </span>
-            </motion.h1>
+      <motion.div
+        aria-hidden="true"
+        style={reduceMotion ? undefined : { y: drift3, opacity: cardFade }}
+        className="pointer-events-none absolute bottom-[14%] left-[5%] hidden xl:block 2xl:left-[9%]"
+      >
+        <div className="w-60 rotate-1 animate-float border border-border/80 bg-card/90 p-4 shadow-sm [animation-delay:-4s]">
+          <p className="rubric !text-[9px] flex items-center gap-1.5">
+            <ScrollText className="h-3 w-3" /> Incantation
+          </p>
+          <p className="mt-2 font-mono text-xs text-foreground">
+            $ quickdev launch --all
+          </p>
+          <p className="mt-1 font-body text-xs italic text-muted-foreground">
+            a dev environment, conjured in one command
+          </p>
+        </div>
+      </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.16, ease: "easeOut" }}
-              className="mt-5 text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg"
-            >
-              Software Engineer building fullstack web apps, cross-platform
-              desktop tools with{" "}
-              <span className="text-foreground font-medium">Tauri + Rust</span>,
-              and mobile apps with{" "}
-              <span className="text-foreground font-medium">Flutter</span>.
-              Currently at{" "}
-              <span className="text-accent font-medium">Bengal Byte</span>.
-            </motion.p>
+      <motion.div
+        aria-hidden="true"
+        style={reduceMotion ? undefined : { y: drift4, opacity: cardFade }}
+        className="pointer-events-none absolute bottom-[16%] right-[6%] hidden xl:block 2xl:right-[10%]"
+      >
+        <AstrolabeRing className="h-32 w-32 animate-spin-slow text-gold/35 motion-reduce:animate-none" />
+      </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.24, ease: "easeOut" }}
-              className="flex flex-wrap items-center gap-3 mt-8"
-            >
-              <Link href="/Abrar Mahir Esam - CV System.pdf" target="_blank">
-                <Button
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold
-                    rounded-full px-6 gap-2 glow-purple-sm hover:glow-purple transition-shadow duration-300"
-                >
-                  Download Resume
-                  <Download className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href="/projects">
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="rounded-full gap-2 text-foreground hover:text-accent"
-                >
-                  View Projects
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </motion.div>
+      <motion.div
+        style={
+          reduceMotion
+            ? undefined
+            : { scale: pageScale, y: pageY, opacity: pageFade }
+        }
+        className="relative mx-auto w-full max-w-3xl px-6 py-14 md:px-14 md:py-16"
+      >
+        <CornerOrnaments />
 
-            {/* Stats strip */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.32, ease: "easeOut" }}
-              className="flex items-center gap-6 mt-10 pt-8 border-t border-border/20"
-            >
-              {stats.map((stat) => {
-                const Icon = stat.icon;
-                return (
-                  <div key={stat.label} className="flex items-center gap-2.5">
-                    <div className="p-2 rounded-lg bg-accent/10">
-                      <Icon className="h-4 w-4 text-accent" />
-                    </div>
-                    <div>
-                      <p className="font-heading font-bold text-lg text-foreground leading-none">
-                        {stat.value}
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">
-                        {stat.label}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </motion.div>
-
-            {/* Socials */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="flex items-center gap-3 mt-8"
-            >
-              {socialMedia.map((info) => (
-                <Link
-                  href={info.link}
-                  target="_blank"
-                  key={info.id}
-                  className="w-9 h-9 flex items-center justify-center rounded-full
-                    bg-muted/40 border border-border/30 text-muted-foreground
-                    hover:text-accent hover:border-accent/30 hover:bg-accent/5
-                    transition-all duration-200"
-                >
-                  {typeof info.img === "string" ? (
-                    <img src={info.img} alt="icon" width={16} height={16} />
-                  ) : (
-                    <info.img size={16} />
-                  )}
-                </Link>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Right — Portrait */}
+        <div className="flex flex-col items-center text-center">
+          {/* Portrait medallion */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
+            {...fadeUp(0)}
+            style={reduceMotion ? undefined : { y: portraitDrift }}
           >
-            <div className="relative">
-              {/* Glow behind image */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 via-secondary/10 to-transparent blur-2xl" />
-
-              {/* Main image */}
-              <div className="relative w-72 h-80 md:w-80 md:h-[26rem] lg:w-[22rem] lg:h-[28rem] rounded-2xl overflow-hidden border-2 border-border/20">
-                <Image
-                  src="/hero-portrait.jpg"
-                  alt="Abrar Mahir Esam"
-                  fill
-                  className="object-cover object-top"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            <div className="rounded-full border border-gold/60 p-1.5">
+              <div className="rounded-full border border-gold/35 p-1">
+                <div className="relative h-32 w-32 md:h-36 md:w-36 overflow-hidden rounded-full">
+                  <Image
+                    src="/hero-portrait.jpg"
+                    alt="Portrait of Abrar Mahir Esam"
+                    fill
+                    sizes="144px"
+                    className="object-cover object-top [filter:sepia(0.15)_saturate(0.92)]"
+                    priority
+                  />
+                </div>
               </div>
-
-              {/* Floating badge — top right */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.5, ease: "easeOut" }}
-                className="absolute -top-3 -right-3 md:-right-6 px-3 py-2 rounded-xl
-                  bg-card/90 backdrop-blur-xl border border-border/30 shadow-lg"
-              >
-                <p className="text-xs font-medium text-accent">Full Stack</p>
-                <p className="text-[10px] text-muted-foreground">Software Engineer</p>
-              </motion.div>
-
-              {/* Floating badge — bottom left */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.6, ease: "easeOut" }}
-                className="absolute -bottom-3 -left-3 md:-left-6 px-3 py-2 rounded-xl
-                  bg-card/90 backdrop-blur-xl border border-border/30 shadow-lg"
-              >
-                <p className="text-xs font-medium text-accent">Codeforces</p>
-                <p className="text-[10px] text-muted-foreground">
-                  Specialist &middot; 1425
-                </p>
-              </motion.div>
             </div>
           </motion.div>
+
+          {/* Rubric */}
+          <motion.p {...fadeUp(0.1)} className="rubric mt-8">
+            Anno MMXXVI · Dhaka, Bangladesh
+          </motion.p>
+
+          {/* Illuminated title */}
+          <motion.h1
+            {...fadeUp(0.18)}
+            className="font-display text-gilded mt-5 text-4xl font-bold leading-tight sm:text-5xl md:text-6xl"
+          >
+            Abrar Mahir Esam
+          </motion.h1>
+
+          <motion.div {...fadeUp(0.26)} className="w-full flex justify-center">
+            <FiligreeDivider className="mt-6 h-3.5 w-56 text-gold" />
+          </motion.div>
+
+          {/* Tagline */}
+          <motion.p
+            {...fadeUp(0.32)}
+            className="mt-6 font-body text-lg italic text-foreground/90 md:text-xl"
+          >
+            Full-stack software engineer &amp; competitive programmer
+          </motion.p>
+
+          {/* Intro */}
+          <motion.p
+            {...fadeUp(0.4)}
+            className="mt-4 max-w-xl font-body text-base leading-relaxed text-muted-foreground md:text-lg"
+          >
+            Building scalable web, mobile, and desktop systems with Spring
+            Boot, Next.js, Flutter, and Rust — presently in service at{" "}
+            <span className="font-medium text-foreground">Bengal Byte</span>,
+            crafting a privacy-focused patient platform for a European
+            healthcare provider.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            {...fadeUp(0.48)}
+            className="mt-9 flex flex-wrap items-center justify-center gap-3"
+          >
+            <Link href="/Abrar-Mahir-Esam-CV.pdf" target="_blank">
+              <Button
+                size="lg"
+                className="gap-2 rounded-sm bg-primary px-6 font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground hover:bg-primary/90"
+              >
+                Download CV
+                <Download className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/projects">
+              <Button
+                variant="ghost"
+                size="lg"
+                className="gap-2 rounded-sm font-heading text-xs font-semibold uppercase tracking-[0.15em] text-foreground hover:bg-muted/60 hover:text-accent"
+              >
+                View the Works
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Marginalia — the tally */}
+          <motion.dl
+            {...fadeUp(0.56)}
+            className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 border-t border-border/60 pt-8"
+          >
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <dt className="sr-only">{stat.label}</dt>
+                <dd
+                  className="font-heading text-2xl font-semibold text-primary"
+                  aria-label={stat.arabic}
+                >
+                  {stat.value}
+                </dd>
+                <dd className="mt-1 font-body text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  {stat.label}
+                </dd>
+              </div>
+            ))}
+          </motion.dl>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

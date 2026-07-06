@@ -23,59 +23,77 @@
 }
 
 @layer base {
+  /* Parchment folio — the default, daylight reading */
   :root {
-    --background: 265 20% 96%;
-    --foreground: 263 25% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 263 25% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 263 25% 15%;
-    --primary: 263 40% 48%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 239 35% 52%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 270 10% 91%;
-    --muted-foreground: 260 8% 42%;
-    --accent: 263 45% 48%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 347 50% 48%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 270 10% 84%;
-    --input: 270 10% 91%;
-    --ring: 263 45% 48%;
-    --radius: 0.75rem;
-    --chart-1: 263 40% 48%;
-    --chart-2: 239 35% 52%;
-    --chart-3: 263 45% 48%;
-    --chart-4: 267 30% 38%;
-    --chart-5: 347 50% 48%;
+    --background: 43 45% 88%;
+    --foreground: 30 35% 12%;
+    --card: 44 50% 93%;
+    --card-foreground: 30 35% 12%;
+    --popover: 44 50% 94%;
+    --popover-foreground: 30 35% 12%;
+    --primary: 355 58% 30%;
+    --primary-foreground: 43 45% 92%;
+    --secondary: 152 25% 26%;
+    --secondary-foreground: 43 45% 92%;
+    --muted: 42 30% 82%;
+    --muted-foreground: 33 22% 32%;
+    --accent: 355 58% 30%;
+    --accent-foreground: 43 45% 92%;
+    --destructive: 0 60% 38%;
+    --destructive-foreground: 43 45% 92%;
+    --border: 38 28% 70%;
+    --input: 42 32% 84%;
+    --ring: 42 55% 40%;
+    --radius: 0.25rem;
+    --gold: 42 55% 40%;
+    --oxblood: 355 58% 30%;
+    --forest: 152 25% 26%;
+    --gild-1: 41 60% 30%;
+    --gild-2: 44 62% 46%;
+    --stone-hi: 40 16% 82%;
+    --stone-lo: 36 14% 73%;
+    --engrave-hi: 45 40% 94%;
+    --chart-1: 355 58% 30%;
+    --chart-2: 152 25% 26%;
+    --chart-3: 42 55% 40%;
+    --chart-4: 30 35% 12%;
+    --chart-5: 33 22% 32%;
   }
 
+  /* Candlelit scriptorium — parchment by night */
   .dark {
-    --background: 244 30% 8%;
-    --foreground: 214 20% 88%;
-    --card: 250 18% 15%;
-    --card-foreground: 214 20% 88%;
-    --popover: 250 18% 15%;
-    --popover-foreground: 214 20% 88%;
-    --primary: 263 40% 68%;
-    --primary-foreground: 244 30% 8%;
-    --secondary: 239 45% 62%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 247 16% 18%;
-    --muted-foreground: 215 12% 60%;
-    --accent: 263 45% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 347 50% 55%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 260 20% 20%;
-    --input: 247 16% 18%;
-    --ring: 263 45% 55%;
-    --chart-1: 263 40% 68%;
-    --chart-2: 239 45% 62%;
-    --chart-3: 263 45% 55%;
-    --chart-4: 267 35% 35%;
-    --chart-5: 347 50% 55%;
+    --background: 28 30% 7%;
+    --foreground: 42 38% 84%;
+    --card: 30 24% 11%;
+    --card-foreground: 42 38% 84%;
+    --popover: 30 24% 10%;
+    --popover-foreground: 42 38% 84%;
+    --primary: 355 45% 46%;
+    --primary-foreground: 43 45% 92%;
+    --secondary: 150 18% 34%;
+    --secondary-foreground: 43 45% 92%;
+    --muted: 30 20% 14%;
+    --muted-foreground: 40 15% 62%;
+    --accent: 42 50% 58%;
+    --accent-foreground: 30 30% 10%;
+    --destructive: 0 50% 50%;
+    --destructive-foreground: 43 45% 92%;
+    --border: 35 20% 24%;
+    --input: 30 20% 15%;
+    --ring: 42 50% 58%;
+    --gold: 42 50% 58%;
+    --oxblood: 356 42% 60%;
+    --forest: 150 20% 55%;
+    --gild-1: 42 45% 48%;
+    --gild-2: 45 60% 68%;
+    --stone-hi: 30 12% 17%;
+    --stone-lo: 28 12% 11%;
+    --engrave-hi: 35 15% 30%;
+    --chart-1: 356 42% 60%;
+    --chart-2: 150 20% 55%;
+    --chart-3: 42 50% 58%;
+    --chart-4: 42 38% 84%;
+    --chart-5: 40 15% 62%;
   }
 }
 
@@ -86,10 +104,37 @@
 
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(
+      ellipse 120% 90% at 50% 0%,
+      hsl(var(--card) / 0.6) 0%,
+      transparent 55%
+    );
+  }
+
+  /* Paper grain over the whole folio */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+  }
+
+  .dark body::after {
+    opacity: 0.06;
+    mix-blend-mode: screen;
   }
 
   button {
     @apply active:outline-none;
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }
 
@@ -98,29 +143,210 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 
-  .text-gradient {
+  /* Gold-leaf text — for the illuminated title and nothing else */
+  .text-gilded {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
-      135deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--secondary)) 40%,
-      hsl(var(--accent)) 70%,
-      hsl(var(--primary)) 100%
+      168deg,
+      hsl(var(--gild-1)) 0%,
+      hsl(var(--gild-2)) 48%,
+      hsl(var(--gild-1)) 100%
     );
-    background-size: 200% auto;
-    animation: gradient-shift 4s ease-in-out infinite;
   }
 
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 100% center; }
+  /* Rubricated eyebrow — red ink, engraved caps */
+  .rubric {
+    font-family: var(--font-heading), serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: hsl(var(--oxblood));
   }
 
-  .glow-purple {
-    box-shadow: 0 0 16px rgba(124, 58, 237, 0.15), 0 0 40px rgba(124, 58, 237, 0.06);
+  /* Illuminated initial on a paragraph */
+  .drop-cap::first-letter {
+    font-family: var(--font-display), serif;
+    float: left;
+    font-size: 3.3em;
+    line-height: 0.82;
+    padding: 0.06em 0.14em 0 0;
+    color: hsl(var(--oxblood));
   }
 
-  .glow-purple-sm {
-    box-shadow: 0 0 8px rgba(124, 58, 237, 0.1);
+  /* Double-rule frame: sepia outer line, hairline set just inside */
+  .frame-double {
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+      inset 0 0 0 3px hsl(var(--card)),
+      inset 0 0 0 4px hsl(var(--border) / 0.55);
+  }
+
+  /* Wax seal — for social links */
+  .wax-seal {
+    border-radius: 48% 52% 51% 49% / 53% 47% 53% 47%;
+    background: radial-gradient(
+      circle at 35% 30%,
+      hsl(356 48% 44%),
+      hsl(355 58% 30%) 55%,
+      hsl(354 62% 19%) 100%
+    );
+    box-shadow:
+      inset 0 1px 2px hsl(10 55% 58% / 0.45),
+      inset 0 -2px 3px hsl(0 0% 0% / 0.4),
+      0 1px 3px hsl(30 40% 10% / 0.35);
+    color: hsl(43 45% 90%);
+    transition: transform 0.2s ease;
+  }
+
+  .wax-seal:hover {
+    transform: rotate(-5deg) scale(1.07);
+  }
+
+  /* Rolled parchment cylinder flanking a scroll, brass finials at the ends */
+  .scroll-roll {
+    position: absolute;
+    top: 1rem;
+    bottom: 1rem;
+    width: 2.4rem;
+    border-radius: 0.45rem;
+    background: linear-gradient(
+      90deg,
+      hsl(36 26% 48%) 0%,
+      hsl(41 40% 72%) 20%,
+      hsl(43 48% 84%) 45%,
+      hsl(40 38% 66%) 78%,
+      hsl(34 24% 40%) 100%
+    );
+    box-shadow:
+      inset 0 8px 10px hsl(30 30% 22% / 0.35),
+      inset 0 -8px 10px hsl(30 30% 22% / 0.35),
+      0 3px 6px hsl(0 0% 0% / 0.35);
+  }
+
+  .dark .scroll-roll {
+    background: linear-gradient(
+      90deg,
+      hsl(33 20% 26%) 0%,
+      hsl(39 28% 48%) 20%,
+      hsl(41 32% 58%) 45%,
+      hsl(37 26% 42%) 78%,
+      hsl(32 18% 20%) 100%
+    );
+  }
+
+  .scroll-roll::before,
+  .scroll-roll::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.85rem;
+    height: 1rem;
+    background: radial-gradient(
+      circle at 35% 28%,
+      hsl(41 62% 66%),
+      hsl(33 52% 38%) 55%,
+      hsl(27 45% 20%) 100%
+    );
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.5);
+  }
+
+  .scroll-roll::before {
+    top: -1rem;
+    border-radius: 45% 45% 32% 32% / 62% 62% 30% 30%;
+  }
+
+  .scroll-roll::after {
+    bottom: -1rem;
+    border-radius: 32% 32% 45% 45% / 30% 30% 62% 62%;
+  }
+
+  /* The unrolled sheet: deckled top/bottom edges, age blotches, and
+     shading that darkens toward the rolls */
+  .scroll-paper {
+    clip-path: polygon(
+      0% 7px, 4% 2px, 9% 8px, 15% 3px, 22% 9px, 30% 2px, 38% 7px,
+      46% 3px, 54% 8px, 62% 2px, 70% 7px, 78% 3px, 86% 8px, 93% 2px, 100% 6px,
+      100% calc(100% - 7px), 95% calc(100% - 2px), 88% calc(100% - 9px),
+      80% calc(100% - 3px), 72% calc(100% - 8px), 63% calc(100% - 2px),
+      55% calc(100% - 7px), 46% calc(100% - 3px), 38% calc(100% - 9px),
+      29% calc(100% - 2px), 21% calc(100% - 7px), 13% calc(100% - 3px),
+      6% calc(100% - 8px), 0% calc(100% - 4px)
+    );
+    background-color: hsl(var(--card));
+    background-image:
+      radial-gradient(ellipse 55% 45% at 22% 28%, hsl(34 42% 55% / 0.13), transparent 70%),
+      radial-gradient(ellipse 50% 55% at 78% 72%, hsl(30 45% 48% / 0.11), transparent 70%),
+      radial-gradient(ellipse 38% 38% at 62% 18%, hsl(37 45% 52% / 0.09), transparent 70%),
+      radial-gradient(ellipse 30% 45% at 40% 85%, hsl(32 40% 50% / 0.08), transparent 70%),
+      linear-gradient(
+        90deg,
+        hsl(33 35% 40% / 0.22) 0%,
+        transparent 7%,
+        transparent 93%,
+        hsl(33 35% 40% / 0.22) 100%
+      );
+  }
+
+  /* Stone tablet with chiseled corners: outer element is the rim,
+     inner element the carved face */
+  .tablet-frame {
+    clip-path: polygon(
+      9px 0,
+      calc(100% - 9px) 0,
+      100% 9px,
+      100% calc(100% - 9px),
+      calc(100% - 9px) 100%,
+      9px 100%,
+      0 calc(100% - 9px),
+      0 9px
+    );
+    background: hsl(var(--border));
+    padding: 1px;
+    transition: background-color 0.2s ease;
+  }
+
+  .tablet-frame:hover {
+    background: hsl(var(--gold) / 0.65);
+  }
+
+  .tablet {
+    clip-path: polygon(
+      9px 0,
+      calc(100% - 9px) 0,
+      100% 9px,
+      100% calc(100% - 9px),
+      calc(100% - 9px) 100%,
+      9px 100%,
+      0 calc(100% - 9px),
+      0 9px
+    );
+    background: linear-gradient(
+      160deg,
+      hsl(var(--stone-hi)),
+      hsl(var(--stone-lo))
+    );
+    box-shadow:
+      inset 0 2px 4px hsl(0 0% 0% / 0.14),
+      inset 0 -2px 3px hsl(var(--engrave-hi) / 0.5);
+  }
+
+  .engraved {
+    text-shadow: 0 1px 0 hsl(var(--engrave-hi));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
   }
 }

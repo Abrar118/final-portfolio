@@ -5,12 +5,14 @@ import { skillsTabs } from "@/data/home/skillsTab";
 import SkillsCard from "./SkillCard";
 import { motion, useInView } from "framer-motion";
 import { Code2, Smartphone, Cpu, Database } from "lucide-react";
+import { SectionHeading } from "../ui/ornaments";
+import ParallaxSection from "../ui/parallax-section";
 
 const categoryIcons: Record<string, React.ReactNode> = {
-  "web-development": <Code2 className="h-5 w-5" />,
-  "mobile-development": <Smartphone className="h-5 w-5" />,
-  "software-and-systems": <Cpu className="h-5 w-5" />,
-  databases: <Database className="h-5 w-5" />,
+  "web-development": <Code2 className="h-4 w-4" />,
+  "mobile-development": <Smartphone className="h-4 w-4" />,
+  "software-and-systems": <Cpu className="h-4 w-4" />,
+  databases: <Database className="h-4 w-4" />,
 };
 
 const SkillsSection = () => {
@@ -19,29 +21,33 @@ const SkillsSection = () => {
 
   return (
     <section
-      className="mx-4 md:mx-[5%] lg:mx-[10%] xl:mx-[15%] py-20"
-      id="about"
+      className="mx-auto max-w-5xl px-4 py-20 md:px-8"
+      id="armory"
       ref={ref}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="mb-12"
-      >
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-          Technologies I work with
-        </h2>
-        <p className="text-muted-foreground mt-3 max-w-xl">
-          Building with modern tools across the full stack — from frontend
-          frameworks to system-level programming.
-        </p>
-      </motion.div>
+      <ParallaxSection speed={150} fade>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          <SectionHeading
+            rubric="Folio II"
+            title="The Armory"
+            subtitle="The instruments of the craft — languages, frameworks, and tools kept sharp through daily practice."
+            className="mb-14"
+          />
+        </motion.div>
+      </ParallaxSection>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <ParallaxSection speed={45}>
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
         {skillsTabs.map((category, catIdx) => (
-          <motion.div
+          <ParallaxSection
             key={category.value}
+            speed={catIdx % 2 === 0 ? 35 : -35}
+          >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{
@@ -50,16 +56,17 @@ const SkillsSection = () => {
               ease: "easeOut",
             }}
           >
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="p-2 rounded-lg bg-accent/10 text-accent">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center border border-border bg-card text-primary">
                 {categoryIcons[category.value]}
               </div>
-              <h3 className="font-heading font-semibold text-foreground">
+              <h3 className="font-heading text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
                 {category.title}
               </h3>
+              <div className="h-px flex-1 bg-border/70" />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {category.contents.map((skill) => (
                 <SkillsCard
                   key={skill.name}
@@ -72,8 +79,10 @@ const SkillsSection = () => {
               ))}
             </div>
           </motion.div>
+          </ParallaxSection>
         ))}
       </div>
+      </ParallaxSection>
     </section>
   );
 };

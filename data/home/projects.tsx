@@ -20,7 +20,22 @@ import {
   VercelDark,
   Java,
   MySQL,
+  RustDark,
+  Supabase,
+  PostgreSQL,
+  Google,
+  Dart,
+  TypeScript,
 } from "developer-icons";
+
+import astrynLanding from "@/public/projects/astryn/landing.png";
+
+import crimeLensLanding from "@/public/projects/crimelens/landing.png";
+import quickDevLanding from "@/public/projects/quickdev/landing.png";
+import acpscmLanding from "@/public/projects/acpscm/landing.png";
+import acpscm2 from "@/public/projects/acpscm/acp2.png";
+import acpscm3 from "@/public/projects/acpscm/acp3.png";
+import spendSplitLanding from "@/public/projects/spendsplit/landing.jpeg";
 
 import eduVerse from "@/public/projects/eduverse/landing.png";
 import edu2 from "@/public/projects/eduverse/edu2.png";
@@ -37,7 +52,6 @@ import greenCycle2 from "@/public/projects/greencycle/green2.jpg";
 import greenCycle3 from "@/public/projects/greencycle/green3.jpg";
 
 import pioLanding from "@/public/projects/pioneers/landing.png";
-import pio2 from "@/public/projects/pioneers/pio2.png";
 import pio1 from "@/public/projects/pioneers/pio1.png";
 
 import rhubLanding from "@/public/projects/rhub/landing.png";
@@ -58,6 +72,152 @@ import sniffPawsLanding from "@/public/projects/foster.png";
 export const iconSize = 24;
 
 export const projects: Project[] = [
+  {
+    href: "https://crimelens-one.vercel.app",
+    github: "https://github.com/Abrar118/crimelens",
+    title: "CrimeLens",
+    description:
+      "Crime reporting and community verification platform — geo-tagged incidents with photo/video evidence, Gemini-powered scene analysis, and Leaflet crime heatmaps",
+    thumbnail: crimeLensLanding,
+    images: [crimeLensLanding],
+    stack: [
+      { name: "Next.js 15", Icon: <NextJs size={iconSize} /> },
+      { name: "MongoDB Atlas", Icon: <MongoDB size={iconSize} /> },
+      { name: "Firebase", Icon: <Firebase size={iconSize} /> },
+      { name: "Gemini 2.0 Flash", Icon: <Google size={iconSize} /> },
+      { name: "Leaflet", Icon: <ViteJS size={iconSize} /> },
+      { name: "Zustand", Icon: <React size={iconSize} /> },
+    ],
+    slug: "crimelens",
+    category: "web",
+    year: "2025",
+    context: "WebXtreme Hackathon 2025 · Top 11 Finalist",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A civic-safety platform where citizens submit geo-tagged crime
+          reports with photo and video evidence, and the community verifies
+          them through voting. Built for WebXtreme Hackathon 2025, where our
+          team reached the top 11 finalists.
+        </p>
+        <p>
+          Google Gemini 2.0 Flash generates automated scene descriptions and
+          analyzes submitted imagery. Incident density is visualized with
+          Leaflet crime heatmaps and Recharts analytics, while Firebase Auth
+          with phone/email OTP enforces role-based access control.
+        </p>
+      </div>
+    ),
+    features: [
+      "Geo-tagged incident reports with photo/video evidence",
+      "Community voting to verify reported incidents",
+      "Gemini 2.0 Flash automated scene description and image analysis",
+      "Leaflet crime heatmaps with Recharts analytics",
+      "Role-based access control via Firebase Auth and OTP verification",
+    ],
+    pages: [
+      "Dashboard",
+      "Report a Crime",
+      "Crime Feed",
+      "Heatmap",
+      "Alerts & Updates",
+      "Profile",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/astryn",
+    title: "Astryn",
+    description:
+      "Local-first desktop command center for Linear — calendar planning, Kanban boards, dependency graphs, and a GitHub PR dashboard in one Tauri workspace",
+    thumbnail: astrynLanding,
+    images: [astrynLanding],
+    stack: [
+      { name: "Tauri 2", Icon: <RustDark size={iconSize} /> },
+      { name: "React 19", Icon: <React size={iconSize} /> },
+      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
+      { name: "Rust", Icon: <RustDark size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+    ],
+    slug: "astryn",
+    category: "desktop",
+    year: "2026",
+    context: "Personal command center · v0.1.0",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A desktop power client for Linear, built for planning work instead
+          of managing browser tabs. A real calendar with drag-to-reschedule
+          sits beside a dense Linear-style workspace: list and board views,
+          a Markdown issue editor with threaded comments, dependency graphs,
+          and browser-style tabs that split into two independent panes.
+        </p>
+        <p>
+          The Rust core owns everything sensitive — credentials live in the
+          OS keychain, all Linear and GitHub API calls run in Rust behind
+          typed Tauri commands, and SQLite backs a local-first cache with
+          optimistic updates and background sync. A standalone dashboard
+          tracks every open pull request that involves you across GitHub.
+        </p>
+      </div>
+    ),
+    features: [
+      "Calendar with drag-to-reschedule and an unscheduled rail",
+      "List and Kanban views with persistent display controls",
+      "Markdown issue editor with comments, reactions, and mentions",
+      "Dependency graph of issue hierarchy and relations",
+      "GitHub PR dashboard with CI, review, and conflict badges",
+      "Keychain-secured credentials — the webview never sees a token",
+    ],
+    pages: [
+      "Calendar",
+      "Issues",
+      "This Week",
+      "Dependencies",
+      "Pull Requests",
+      "Inbox",
+      "Settings",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/QuickDev",
+    title: "QuickDev",
+    description:
+      "Cross-platform Rust CLI that launches entire dev environments — terminal tabs, working directories, startup commands, and editors — in a single command",
+    thumbnail: quickDevLanding,
+    images: [quickDevLanding],
+    stack: [
+      { name: "Rust", Icon: <RustDark size={iconSize} /> },
+      { name: "fzf", Icon: <Bash size={iconSize} /> },
+      { name: "TOML", Icon: <Prettier size={iconSize} /> },
+    ],
+    slug: "quickdev",
+    category: "desktop",
+    year: "2025",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A command-line launcher that brings a whole project workspace to
+          life in one command: terminal tabs open in the right directories,
+          startup commands run, and your editor launches — all from a
+          per-project <code>.quickdev.toml</code> with a global project index
+          so any project can be launched from anywhere.
+        </p>
+        <p>
+          Interactive selection is powered by fzf, and an emulator
+          auto-detection and priority system picks the right terminal
+          (Ghostty, Terminal.app, Windows Terminal). Written entirely in
+          asynchronous Rust for fast, dependency-light native execution.
+        </p>
+      </div>
+    ),
+    features: [
+      "Launch terminals, directories, commands, and editors in one command",
+      "Per-project TOML config with a global project index",
+      "Interactive fuzzy selection via fzf",
+      "Terminal emulator auto-detection and priority system",
+      "Asynchronous Rust — fast and dependency-light",
+    ],
+  },
   {
     href: "https://therap-lms.vercel.app/",
     title: "EduVerse",
@@ -112,6 +272,58 @@ export const projects: Project[] = [
     ],
   },
   {
+    href: "https://www.acpscm.site/",
+    github: "https://github.com/Abrar118/ACPMS-Website",
+    title: "ACPSCM",
+    description:
+      "Mathematics society platform for Adamjee Cantonment Public School — events, digital magazine publishing, and a categorized resource library on a Supabase-only architecture",
+    thumbnail: acpscmLanding,
+    images: [acpscmLanding, acpscm2, acpscm3],
+    stack: [
+      { name: "Next.js 14", Icon: <NextJs size={iconSize} /> },
+      { name: "Supabase", Icon: <Supabase size={iconSize} /> },
+      { name: "PostgreSQL", Icon: <PostgreSQL size={iconSize} /> },
+      { name: "Zustand", Icon: <React size={iconSize} /> },
+      { name: "React Hook Form", Icon: <React size={iconSize} /> },
+    ],
+    slug: "acpscm",
+    category: "web",
+    year: "2025",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A live management platform for the Adamjee Cantonment Public School
+          Club of Mathematics — handling events, a digital magazine, a
+          categorized resource library, gallery, and blog for the society and
+          its members.
+        </p>
+        <p>
+          Built on a Supabase-only architecture: PostgreSQL Row Level Security
+          enforces granular role-based permissions, and Supabase subscriptions
+          power real-time event registration and notifications. Feature logic
+          is modularized into reusable custom React hooks (useEvents,
+          useMagazines, useAdmin).
+        </p>
+      </div>
+    ),
+    features: [
+      "Event management with real-time registration and notifications",
+      "Digital magazine publishing workflow",
+      "Categorized academic resource library",
+      "PostgreSQL Row Level Security for role-based permissions",
+      "Reusable custom hooks (useEvents, useMagazines, useAdmin)",
+    ],
+    pages: [
+      "Home",
+      "Events",
+      "Blog",
+      "Resources",
+      "Gallery",
+      "About",
+      "Contact",
+    ],
+  },
+  {
     github: "https://github.com/ShadmanShafeen/Green-Cycle",
     title: "GreenCycle",
     description:
@@ -162,40 +374,44 @@ export const projects: Project[] = [
     ],
   },
   {
-    github: "https://github.com/Abrar118/QuickDev",
-    title: "QuickDev",
+    github: "https://github.com/Abrar118/spendsplit",
+    title: "SpendSplit",
     description:
-      "Desktop developer workspace manager built with Tauri + Rust — persist and restore open files, terminals, and editor sessions instantly",
-    thumbnail: elyriaLanding,
-    images: [elyriaLanding],
+      "Offline-first personal finance tracker that splits one account into spendable and savings buckets, secured with biometric lock in a dark glassmorphic UI",
+    thumbnail: spendSplitLanding,
+    images: [spendSplitLanding],
     stack: [
-      { name: "Tauri", Icon: <Bash size={iconSize} /> },
-      { name: "Rust", Icon: <Bash size={iconSize} /> },
-      { name: "React", Icon: <React size={iconSize} /> },
-      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
+      { name: "Riverpod", Icon: <Dart size={iconSize} /> },
+      { name: "Drift (SQLite)", Icon: <MySQL size={iconSize} /> },
+      { name: "GoRouter", Icon: <Dart size={iconSize} /> },
+      { name: "fl_chart", Icon: <ViteJS size={iconSize} /> },
     ],
-    slug: "quickdev",
-    category: "desktop",
-    year: "2025",
+    slug: "spendsplit",
+    category: "mobile",
+    year: "2026",
     content: (
       <div className="space-y-3">
         <p>
-          A Windows PowerToys Workspaces alternative built from scratch with
-          Tauri and Rust. Save your entire workspace state — open files,
-          terminal sessions, editor windows — and restore them with one click.
+          A personal finance tracker built to work fully offline: one account
+          is split into spendable and savings buckets, with an isolated
+          tracker for foreign currency. All data persists locally through
+          Drift on SQLite.
         </p>
         <p>
-          Uses SQLite to serialize workspace state and user context between
-          sessions. Tokio handles asynchronous I/O for seamless UX without
-          blocking the UI thread.
+          Balances are derived, not stored — totals recompute from the
+          transaction history, so the ledger is always the source of truth.
+          The app locks behind biometrics (local_auth) and visualizes
+          spending with category donut charts.
         </p>
       </div>
     ),
     features: [
-      "Persist and restore complete workspace state",
-      "Asynchronous Rust backend via Tokio runtime",
-      "SQLite-backed session serialization",
-      "Cross-platform native desktop app via Tauri",
+      "Offline-first with local Drift/SQLite persistence",
+      "Spendable and savings buckets with an isolated foreign-currency tracker",
+      "Derived balance computation from transaction history",
+      "Biometric lock via local_auth",
+      "Category donut charts and spending velocity analytics",
     ],
   },
   {
@@ -204,7 +420,7 @@ export const projects: Project[] = [
     description:
       "AES-encrypted memorial blog for the student movement martyrs, built with MDX content authoring and Velite parsing",
     thumbnail: pioLanding,
-    images: [pioLanding, pio1, pio2],
+    images: [pioLanding, pio1],
     stack: [
       { name: "Next.js", Icon: <NextJs size={iconSize} /> },
       { name: "AES", Icon: <Bash size={iconSize} /> },
