@@ -22,7 +22,7 @@ Next.js 14 App Router with React 18. Uses `@/*` path alias mapped to project roo
 
 ### Routes
 
-- `/` — Home: illuminated title-page hero, "The Armory" skills grid, "Quests & Works" featured project cards
+- `/` — Home: illuminated title-page hero, "The Armory" skills grid, "Quests & Works" featured project cards (ruled "catalogue plates" — flat card stock with a hairline set inside the border, roman numeral + rubricated shelf-mark on a folio rule)
 - `/profile` — About page with bio, timeline, achievements (server component with metadata)
 - `/projects` — Game-style showcase: vertical "quest index" tablist (roman-numeral spines) selects one project into a large stage panel with image, features, stack, and links; category filters on top. Keyboard-navigable (arrow keys), horizontal rail on mobile.
 - `/projects/[slug]` — Individual project detail with image gallery, features, breadcrumb nav (server component with dynamic metadata via `generateMetadata`)
@@ -30,7 +30,7 @@ Next.js 14 App Router with React 18. Uses `@/*` path alias mapped to project roo
 
 ### Design System
 
-Medieval / illuminated-manuscript aesthetic. Light mode (default) is aged parchment with iron-gall ink text; dark mode is a "candlelit scriptorium" (warm near-black, parchment text). Accents: oxblood (`--primary`/`--accent`/`--oxblood`), forest green (`--secondary`/`--forest`), restrained gold-leaf (`--gold`, `--ring`). All colors are HSL CSS variables in `app/globals.css`; in dark mode `--accent` shifts to gold ("rubrication by day, gilding by night"). No neon, no pure white; keep gold decorative (borders, large display text) — it fails AA for body text.
+Medieval / illuminated-manuscript aesthetic. Dark mode (default) is a "candlelit scriptorium" (warm near-black, parchment text); light mode is aged parchment with iron-gall ink text. Accents: oxblood (`--primary`/`--accent`/`--oxblood`), forest green (`--secondary`/`--forest`), restrained gold-leaf (`--gold`, `--ring`). All colors are HSL CSS variables in `app/globals.css`; in dark mode `--accent` shifts to gold ("rubrication by day, gilding by night"). No neon, no pure white; keep gold decorative (borders, large display text) — it fails AA for body text.
 
 Typography: Cinzel (section headings, `font-heading`) + Cinzel Decorative (hero name and drop caps, `font-display`) + EB Garamond (body, `font-body`) + Geist Mono (`font-mono`, legacy). Loaded via `next/font/google` in `app/layout.tsx`.
 
