@@ -26,9 +26,34 @@ import {
   Google,
   Dart,
   TypeScript,
+  ReactQuery,
+  GitHubDark,
+  Slack,
 } from "developer-icons";
 
 import astrynLanding from "@/public/projects/astryn/landing.png";
+import astrynDashboard from "@/public/projects/astryn/dashboard.png";
+import astrynCalendar from "@/public/projects/astryn/calendar.png";
+import astrynCalendarSchedule from "@/public/projects/astryn/calendar-schedule.png";
+import astrynIssuesList from "@/public/projects/astryn/issues-list.png";
+import astrynIssuesListGrouped from "@/public/projects/astryn/issues-list-grouped.png";
+import astrynIssuesBoard from "@/public/projects/astryn/issues-board.png";
+import astrynIssueDetail from "@/public/projects/astryn/issue-detail.png";
+import astrynIssueEditor from "@/public/projects/astryn/issue-editor.png";
+import astrynIssueContextMenu from "@/public/projects/astryn/issue-context-menu.png";
+import astrynThisWeek from "@/public/projects/astryn/this-week.png";
+import astrynThisWeekDays from "@/public/projects/astryn/this-week-days.png";
+import astrynDependencyGraph from "@/public/projects/astryn/dependency-graph.png";
+import astrynPullRequests from "@/public/projects/astryn/pull-requests.png";
+import astrynPrOverview from "@/public/projects/astryn/pr-overview.png";
+import astrynPrDiff from "@/public/projects/astryn/pr-diff.png";
+import astrynSlack from "@/public/projects/astryn/slack.png";
+import astrynDocs from "@/public/projects/astryn/docs.png";
+import astrynReports from "@/public/projects/astryn/reports.png";
+import astrynInbox from "@/public/projects/astryn/inbox.png";
+import astrynSplitView from "@/public/projects/astryn/split-view.png";
+import astrynCommandPalette from "@/public/projects/astryn/command-palette.png";
+import astrynSettings from "@/public/projects/astryn/settings.png";
 
 import crimeLensLanding from "@/public/projects/crimelens/landing.png";
 import quickDevLanding from "@/public/projects/quickdev/landing.png";
@@ -128,52 +153,90 @@ export const projects: Project[] = [
     github: "https://github.com/Abrar118/astryn",
     title: "Astryn",
     description:
-      "Local-first desktop command center for Linear — calendar planning, Kanban boards, dependency graphs, and a GitHub PR dashboard in one Tauri workspace",
+      "Local-first desktop command center that pulls Linear, GitHub, Slack, and documentation into one tabbed Tauri workspace — with generated standup and weekly reports",
     thumbnail: astrynLanding,
-    images: [astrynLanding],
+    images: [
+      astrynLanding,
+      astrynDashboard,
+      astrynCalendar,
+      astrynCalendarSchedule,
+      astrynIssuesList,
+      astrynIssuesListGrouped,
+      astrynIssuesBoard,
+      astrynIssueDetail,
+      astrynIssueEditor,
+      astrynIssueContextMenu,
+      astrynThisWeek,
+      astrynThisWeekDays,
+      astrynDependencyGraph,
+      astrynPullRequests,
+      astrynPrOverview,
+      astrynPrDiff,
+      astrynSlack,
+      astrynDocs,
+      astrynReports,
+      astrynInbox,
+      astrynSplitView,
+      astrynCommandPalette,
+      astrynSettings,
+    ],
     stack: [
       { name: "Tauri 2", Icon: <RustDark size={iconSize} /> },
+      { name: "Rust", Icon: <RustDark size={iconSize} /> },
       { name: "React 19", Icon: <React size={iconSize} /> },
       { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
-      { name: "Rust", Icon: <RustDark size={iconSize} /> },
+      { name: "TanStack Query", Icon: <ReactQuery size={iconSize} /> },
       { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "GitHub API", Icon: <GitHubDark size={iconSize} /> },
+      { name: "Slack API", Icon: <Slack size={iconSize} /> },
     ],
     slug: "astryn",
     category: "desktop",
     year: "2026",
-    context: "Personal command center · v0.1.0",
+    context: "Personal command center · v0.4.0",
     content: (
       <div className="space-y-3">
         <p>
-          A desktop power client for Linear, built for planning work instead
-          of managing browser tabs. A real calendar with drag-to-reschedule
-          sits beside a dense Linear-style workspace: list and board views,
-          a Markdown issue editor with threaded comments, dependency graphs,
-          and browser-style tabs that split into two independent panes.
+          A desktop workspace for the surfaces a working day actually touches.
+          It began as a power client for Linear — issues on a real calendar
+          with drag-to-reschedule, list and Kanban views, a Markdown editor
+          with threaded comments, and a dependency graph — and grew to carry
+          GitHub pull requests, a Slack catch-up board, and a cached
+          documentation browser in the same tabbed, splittable window.
         </p>
         <p>
-          The Rust core owns everything sensitive — credentials live in the
-          OS keychain, all Linear and GitHub API calls run in Rust behind
-          typed Tauri commands, and SQLite backs a local-first cache with
-          optimistic updates and background sync. A standalone dashboard
-          tracks every open pull request that involves you across GitHub.
+          The Rust core owns everything sensitive: credentials live in the OS
+          keychain, every Linear, GitHub, Slack, and LLM call runs in Rust
+          behind typed Tauri commands, and SQLite backs a local-first cache
+          with optimistic updates and background sync. Standup and weekly
+          reports are generated deterministically from that cache first, with
+          an optional prose pass over any OpenAI-compatible endpoint — so the
+          facts survive even when the model does not.
         </p>
       </div>
     ),
     features: [
+      "Dashboard ranking what needs attention across Linear, GitHub, Slack, and Inbox",
       "Calendar with drag-to-reschedule and an unscheduled rail",
-      "List and Kanban views with persistent display controls",
-      "Markdown issue editor with comments, reactions, and mentions",
-      "Dependency graph of issue hierarchy and relations",
-      "GitHub PR dashboard with CI, review, and conflict badges",
+      "List and Kanban views with display controls that persist across launches",
+      "Markdown issue editor with comments, reactions, mentions, and Mermaid diagrams",
+      "Dependency graph of issue hierarchy and blocks/related relations",
+      "GitHub PR workspace with unified diffs and CI, review, and conflict badges",
+      "Slack catch-up board and a synced, offline-readable docs browser",
+      "Daily scrum and weekly review generators — deterministic facts, optional LLM prose",
+      "Two-pane split workspace, browser-style tabs, and a ⌘K command palette",
       "Keychain-secured credentials — the webview never sees a token",
     ],
     pages: [
+      "Dashboard",
       "Calendar",
       "Issues",
       "This Week",
       "Dependencies",
       "Pull Requests",
+      "Slack",
+      "Docs",
+      "Reports",
       "Inbox",
       "Settings",
     ],
