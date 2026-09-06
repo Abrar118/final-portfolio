@@ -61,6 +61,13 @@ import acpscmLanding from "@/public/projects/acpscm/landing.png";
 import acpscm2 from "@/public/projects/acpscm/acp2.png";
 import acpscm3 from "@/public/projects/acpscm/acp3.png";
 import spendSplitLanding from "@/public/projects/spendsplit/landing.jpeg";
+import spend1 from "@/public/projects/spendsplit/spend1.png";
+import spend2 from "@/public/projects/spendsplit/spend2.png";
+import spend3 from "@/public/projects/spendsplit/spend3.png";
+import spend4 from "@/public/projects/spendsplit/spend4.png";
+import spend5 from "@/public/projects/spendsplit/spend5.png";
+import spend6 from "@/public/projects/spendsplit/spend6.png";
+import spend7 from "@/public/projects/spendsplit/spend7.png";
 
 import eduVerse from "@/public/projects/eduverse/landing.png";
 import edu2 from "@/public/projects/eduverse/edu2.png";
@@ -442,7 +449,16 @@ export const projects: Project[] = [
     description:
       "Offline-first personal finance tracker that splits one account into spendable and savings buckets, secured with biometric lock in a dark glassmorphic UI",
     thumbnail: spendSplitLanding,
-    images: [spendSplitLanding],
+    images: [
+      spendSplitLanding,
+      spend1,
+      spend2,
+      spend3,
+      spend4,
+      spend5,
+      spend6,
+      spend7,
+    ],
     stack: [
       { name: "Flutter", Icon: <Flutter size={iconSize} /> },
       { name: "Riverpod", Icon: <Dart size={iconSize} /> },
