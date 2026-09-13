@@ -36,6 +36,9 @@ const PlateCard = ({
 }) => {
   const stackShown = featured ? 6 : 4;
   const stackRest = (project.stack?.length ?? 0) - stackShown;
+  const portraitThumbnail =
+    typeof project.thumbnail !== "string" &&
+    project.thumbnail.height > project.thumbnail.width;
 
   return (
     <motion.div
@@ -99,7 +102,9 @@ const PlateCard = ({
               alt={project.title}
               fill
               sizes={featured ? "(max-width: 768px) 100vw, 45vw" : "(max-width: 768px) 100vw, 40vw"}
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              className={`${
+                portraitThumbnail ? "object-contain" : "object-cover"
+              } transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
             />
             <div
               aria-hidden="true"

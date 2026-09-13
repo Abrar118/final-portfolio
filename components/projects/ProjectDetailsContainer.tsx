@@ -106,35 +106,48 @@ export default function ProjectDetailsContainer({
           transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
           className="mb-14 grid grid-cols-1 gap-4 md:grid-cols-2"
         >
-          {project.images.map((image, index) => (
-            <Dialog key={index}>
-              <DialogTrigger asChild>
-                <button
-                  aria-label={`Enlarge ${project.title} plate ${index + 1}`}
-                  className={`group relative cursor-pointer overflow-hidden border border-border bg-card p-2 transition-colors duration-300 hover:border-gold/60
-                    ${index === 0 ? "aspect-video md:col-span-2" : "aspect-video"}`}
-                >
-                  <span className="relative block h-full w-full overflow-hidden">
-                    <Image
-                      src={typeof image === "string" ? image : image.src}
-                      alt={`${project.title} screenshot ${index + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                  </span>
-                </button>
-              </DialogTrigger>
-              <DialogContent className="max-h-[90vh] max-w-[90vw] border-border bg-card p-2">
-                <Image
-                  src={typeof image === "string" ? image : image.src}
-                  alt={`${project.title} screenshot ${index + 1}`}
-                  width={1920}
-                  height={1080}
-                  className="max-h-[85vh] w-full object-contain"
-                />
-              </DialogContent>
-            </Dialog>
-          ))}
+          {project.images.map((image, index) => {
+            const portrait =
+              typeof image !== "string" && image.height > image.width;
+
+            return (
+              <Dialog key={index}>
+                <DialogTrigger asChild>
+                  <button
+                    aria-label={`Enlarge ${project.title} plate ${index + 1}`}
+                    className={`group relative cursor-pointer overflow-hidden border border-border bg-card p-2 transition-colors duration-300 hover:border-gold/60
+                    ${
+                      portrait
+                        ? "aspect-[9/19.5]"
+                        : index === 0
+                          ? "aspect-video md:col-span-2"
+                          : "aspect-video"
+                    }`}
+                  >
+                    <span className="relative block h-full w-full overflow-hidden">
+                      <Image
+                        src={typeof image === "string" ? image : image.src}
+                        alt={`${project.title} screenshot ${index + 1}`}
+                        fill
+                        className={`${
+                          portrait ? "object-contain" : "object-cover"
+                        } transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
+                      />
+                    </span>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[90vh] max-w-[90vw] border-border bg-card p-2">
+                  <Image
+                    src={typeof image === "string" ? image : image.src}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                    width={1920}
+                    height={1080}
+                    className="max-h-[85vh] w-full object-contain"
+                  />
+                </DialogContent>
+              </Dialog>
+            );
+          })}
         </motion.div>
 
         <div className="grid gap-12 md:grid-cols-[1fr,260px]">

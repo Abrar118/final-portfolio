@@ -72,6 +72,10 @@ const Projects = () => {
 
   const safeActive = Math.min(active, Math.max(filtered.length - 1, 0));
   const project: Project | undefined = filtered[safeActive];
+  const portraitThumbnail =
+    project &&
+    typeof project.thumbnail !== "string" &&
+    project.thumbnail.height > project.thumbnail.width;
 
   const selectFilter = (value: ProjectCategory | "all") => {
     setFilter(value);
@@ -220,7 +224,7 @@ const Projects = () => {
                     alt={project.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
-                    className="object-cover"
+                    className={portraitThumbnail ? "object-contain" : "object-cover"}
                     priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />

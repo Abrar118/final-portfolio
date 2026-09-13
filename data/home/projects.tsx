@@ -68,6 +68,8 @@ import spend4 from "@/public/projects/spendsplit/spend4.png";
 import spend5 from "@/public/projects/spendsplit/spend5.png";
 import spend6 from "@/public/projects/spendsplit/spend6.png";
 import spend7 from "@/public/projects/spendsplit/spend7.png";
+import nudgeGoalsOverview from "@/public/projects/nudge/goals-overview.png";
+import nudgeGoalDetail from "@/public/projects/nudge/goal-detail.png";
 
 import eduVerse from "@/public/projects/eduverse/landing.png";
 import edu2 from "@/public/projects/eduverse/edu2.png";
@@ -245,6 +247,62 @@ export const projects: Project[] = [
       "Docs",
       "Reports",
       "Inbox",
+      "Settings",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/todo_list",
+    title: "Nudge",
+    description:
+      "Local-first task, habit, and goal manager that keeps important work visible with escalating reminders, progress tracking, and home-screen widgets",
+    thumbnail: nudgeGoalsOverview,
+    images: [nudgeGoalsOverview, nudgeGoalDetail],
+    stack: [
+      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
+      { name: "Dart", Icon: <Dart size={iconSize} /> },
+      { name: "Provider", Icon: <Dart size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "Local Notifications", Icon: <Dart size={iconSize} /> },
+    ],
+    slug: "nudge",
+    category: "mobile",
+    year: "2026",
+    context: "Personal productivity app · v1.0.0",
+    content: (
+      <div className="space-y-3">
+        <p>
+          Nudge is a private, offline-first productivity app built around one
+          promise: important work should remain visible until it is handled.
+          Its Focus screen ranks urgent tasks, resurfaces work that has been
+          deferred repeatedly, and keeps the day readable instead of turning
+          it into an endless backlog.
+        </p>
+        <p>
+          Tasks, daily and monthly habits, and longer-term goals share a
+          consistent progress language. Habits can carry timed checkpoints or
+          tracked sessions, while goals combine target dates, milestones, and
+          manual progress. SQLite keeps everything on-device, with JSON backup
+          and restore for portability.
+        </p>
+      </div>
+    ),
+    features: [
+      "Focus queue with urgency, deferral, and overdue escalation",
+      "Natural-language quick add, tags, full-text search, and rich task details",
+      "Recurring tasks with multiple reminders, quiet hours, snooze, and persistent alarms",
+      "Daily and monthly habits with checkpoints, individual times, and timer tracking",
+      "Goals with target dates, milestone checkpoints, and visual progress tracking",
+      "Calendar export, Pomodoro focus sessions, and interactive home-screen widgets",
+      "Offline SQLite storage with JSON backup and restore",
+    ],
+    pages: [
+      "Focus",
+      "Calendar",
+      "Habits",
+      "Goals",
+      "Task Editor",
+      "Search",
+      "Completed",
       "Settings",
     ],
   },
