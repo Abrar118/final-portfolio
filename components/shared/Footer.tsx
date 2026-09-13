@@ -1,63 +1,24 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { socialMedia } from "@/data/home/socials";
-import { Crest, FiligreeDivider, WaxSeal } from "@/components/ui/ornaments";
 
-const toRoman = (num: number): string => {
-  const table: [number, string][] = [
-    [1000, "M"],
-    [900, "CM"],
-    [500, "D"],
-    [400, "CD"],
-    [100, "C"],
-    [90, "XC"],
-    [50, "L"],
-    [40, "XL"],
-    [10, "X"],
-    [9, "IX"],
-    [5, "V"],
-    [4, "IV"],
-    [1, "I"],
-  ];
-  let result = "";
-  let n = num;
-  for (const [value, numeral] of table) {
-    while (n >= value) {
-      result += numeral;
-      n -= value;
-    }
-  }
-  return result;
-};
-
-const Footer = () => {
-  const year = new Date().getFullYear();
-
+export default function Footer() {
   return (
-    <footer className="border-t border-border/60 pb-28">
-      <div className="mx-auto max-w-3xl px-4 py-12 flex flex-col items-center gap-5 text-center">
-        <Crest className="h-10 w-auto text-primary" />
-
-        <div className="flex items-center gap-3">
-          {socialMedia.map((social) => (
-            <WaxSeal key={social.id} href={social.link} label={social.label}>
-              <social.img size={13} />
-            </WaxSeal>
-          ))}
+    <footer className="border-t border-border bg-card">
+      <div className="mx-auto max-w-7xl px-6 pb-6 pt-14 md:px-12 md:pt-20">
+        <p className="mb-5 font-mono text-xs text-muted-foreground">Have an interesting problem?</p>
+        <Link href="/contact" className="group flex items-center justify-between gap-6 border-b border-border pb-10 font-heading text-[clamp(3rem,7vw,7rem)] leading-none tracking-tight">
+          Let’s make it happen.<ArrowUpRight className="h-10 w-10 shrink-0 text-accent md:h-20 md:w-20" />
+        </Link>
+        <div className="flex flex-wrap items-center justify-between gap-6 py-6">
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Abrar Mahir Esam · Built in Dhaka</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {socialMedia.filter(s => ["GitHub", "LinkedIn", "Codeforces"].includes(s.label)).map(s => (
+              <a key={s.id} href={s.link} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1 text-xs hover:text-accent">{s.label}<ArrowUpRight className="h-3 w-3" /></a>
+            ))}
+          </div>
         </div>
-
-        <FiligreeDivider className="h-3 w-44 text-gold/70" />
-
-        <p className="font-body italic text-sm text-muted-foreground max-w-md">
-          Here ends this codex — set in Cinzel &amp; EB Garamond, illuminated
-          at Dhaka.
-        </p>
-        <p className="font-heading text-xs tracking-[0.25em] uppercase text-muted-foreground">
-          <span aria-hidden="true">{toRoman(year)}</span>
-          <span className="sr-only">{year}</span>
-          <span aria-hidden="true"> · </span>Abrar Mahir Esam
-        </p>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

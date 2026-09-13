@@ -71,13 +71,12 @@ export const SectionHeading = ({
   className?: string;
 }) => (
   <div className={cn("text-center", className)}>
-    <p className="rubric">{rubric}</p>
-    <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-wide text-foreground mt-3">
+    <p className="font-mono text-xs text-accent">{rubric}</p>
+    <h2 className="font-heading text-5xl md:text-6xl font-normal tracking-tight text-foreground mt-3">
       {title}
     </h2>
-    <FiligreeDivider className="mx-auto mt-5 h-3.5 w-48 text-gold" />
     {subtitle && (
-      <p className="mt-4 font-body italic text-muted-foreground max-w-xl mx-auto text-base md:text-lg">
+      <p className="mt-5 font-body text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed md:text-base">
         {subtitle}
       </p>
     )}

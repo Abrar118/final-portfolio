@@ -1,32 +1,16 @@
 import Link from "next/link";
-import { socialMedia } from "@/data/home/socials";
-import { Crest, WaxSeal } from "@/components/ui/ornaments";
+import Navbar from "./Navbar";
 
-const SiteHeader = () => {
+export default function SiteHeader() {
   return (
-    <header className="relative z-10 border-b border-border/60">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-8">
-        <Link
-          href="/"
-          className="group flex items-center gap-3 text-foreground"
-          aria-label="Abrar Mahir Esam — home"
-        >
-          <Crest className="h-9 w-auto text-primary transition-colors duration-200 group-hover:text-gold" />
-          <span className="font-heading text-sm font-semibold uppercase tracking-[0.22em] hidden sm:block">
-            Abrar Mahir Esam
-          </span>
+    <header className="relative z-20">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 border-b border-border px-6 py-5 md:px-12">
+        <Link href="/" aria-label="Abrar Mahir Esam — home" className="group flex min-h-11 items-center gap-3">
+          <span className="font-heading text-3xl italic leading-none text-accent">a.</span>
+          <span className="hidden text-sm font-medium sm:block">Abrar Mahir Esam</span>
         </Link>
-
-        <div className="flex items-center gap-2.5">
-          {socialMedia.map((social) => (
-            <WaxSeal key={social.id} href={social.link} label={social.label}>
-              <social.img size={13} />
-            </WaxSeal>
-          ))}
-        </div>
+        <Navbar />
       </div>
     </header>
   );
-};
-
-export default SiteHeader;
+}

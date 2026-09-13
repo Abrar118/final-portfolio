@@ -1,34 +1,26 @@
 import type { Metadata } from "next";
-import { Cinzel, Cinzel_Decorative, EB_Garamond } from "next/font/google";
+import { EB_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
-import Navbar from "@/components/shared/Navbar";
 import SiteHeader from "@/components/shared/SiteHeader";
 import Footer from "@/components/shared/Footer";
 import RouteProgress from "@/components/shared/RouteProgress";
 import { Toaster } from "@/components/ui/sonner";
 
-const cinzel = Cinzel({
+const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const cinzelDecorative = Cinzel_Decorative({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "700", "900"],
-  display: "swap",
-});
-
-const ebGaramond = EB_Garamond({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const geist = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-body",
+  weight: "100 900",
   display: "swap",
 });
 
@@ -52,16 +44,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${cinzel.variable} ${cinzelDecorative.variable} ${ebGaramond.variable} ${geistMono.variable} font-body antialiased`}
+        className={`${geist.variable} ${ebGaramond.variable} ${geistMono.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <RouteProgress />
           <SiteHeader />
-          <Navbar />
           {children}
           <Footer />
           <Toaster />

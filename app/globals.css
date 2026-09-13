@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Studio edition: the work provides the color; the page provides the space. */
+.studio-link {
+  text-decoration: underline;
+  text-decoration-color: hsl(var(--accent));
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1px;
+}
+.studio-link:hover,
+.studio-nav-link[aria-current="page"] {
+  color: hsl(var(--accent));
+}
+.portrait-print { border-radius: 45% 45% 2px 2px; }
+.work-canvas { background: hsl(35 18% 86%); }
+.work-canvas-astryn { background: hsl(145 12% 79%); }
+.work-canvas-nudge { background: hsl(33 32% 84%); }
+.work-canvas-crimelens { background: hsl(215 15% 84%); }
+.work-canvas-quickdev { background: hsl(20 22% 82%); }
+.dark .work-canvas { background: hsl(30 10% 17%); }
+.dark .work-canvas-astryn { background: hsl(145 12% 18%); }
+.dark .work-canvas-nudge { background: hsl(33 18% 20%); }
+.dark .work-canvas-crimelens { background: hsl(215 14% 20%); }
+.dark .work-canvas-quickdev { background: hsl(20 18% 20%); }
+::selection { background: hsl(var(--accent) / 0.2); }
+
 ::-webkit-scrollbar {
   width: 8px;
   background-color: hsl(var(--background));
@@ -25,28 +49,28 @@
 @layer base {
   /* Parchment folio — the default, daylight reading */
   :root {
-    --background: 43 45% 88%;
-    --foreground: 30 35% 12%;
-    --card: 44 50% 93%;
+    --background: 43 35% 94%;
+    --foreground: 30 12% 13%;
+    --card: 44 40% 97%;
     --card-foreground: 30 35% 12%;
     --popover: 44 50% 94%;
     --popover-foreground: 30 35% 12%;
-    --primary: 355 58% 30%;
+    --primary: 17 66% 35%;
     --primary-foreground: 43 45% 92%;
     --secondary: 152 25% 26%;
     --secondary-foreground: 43 45% 92%;
     --muted: 42 30% 82%;
     --muted-foreground: 33 22% 32%;
-    --accent: 355 58% 30%;
+    --accent: 17 66% 35%;
     --accent-foreground: 43 45% 92%;
     --destructive: 0 60% 38%;
     --destructive-foreground: 43 45% 92%;
-    --border: 38 28% 70%;
+    --border: 35 17% 80%;
     --input: 42 32% 84%;
     --ring: 42 55% 40%;
     --radius: 0.25rem;
-    --gold: 42 55% 40%;
-    --oxblood: 355 58% 30%;
+    --gold: 17 66% 35%;
+    --oxblood: 17 66% 35%;
     --forest: 152 25% 26%;
     --gild-1: 41 60% 30%;
     --gild-2: 44 62% 46%;
@@ -62,27 +86,27 @@
 
   /* Candlelit scriptorium — parchment by night */
   .dark {
-    --background: 28 30% 7%;
-    --foreground: 42 38% 84%;
-    --card: 30 24% 11%;
-    --card-foreground: 42 38% 84%;
+    --background: 30 12% 7%;
+    --foreground: 42 35% 91%;
+    --card: 30 14% 12%;
+    --card-foreground: 42 35% 91%;
     --popover: 30 24% 10%;
     --popover-foreground: 42 38% 84%;
-    --primary: 355 45% 46%;
-    --primary-foreground: 43 45% 92%;
-    --secondary: 150 18% 34%;
-    --secondary-foreground: 43 45% 92%;
+    --primary: 22 65% 68%;
+    --primary-foreground: 30 12% 7%;
+    --secondary: 150 20% 65%;
+    --secondary-foreground: 30 12% 7%;
     --muted: 30 20% 14%;
-    --muted-foreground: 40 15% 62%;
-    --accent: 42 50% 58%;
+    --muted-foreground: 40 15% 72%;
+    --accent: 22 65% 68%;
     --accent-foreground: 30 30% 10%;
     --destructive: 0 50% 50%;
     --destructive-foreground: 43 45% 92%;
-    --border: 35 20% 24%;
+    --border: 35 15% 28%;
     --input: 30 20% 15%;
     --ring: 42 50% 58%;
-    --gold: 42 50% 58%;
-    --oxblood: 356 42% 60%;
+    --gold: 22 65% 68%;
+    --oxblood: 22 65% 68%;
     --forest: 150 20% 55%;
     --gild-1: 42 45% 48%;
     --gild-2: 45 60% 68%;
@@ -103,6 +127,7 @@
   }
 
   body {
+    --font-display: var(--font-heading);
     @apply bg-background text-foreground;
     background-image: radial-gradient(
       ellipse 120% 90% at 50% 0%,
@@ -119,12 +144,12 @@
     z-index: 80;
     pointer-events: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.045;
+    opacity: 0.025;
     mix-blend-mode: multiply;
   }
 
   .dark body::after {
-    opacity: 0.06;
+    opacity: 0.025;
     mix-blend-mode: screen;
   }
 

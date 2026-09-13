@@ -9,6 +9,9 @@ const Template = ({
 }>) => {
   const path = usePathname();
 
+  // The landing hero (including its LCP candidates) must be visible at paint.
+  if (path === "/") return <>{children}</>;
+
   return (
     <MotionConfig reducedMotion="user">
       <AnimatePresence mode="wait">
