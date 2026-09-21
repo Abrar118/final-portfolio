@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { EB_Garamond } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
 import SiteHeader from "@/components/shared/SiteHeader";
+import AmbientBackdrop from "@/components/shared/AmbientBackdrop";
 import Footer from "@/components/shared/Footer";
 import RouteProgress from "@/components/shared/RouteProgress";
 import { Toaster } from "@/components/ui/sonner";
-
-const ebGaramond = EB_Garamond({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 const geist = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,16 +36,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geist.variable} ${ebGaramond.variable} ${geistMono.variable} font-body antialiased`}
+        className={`${geist.variable} ${geistMono.variable} font-body antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           disableTransitionOnChange
         >
+          <a href="#main-content" className="skip-link">Skip to content</a>
+          <AmbientBackdrop />
           <RouteProgress />
           <SiteHeader />
-          {children}
+          <div id="main-content" tabIndex={-1}>{children}</div>
           <Footer />
           <Toaster />
         </ThemeProvider>

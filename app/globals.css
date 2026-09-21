@@ -2,290 +2,183 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Studio edition: the work provides the color; the page provides the space. */
-.studio-link {
-  text-decoration: underline;
-  text-decoration-color: hsl(var(--accent));
-  text-underline-offset: 7px;
-  text-decoration-thickness: 1px;
-}
-.studio-link:hover,
-.studio-nav-link[aria-current="page"] {
-  color: hsl(var(--accent));
-}
-.portrait-print { border-radius: 45% 45% 2px 2px; }
-.work-canvas { background: hsl(35 18% 86%); }
-.work-canvas-astryn { background: hsl(145 12% 79%); }
-.work-canvas-nudge { background: hsl(33 32% 84%); }
-.work-canvas-crimelens { background: hsl(215 15% 84%); }
-.work-canvas-quickdev { background: hsl(20 22% 82%); }
-.dark .work-canvas { background: hsl(30 10% 17%); }
-.dark .work-canvas-astryn { background: hsl(145 12% 18%); }
-.dark .work-canvas-nudge { background: hsl(33 18% 20%); }
-.dark .work-canvas-crimelens { background: hsl(215 14% 20%); }
-.dark .work-canvas-quickdev { background: hsl(20 18% 20%); }
-::selection { background: hsl(var(--accent) / 0.2); }
-
-::-webkit-scrollbar {
-  width: 8px;
-  background-color: hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--border));
-  border-radius: 10px;
-}
-
-.no-visible-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.no-visible-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
 @layer base {
-  /* Parchment folio — the default, daylight reading */
   :root {
-    --background: 43 35% 94%;
-    --foreground: 30 12% 13%;
-    --card: 44 40% 97%;
-    --card-foreground: 30 35% 12%;
-    --popover: 44 50% 94%;
-    --popover-foreground: 30 35% 12%;
-    --primary: 17 66% 35%;
-    --primary-foreground: 43 45% 92%;
-    --secondary: 152 25% 26%;
-    --secondary-foreground: 43 45% 92%;
-    --muted: 42 30% 82%;
-    --muted-foreground: 33 22% 32%;
-    --accent: 17 66% 35%;
-    --accent-foreground: 43 45% 92%;
-    --destructive: 0 60% 38%;
-    --destructive-foreground: 43 45% 92%;
-    --border: 35 17% 80%;
-    --input: 42 32% 84%;
-    --ring: 42 55% 40%;
-    --radius: 0.25rem;
-    --gold: 17 66% 35%;
-    --oxblood: 17 66% 35%;
-    --forest: 152 25% 26%;
-    --gild-1: 41 60% 30%;
-    --gild-2: 44 62% 46%;
-    --stone-hi: 40 16% 82%;
-    --stone-lo: 36 14% 73%;
-    --engrave-hi: 45 40% 94%;
-    --chart-1: 355 58% 30%;
-    --chart-2: 152 25% 26%;
-    --chart-3: 42 55% 40%;
-    --chart-4: 30 35% 12%;
-    --chart-5: 33 22% 32%;
+    --background: 277 26% 88%;
+    --foreground: 276 36% 15%;
+    --card: 278 28% 94%;
+    --card-foreground: 276 36% 15%;
+    --popover: 278 28% 96%;
+    --popover-foreground: 276 36% 15%;
+    --primary: 274 62% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 280 25% 34%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 276 23% 83%;
+    --muted-foreground: 276 18% 32%;
+    --accent: 274 62% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 43%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 275 18% 66%;
+    --input: 275 18% 66%;
+    --ring: 274 62% 38%;
+    --radius: 1rem;
+    --gold: 274 62% 38%;
+    --oxblood: 274 62% 38%;
+    --forest: 280 25% 34%;
+    --glass: 255 255 255;
+    --glass-opacity: .17;
+    --glass-edge: 255 255 255;
+    --glass-shadow: 42 13 61;
+    --glass-highlight: .68;
+    --glass-border: .42;
+    --glass-tint: 255 255 255;
   }
-
-  /* Candlelit scriptorium — parchment by night */
   .dark {
-    --background: 30 12% 7%;
-    --foreground: 42 35% 91%;
-    --card: 30 14% 12%;
-    --card-foreground: 42 35% 91%;
-    --popover: 30 24% 10%;
-    --popover-foreground: 42 38% 84%;
-    --primary: 22 65% 68%;
-    --primary-foreground: 30 12% 7%;
-    --secondary: 150 20% 65%;
-    --secondary-foreground: 30 12% 7%;
-    --muted: 30 20% 14%;
-    --muted-foreground: 40 15% 72%;
-    --accent: 22 65% 68%;
-    --accent-foreground: 30 30% 10%;
-    --destructive: 0 50% 50%;
-    --destructive-foreground: 43 45% 92%;
-    --border: 35 15% 28%;
-    --input: 30 20% 15%;
-    --ring: 42 50% 58%;
-    --gold: 22 65% 68%;
-    --oxblood: 22 65% 68%;
-    --forest: 150 20% 55%;
-    --gild-1: 42 45% 48%;
-    --gild-2: 45 60% 68%;
-    --stone-hi: 30 12% 17%;
-    --stone-lo: 28 12% 11%;
-    --engrave-hi: 35 15% 30%;
-    --chart-1: 356 42% 60%;
-    --chart-2: 150 20% 55%;
-    --chart-3: 42 50% 58%;
-    --chart-4: 42 38% 84%;
-    --chart-5: 40 15% 62%;
+    --background: 276 35% 7%;
+    --foreground: 280 28% 96%;
+    --card: 277 23% 14%;
+    --card-foreground: 280 28% 96%;
+    --popover: 277 25% 12%;
+    --popover-foreground: 280 28% 96%;
+    --primary: 277 88% 79%;
+    --primary-foreground: 278 45% 12%;
+    --secondary: 282 25% 79%;
+    --secondary-foreground: 278 45% 12%;
+    --muted: 277 20% 21%;
+    --muted-foreground: 279 18% 79%;
+    --accent: 277 88% 82%;
+    --accent-foreground: 278 45% 12%;
+    --destructive: 0 78% 74%;
+    --destructive-foreground: 278 45% 12%;
+    --border: 277 17% 42%;
+    --input: 277 17% 42%;
+    --ring: 277 88% 82%;
+    --gold: 277 88% 82%;
+    --oxblood: 277 88% 82%;
+    --forest: 282 25% 79%;
+    --glass: 255 255 255;
+    --glass-opacity: .045;
+    --glass-edge: 255 255 255;
+    --glass-shadow: 9 2 16;
+    --glass-highlight: .38;
+    --glass-border: .22;
+    --glass-tint: 29 13 40;
   }
-}
-
-@layer base {
-  * {
-    @apply border-border !scroll-smooth;
-  }
-
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
   body {
-    --font-display: var(--font-heading);
+    --font-heading: var(--font-body);
+    --font-display: var(--font-body);
     @apply bg-background text-foreground;
-    background-image: radial-gradient(
-      ellipse 120% 90% at 50% 0%,
-      hsl(var(--card) / 0.6) 0%,
-      transparent 55%
-    );
+    min-width: 320px;
+    isolation: isolate;
   }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 5px; }
+  ::selection { background: hsl(var(--accent) / .2); }
+}
 
-  /* Paper grain over the whole folio */
-  body::after {
+@layer components {
+  .glass-panel {
+    position: relative;
+    border: 1px solid rgb(var(--glass-edge) / var(--glass-border));
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgb(var(--glass-edge) / .12), rgb(var(--glass-edge) / .015) 42%, rgb(var(--glass-edge) / .055)), rgb(var(--glass) / var(--glass-opacity));
+    box-shadow: 0 18px 44px -18px rgb(var(--glass-shadow) / .42), inset 0 1.5px 1px rgb(var(--glass-edge) / var(--glass-highlight)), inset 1px 0 1px rgb(var(--glass-edge) / .13), inset 0 -1px 1px rgb(var(--glass-edge) / .13);
+    -webkit-backdrop-filter: blur(22px) saturate(145%);
+    backdrop-filter: blur(22px) saturate(145%);
+  }
+  /* Opposing rim highlights mimic the way curved glass catches the light. */
+  .glass-panel::before {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
-    z-index: 80;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    mix-blend-mode: multiply;
-  }
-
-  .dark body::after {
-    opacity: 0.025;
-    mix-blend-mode: screen;
-  }
-
-  button {
-    @apply active:outline-none;
-  }
-
-  :focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-  }
-}
-
-@layer utilities {
-  .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
-  }
-
-  /* Gold-leaf text — for the illuminated title and nothing else */
-  .text-gilded {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      168deg,
-      hsl(var(--gild-1)) 0%,
-      hsl(var(--gild-2)) 48%,
-      hsl(var(--gild-1)) 100%
-    );
-  }
-
-  /* Rubricated eyebrow — red ink, engraved caps */
-  .rubric {
-    font-family: var(--font-heading), serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: hsl(var(--oxblood));
-  }
-
-  /* Illuminated initial on a paragraph */
-  .drop-cap::first-letter {
-    font-family: var(--font-display), serif;
-    float: left;
-    font-size: 3.3em;
-    line-height: 0.82;
-    padding: 0.06em 0.14em 0 0;
-    color: hsl(var(--oxblood));
-  }
-
-  /* Double-rule frame: sepia outer line, hairline set just inside */
-  .frame-double {
-    border: 1px solid hsl(var(--border));
-    box-shadow:
-      inset 0 0 0 3px hsl(var(--card)),
-      inset 0 0 0 4px hsl(var(--border) / 0.55);
-  }
-
-  /* Wax seal — for social links */
-  .wax-seal {
-    border-radius: 48% 52% 51% 49% / 53% 47% 53% 47%;
-    background: radial-gradient(
-      circle at 35% 30%,
-      hsl(356 48% 44%),
-      hsl(355 58% 30%) 55%,
-      hsl(354 62% 19%) 100%
-    );
-    box-shadow:
-      inset 0 1px 2px hsl(10 55% 58% / 0.45),
-      inset 0 -2px 3px hsl(0 0% 0% / 0.4),
-      0 1px 3px hsl(30 40% 10% / 0.35);
-    color: hsl(43 45% 90%);
-    transition: transform 0.2s ease;
-  }
-
-  .wax-seal:hover {
-    transform: rotate(-5deg) scale(1.07);
-  }
-
-  /* Stone tablet with chiseled corners: outer element is the rim,
-     inner element the carved face */
-  .tablet-frame {
-    clip-path: polygon(
-      9px 0,
-      calc(100% - 9px) 0,
-      100% 9px,
-      100% calc(100% - 9px),
-      calc(100% - 9px) 100%,
-      9px 100%,
-      0 calc(100% - 9px),
-      0 9px
-    );
-    background: hsl(var(--border));
+    z-index: 2;
+    border-radius: inherit;
     padding: 1px;
-    transition: background-color 0.2s ease;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgb(255 255 255 / .72), transparent 22%, transparent 65%, rgb(239 206 255 / .42));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
   }
+  .glass-button {
+    @apply inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-6 text-sm font-medium;
+    position: relative;
+    border: 1px solid rgb(var(--glass-edge) / .32);
+    background: linear-gradient(160deg, rgb(var(--glass-edge) / .2), rgb(var(--glass-edge) / .04) 55%), rgb(var(--glass) / .06);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: inset 0 1.5px 1px rgb(var(--glass-edge) / .5), inset 0 -1px 1px rgb(var(--glass-edge) / .12), 0 6px 18px rgb(var(--glass-shadow) / .18);
+    transition: background-color 180ms, box-shadow 180ms, border-color 180ms;
+  }
+  .glass-button:hover { background-color: rgb(var(--glass-edge) / .14); border-color: rgb(var(--glass-edge) / .65); box-shadow: inset 0 1.5px 1px rgb(var(--glass-edge) / .7), 0 6px 22px rgb(var(--glass-shadow) / .22); }
+  .glass-button-primary { background-color: hsl(275 70% 42% / .65); border-color: hsl(285 80% 87% / .6); color: white; }
+  .glass-button-primary:hover { background-color: hsl(275 65% 46% / .85); }
+  .section-title { @apply font-heading text-4xl font-medium tracking-[-0.045em] md:text-5xl; }
+  .section-kicker { @apply mb-4 text-sm font-medium text-accent; }
+  .page-shell { @apply mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-12 md:pt-16; }
+  .page-title { @apply font-heading text-5xl font-medium leading-[1.06] tracking-[-0.05em] md:text-7xl; }
+  .glass-field { @apply min-h-12 rounded-xl border-border bg-background/60 px-4 text-base shadow-none; }
+  .glass-field:focus-visible { outline-offset: 3px; }
+  .studio-link { text-underline-offset: 6px; text-decoration: underline; text-decoration-color: hsl(var(--border)); }
+  .studio-link:hover { color: hsl(var(--accent)); text-decoration-color: currentColor; }
+  .rubric { @apply text-xs font-medium text-accent; letter-spacing: .03em; }
+  .work-canvas { background: linear-gradient(145deg, hsl(276 36% 64% / .17), hsl(282 26% 88% / .05)); }
+  .work-canvas-astryn { background: linear-gradient(145deg, hsl(277 55% 68% / .23), hsl(282 35% 90% / .025)); }
+  .work-canvas-nudge { background: linear-gradient(145deg, hsl(292 47% 65% / .18), hsl(271 50% 70% / .1)); }
+  .work-canvas-crimelens { background: linear-gradient(145deg, hsl(274 48% 66% / .2), hsl(290 40% 85% / .04)); }
+  .work-canvas-quickdev { background: linear-gradient(145deg, hsl(280 45% 60% / .2), hsl(271 40% 90% / .04)); }
 
-  .tablet-frame:hover {
-    background: hsl(var(--gold) / 0.65);
-  }
-
-  .tablet {
-    clip-path: polygon(
-      9px 0,
-      calc(100% - 9px) 0,
-      100% 9px,
-      100% calc(100% - 9px),
-      calc(100% - 9px) 100%,
-      9px 100%,
-      0 calc(100% - 9px),
-      0 9px
-    );
-    background: linear-gradient(
-      160deg,
-      hsl(var(--stone-hi)),
-      hsl(var(--stone-lo))
-    );
-    box-shadow:
-      inset 0 2px 4px hsl(0 0% 0% / 0.14),
-      inset 0 -2px 3px hsl(var(--engrave-hi) / 0.5);
-  }
-
-  .engraved {
-    text-shadow: 0 1px 0 hsl(var(--engrave-hi));
-  }
 }
 
+.site-header { position: sticky; top: 16px; z-index: 50; margin: 16px auto 0; max-width: 1184px; width: calc(100% - 48px); }
+.site-header .glass-panel { border-radius: 999px; }
+.nav-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 13px; color: hsl(var(--muted-foreground)); transition: color 180ms, background-color 180ms; }
+.nav-link:hover { color: hsl(var(--foreground)); background: hsl(var(--muted) / .5); }
+.nav-link[aria-current="page"] { background: rgb(var(--glass-edge) / .16); color: hsl(var(--foreground)); box-shadow: inset 0 1px 0 rgb(var(--glass-edge) / .35), 0 2px 8px rgb(var(--glass-shadow) / .15); }
+.hero-visual { min-height: 450px; }
+.hero-intro { padding: 36px; }
+.hero-intro h1 { font-size: clamp(2.5rem, 5.5vw, 4.75rem); }
+.portrait-glass { padding: 9px; }
+.portrait-glass img { border-radius: 21px; }
+.hero-caption { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); background: linear-gradient(135deg, rgb(255 255 255 / .2), rgb(255 255 255 / .04)), rgb(22 10 32 / .48); color: #fff; border: 1px solid rgb(255 255 255 / .32); box-shadow: inset 0 1px 0 rgb(255 255 255 / .4), 0 6px 16px rgb(0 0 0 / .12); }
+.ambient-scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #cbb5db; }
+.ambient-art { width: 100%; height: 100%; opacity: .3; filter: saturate(.8); }
+.ambient-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgb(245 232 255 / .48), rgb(240 219 255 / .24)); }
+.dark .ambient-scene { background: #160c1e; }
+.dark .ambient-art { opacity: .85; filter: saturate(.75); }
+.dark .ambient-scrim { background: linear-gradient(100deg, rgb(14 6 22 / .43), rgb(15 7 22 / .08) 70%), linear-gradient(0deg, rgb(14 6 22 / .23), transparent 55%); }
+.glass-field { border-color: hsl(var(--border) / .75); border-radius: 14px; background: rgb(var(--glass-tint) / .22); box-shadow: inset 0 1px 5px rgb(var(--glass-shadow) / .12), 0 1px 0 rgb(var(--glass-edge) / .14); }
+.project-card { transition: border-color 200ms, box-shadow 200ms; }
+.project-card:hover { border-color: hsl(var(--accent) / .35); box-shadow: 0 16px 40px -24px rgb(var(--glass-shadow) / .35); }
+.project-card .project-preview { transition: transform 350ms ease; }
+.project-card:hover .project-preview { transform: scale(1.025); }
+.skip-link { position: fixed; top: -100px; left: 24px; z-index: 100; padding: 12px 20px; background: hsl(var(--card)); border-radius: 12px; }
+.skip-link:focus { top: 24px; }
+.no-visible-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-visible-scrollbar::-webkit-scrollbar { display: none; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel, .glass-button, .hero-caption { background: hsl(var(--card)); color: hsl(var(--foreground)); }
+  .glass-button-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
+}
+@media (max-width: 640px) {
+  .site-header { top: 10px; width: calc(100% - 24px); margin-top: 10px; }
+  .nav-link { padding: 0 12px; font-size: 12px; }
+  .hero-visual { min-height: 380px; max-width: 350px; margin: 0 auto; width: 100%; }
+  .hero-intro { padding: 24px; }
+  .hero-intro h1 { font-size: clamp(2rem, 8.8vw, 2.75rem); }
+  .hero-intro .glass-button { padding-left: 18px; padding-right: 18px; font-size: 13px; }
+  .glass-panel { border-radius: 22px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  * {
-    scroll-behavior: auto !important;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .project-card:hover .project-preview { transform: none; }
+}
+@media (forced-colors: active) {
+  .glass-panel, .glass-button, .nav-link[aria-current="page"] { border: 1px solid CanvasText; }
 }

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/* A gilded stroke along the top edge: trickles while a route loads,
+/* A progress bar along the top edge: trickles while a route loads,
    completes when the new page renders. No dependencies — internal link
    clicks start it, the pathname change finishes it. */
 export default function RouteProgress() {
@@ -44,12 +44,12 @@ export default function RouteProgress() {
     safety.current = setTimeout(complete, 6000);
   }, [complete]);
 
-  // The new route has rendered — seal the stroke.
+  // Complete the progress bar when the route renders.
   useEffect(() => {
     complete();
   }, [pathname, complete]);
 
-  // First visit: a quick flourish as the page comes alive.
+  // Show progress on the initial visit.
   useEffect(() => {
     running.current = true;
     setVisible(true);
@@ -105,14 +105,14 @@ export default function RouteProgress() {
             width: `${progress}%`,
             transition: "width 0.25s ease",
             backgroundImage:
-              "linear-gradient(90deg, hsl(var(--gild-1)), hsl(var(--gild-2)), hsl(var(--gild-1)), hsl(var(--gild-2)))",
+              "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.5), hsl(var(--primary)))",
             backgroundSize: "200% 100%",
             boxShadow: "0 0 8px hsl(var(--gold) / 0.55)",
           }}
         >
-          {/* The quill nib at the stroke's leading edge */}
+          {/* Highlight the leading edge. */}
           <span
-            className="absolute -right-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 bg-gold"
+            className="absolute -right-1 top-1/2 h-[3px] w-3 -translate-y-1/2 rounded-full bg-primary"
             style={{ boxShadow: "0 0 10px 2px hsl(var(--gold) / 0.6)" }}
           />
         </div>

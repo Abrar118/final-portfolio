@@ -15,11 +15,6 @@ import {
   Monitor,
   Server,
 } from "lucide-react";
-import {
-  SectionHeading,
-  CornerOrnaments,
-  AstrolabeRing,
-} from "@/components/ui/ornaments";
 
 const categories: { label: string; value: ProjectCategory | "all" }[] = [
   { label: "All", value: "all" },
@@ -41,22 +36,6 @@ const categoryGlyph: Record<string, React.ReactNode> = {
   desktop: <Monitor className="h-3.5 w-3.5" />,
   backend: <Server className="h-3.5 w-3.5" />,
 };
-
-const romans = [
-  "I",
-  "II",
-  "III",
-  "IV",
-  "V",
-  "VI",
-  "VII",
-  "VIII",
-  "IX",
-  "X",
-  "XI",
-  "XII",
-  "XIII",
-];
 
 const Projects = () => {
   const [filter, setFilter] = useState<ProjectCategory | "all">("all");
@@ -82,31 +61,31 @@ const Projects = () => {
     setActive(0);
   };
 
-  const onIndexKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-      e.preventDefault();
-      setActive((a) => Math.min(a + 1, filtered.length - 1));
-    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-      e.preventDefault();
-      setActive((a) => Math.max(a - 1, 0));
-    }
+  const onIndexKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    let next = safeActive;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") next = Math.min(safeActive + 1, filtered.length - 1);
+    else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = Math.max(safeActive - 1, 0);
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = filtered.length - 1;
+    else return;
+    e.preventDefault();
+    setActive(next);
+    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus();
   };
 
   return (
-    <div className="mx-auto min-h-screen max-w-6xl px-4 pb-32 pt-16 md:px-8">
+    <div className="page-shell">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
-        <SectionHeading
-          rubric="The Catalogue"
-          title="Quests & Works"
-          subtitle={`${projects.length} works across web, mobile, and desktop — choose a quest from the index to read its plate.`}
-        />
+        <p className="section-kicker">The project collection</p>
+        <h1 className="page-title">Built with curiosity.</h1>
+        <p className="mt-6 max-w-xl leading-7 text-muted-foreground">{projects.length} projects across web, mobile, and desktop. Explore the ideas, the decisions, and the details.</p>
 
         <div
-          className="mt-8 flex flex-wrap justify-center gap-2"
+          className="mt-8 flex flex-wrap gap-2"
           role="group"
           aria-label="Filter projects by category"
         >
@@ -115,7 +94,7 @@ const Projects = () => {
               key={cat.value}
               onClick={() => selectFilter(cat.value)}
               aria-pressed={filter === cat.value}
-              className={`border px-4 py-1.5 font-heading text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-200
+              className={`min-h-11 rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200
                 ${
                   filter === cat.value
                     ? "border-primary bg-primary text-primary-foreground"
@@ -139,10 +118,9 @@ const Projects = () => {
         transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
         className="mt-10 grid gap-5 lg:grid-cols-[300px,1fr]"
       >
-        {/* Index of quests — the scroll spines */}
         <div
           role="tablist"
-          aria-label="Quest index"
+          aria-label="Project index"
           aria-orientation="vertical"
           onKeyDown={onIndexKeyDown}
           className="flex gap-2 overflow-x-auto no-visible-scrollbar
@@ -159,23 +137,23 @@ const Projects = () => {
                 aria-controls="quest-stage"
                 tabIndex={selected ? 0 : -1}
                 onClick={() => setActive(i)}
-                className={`group flex min-w-[190px] flex-shrink-0 items-center gap-3 border p-3 text-left transition-all duration-200 lg:min-w-0 lg:flex-shrink
+                className={`group flex min-w-[190px] flex-shrink-0 items-center gap-3 rounded-2xl border p-3 text-left transition-colors duration-200 lg:min-w-0 lg:flex-shrink
                   ${
                     selected
-                      ? "border-gold/70 bg-card shadow-sm lg:translate-x-1"
-                      : "border-border/60 bg-card/50 hover:border-gold/40 hover:bg-card"
+                      ? "border-primary/50 bg-card/90 shadow-sm"
+                      : "border-border/60 bg-card/40 hover:border-gold/40 hover:bg-card"
                   }`}
               >
                 <span
                   aria-hidden="true"
-                  className={`flex h-9 w-9 flex-shrink-0 items-center justify-center border font-heading text-xs font-semibold transition-colors duration-200
+                  className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl border font-heading text-xs font-semibold transition-colors duration-200
                     ${
                       selected
                         ? "border-primary bg-primary text-primary-foreground"
                         : "border-border/70 bg-background text-primary"
                     }`}
                 >
-                  {romans[i] ?? i + 1}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="min-w-0">
                   <span
@@ -185,7 +163,7 @@ const Projects = () => {
                   >
                     {p.title}
                   </span>
-                  <span className="mt-0.5 flex items-center gap-1.5 font-body text-[11px] italic text-muted-foreground">
+                  <span className="mt-0.5 flex items-center gap-1.5 font-body text-xs text-muted-foreground">
                     {p.category && categoryGlyph[p.category]}
                     {p.category && categoryLabel[p.category]}
                     {p.year && <> · {p.year}</>}
@@ -196,18 +174,13 @@ const Projects = () => {
           })}
         </div>
 
-        {/* The stage — one quest, writ large */}
         <div
+          tabIndex={0}
           id="quest-stage"
           role="tabpanel"
           aria-labelledby={project ? `quest-tab-${project.slug}` : undefined}
           className="relative"
         >
-          <AstrolabeRing
-            className="pointer-events-none absolute -right-8 -top-10 z-10 hidden h-36 w-36
-              animate-spin-slow text-gold/30 motion-reduce:animate-none md:block"
-          />
-
           <AnimatePresence mode="wait">
             {project && (
               <motion.article
@@ -216,9 +189,9 @@ const Projects = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.28, ease: "easeOut" }}
-                className="relative overflow-hidden border border-border bg-card"
+                className="glass-panel overflow-hidden"
               >
-                <div className="relative aspect-video overflow-hidden">
+                <div className="work-canvas relative m-3 aspect-video overflow-hidden rounded-[20px]">
                   <Image
                     src={project.thumbnail}
                     alt={project.title}
@@ -227,8 +200,6 @@ const Projects = () => {
                     className={portraitThumbnail ? "object-contain" : "object-cover"}
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                  <CornerOrnaments className="m-3" />
                 </div>
 
                 <div className="relative p-6 md:p-8">
@@ -277,7 +248,7 @@ const Projects = () => {
                             aria-hidden="true"
                             className="mt-0.5 flex-shrink-0 text-xs text-gold"
                           >
-                            ✦
+                            ·
                           </span>
                           {feature}
                         </li>
@@ -289,7 +260,7 @@ const Projects = () => {
                     {project.stack?.map((tech) => (
                       <span
                         key={tech.name}
-                        className="border border-border/70 px-2 py-0.5 font-body text-[11px] text-muted-foreground"
+                        className="rounded-md border border-border/70 px-2 py-1 font-body text-[11px] text-muted-foreground"
                       >
                         {tech.name}
                       </span>
@@ -297,17 +268,15 @@ const Projects = () => {
                   </div>
 
                   <div className="mt-7 flex flex-wrap items-center gap-3">
-                    <Link href={`/projects/${project.slug}`}>
-                      <button className="inline-flex items-center gap-2 border border-primary bg-primary px-5 py-2.5 font-heading text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground transition-colors duration-200 hover:bg-primary/90">
-                        Read the full account
+                    <Link href={`/projects/${project.slug}`} className="glass-button glass-button-primary">
+                        View project
                         <ArrowRight className="h-4 w-4" />
-                      </button>
                     </Link>
                     {project.href && (
                       <Link
                         href={project.href}
-                        target="_blank"
-                        className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2.5 font-heading text-xs font-semibold uppercase tracking-[0.15em] text-foreground transition-colors duration-200 hover:border-gold/60"
+                        target="_blank" rel="noopener noreferrer"
+                        className="glass-button"
                       >
                         <ExternalLink className="h-4 w-4" />
                         Live
@@ -316,8 +285,8 @@ const Projects = () => {
                     {project.github && (
                       <Link
                         href={project.github}
-                        target="_blank"
-                        className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2.5 font-heading text-xs font-semibold uppercase tracking-[0.15em] text-foreground transition-colors duration-200 hover:border-gold/60"
+                        target="_blank" rel="noopener noreferrer"
+                        className="glass-button"
                       >
                         <Github className="h-4 w-4" />
                         Source

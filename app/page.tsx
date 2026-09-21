@@ -5,7 +5,7 @@ import { projects } from "@/data/home/projects";
 
 export default function Home() {
   return (
-    <main className="relative bg-background flex justify-center items-center flex-col overflow-hidden mx-auto">
+    <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto">
       <div className="w-full">
         <Hero projectCount={projects.length} />
         <ProjectSection />

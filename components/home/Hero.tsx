@@ -1,55 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Code2, MapPin } from "lucide-react";
 
 export default function Hero({ projectCount = 14 }: { projectCount?: number }) {
   return (
-    <section className="studio-hero mx-auto max-w-7xl px-6 pb-10 pt-12 md:px-12 md:pt-20">
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-        <p className="font-mono">Software engineer / Dhaka, Bangladesh</p>
-        <p className="hidden font-mono sm:block">Web · Mobile · Desktop</p>
-      </div>
-      <div className="grid items-end gap-10 lg:grid-cols-[1.5fr,0.65fr] lg:gap-16">
-        <div>
-          <h1 className="font-heading text-[clamp(4.2rem,10vw,9rem)] font-normal leading-[0.88] tracking-[-0.055em]">
-            Software with<br />
-            <span className="italic text-accent">a point of view.</span>
-          </h1>
-          <div className="mt-10 grid gap-6 sm:grid-cols-[0.6fr,1fr] md:mt-12">
-            <p className="text-sm leading-relaxed">
-              I’m Abrar Mahir Esam.<br />
-              <span className="text-muted-foreground">Full-stack software engineer with a keen interest in systems programming and microservices.</span>
-            </p>
-            <div>
-              <p className="max-w-md text-base leading-relaxed text-muted-foreground">
-                I turn complex problems into software that feels simple.
-                From healthcare platforms to the little tools that make
-                everyday life better.
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-3">
-                <Link href="#quests" className="studio-link inline-flex min-h-11 items-center gap-3 text-sm font-medium">
-                  Explore the work <ArrowDownRight className="h-5 w-5" />
-                </Link>
-                <Link href="/Abrar-Mahir-Esam-CV.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  Résumé <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+    <section className="mx-auto max-w-7xl px-6 pb-8 pt-12 md:px-12 md:pt-20">
+      <div className="grid items-center gap-8 lg:grid-cols-[1.45fr,1fr] lg:gap-6">
+        <div className="hero-intro glass-panel relative z-10">
+          <p className="mb-6 flex items-center gap-2 text-sm text-muted-foreground"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Hello, I’m Abrar.</p>
+          <h1 className="font-heading text-[clamp(2.5rem,6.3vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.065em]">Thoughtful code.<br /><span className="text-accent">Useful products.</span></h1>
+          <p className="mt-7 max-w-[440px] text-base leading-7 text-muted-foreground md:text-lg md:leading-8">I’m a full-stack software engineer turning complex problems into simple, considered experiences. From the first interaction to the systems behind it.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="#quests" className="glass-button glass-button-primary">View my work <ArrowDown className="h-4 w-4" /></Link>
+            <Link href="/Abrar-Mahir-Esam-CV.pdf" target="_blank" rel="noopener noreferrer" className="glass-button">View résumé <ArrowUpRight className="h-4 w-4" /></Link>
           </div>
+          <p className="mt-8 flex flex-wrap items-center gap-2 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Dhaka, Bangladesh <span className="mx-2 text-border">/</span> Building across platforms</p>
         </div>
-        <figure className="relative mx-auto w-full max-w-[280px] lg:max-w-none">
-          <div className="portrait-print relative aspect-[3/4] overflow-hidden bg-muted">
-            <Image src="/hero-portrait.jpg" alt="Abrar Mahir Esam" fill priority sizes="(max-width: 1024px) 280px, 320px" className="object-cover object-top grayscale" />
-          </div>
-          <figcaption className="mt-3 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
-            <span>01 / Behind the work</span>
-            <Link href="/profile" aria-label="About Abrar Mahir Esam" className="inline-flex h-11 w-11 items-center justify-center hover:text-accent"><ArrowUpRight className="h-4 w-4" /></Link>
-          </figcaption>
-        </figure>
+        <div className="hero-visual relative">
+          <figure className="portrait-glass glass-panel absolute right-0 top-0 w-[265px] sm:right-0 sm:w-[310px]">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-[21px]">
+              <Image src="/hero-portrait.jpg" alt="Abrar Mahir Esam" fill priority sizes="(max-width: 640px) 240px, 280px" className="object-cover object-top" />
+              <figcaption className="hero-caption absolute bottom-3 left-3 right-3 rounded-2xl px-4 py-3">
+                <p className="text-sm font-semibold">Abrar Mahir Esam</p><p className="mt-1 text-xs opacity-75">Engineer. Builder. Curious human.</p>
+              </figcaption>
+            </div>
+          </figure>
+          <Link href="/profile" className="glass-panel absolute bottom-6 left-0 flex items-center gap-4 !rounded-2xl px-5 py-4 sm:bottom-0 sm:left-0">
+            <Code2 className="h-6 w-6 text-accent" /><div><p className="text-sm font-medium">From idea to interface</p><p className="mt-1 text-xs text-muted-foreground">Web · Mobile · Desktop</p></div><ArrowUpRight className="ml-2 h-4 w-4 text-muted-foreground" />
+          </Link>
+        </div>
       </div>
-      <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-y border-border py-5 md:mt-20">
-        <p className="text-xs text-muted-foreground">Built across platforms. Designed around people.</p>
-        <Link href="/projects" className="inline-flex min-h-11 items-center gap-4 font-mono text-xs hover:text-accent">{String(projectCount).padStart(2, "0")} projects in the archive <ArrowUpRight className="h-4 w-4" /></Link>
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6 md:mt-14">
+        <p className="text-xs text-muted-foreground">Thoughtful design. Solid engineering.</p>
+        <Link href="/projects" className="flex min-h-11 items-center gap-3 text-xs text-muted-foreground hover:text-accent"><span className="font-medium text-foreground">{String(projectCount).padStart(2, "0")}</span> projects and counting <ArrowUpRight className="h-4 w-4" /></Link>
       </div>
     </section>
   );

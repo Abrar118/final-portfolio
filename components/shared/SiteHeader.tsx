@@ -3,11 +3,11 @@ import Navbar from "./Navbar";
 
 export default function SiteHeader() {
   return (
-    <header className="relative z-20">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 border-b border-border px-6 py-5 md:px-12">
-        <Link href="/" aria-label="Abrar Mahir Esam — home" className="group flex min-h-11 items-center gap-3">
-          <span className="font-heading text-3xl italic leading-none text-accent">a.</span>
-          <span className="hidden text-sm font-medium sm:block">Abrar Mahir Esam</span>
+    <header className="site-header">
+      <div className="glass-panel flex items-center justify-between gap-2 px-3 py-2 md:px-5">
+        <Link href="/" aria-label="Abrar Mahir Esam — home" className="flex min-h-11 items-center gap-3 pl-1">
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-xl font-medium tracking-tighter text-background">a.</span>
+          <span className="hidden text-sm font-medium sm:block">Abrar Mahir Esam<span className="mt-0.5 block text-[11px] font-normal text-muted-foreground">Software engineer</span></span>
         </Link>
         <Navbar />
       </div>
