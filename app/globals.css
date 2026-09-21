@@ -4,29 +4,29 @@
 
 @layer base {
   :root {
-    --background: 277 26% 88%;
-    --foreground: 276 36% 15%;
-    --card: 278 28% 94%;
-    --card-foreground: 276 36% 15%;
-    --popover: 278 28% 96%;
-    --popover-foreground: 276 36% 15%;
+    --background: 240 9% 94%;
+    --foreground: 240 10% 12%;
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 12%;
+    --popover: 0 0% 99%;
+    --popover-foreground: 240 10% 12%;
     --primary: 274 62% 38%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 280 25% 34%;
+    --secondary: 240 8% 32%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 276 23% 83%;
-    --muted-foreground: 276 18% 32%;
+    --muted: 240 6% 88%;
+    --muted-foreground: 240 5% 38%;
     --accent: 274 62% 38%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 43%;
     --destructive-foreground: 0 0% 100%;
-    --border: 275 18% 66%;
-    --input: 275 18% 66%;
+    --border: 240 6% 76%;
+    --input: 240 6% 76%;
     --ring: 274 62% 38%;
     --radius: 1rem;
     --gold: 274 62% 38%;
     --oxblood: 274 62% 38%;
-    --forest: 280 25% 34%;
+    --forest: 240 8% 32%;
     --glass: 255 255 255;
     --glass-opacity: .17;
     --glass-edge: 255 255 255;
@@ -36,35 +36,35 @@
     --glass-tint: 255 255 255;
   }
   .dark {
-    --background: 276 35% 7%;
-    --foreground: 280 28% 96%;
-    --card: 277 23% 14%;
-    --card-foreground: 280 28% 96%;
-    --popover: 277 25% 12%;
-    --popover-foreground: 280 28% 96%;
-    --primary: 277 88% 79%;
-    --primary-foreground: 278 45% 12%;
-    --secondary: 282 25% 79%;
-    --secondary-foreground: 278 45% 12%;
-    --muted: 277 20% 21%;
-    --muted-foreground: 279 18% 79%;
-    --accent: 277 88% 82%;
-    --accent-foreground: 278 45% 12%;
-    --destructive: 0 78% 74%;
-    --destructive-foreground: 278 45% 12%;
-    --border: 277 17% 42%;
-    --input: 277 17% 42%;
-    --ring: 277 88% 82%;
-    --gold: 277 88% 82%;
-    --oxblood: 277 88% 82%;
-    --forest: 282 25% 79%;
-    --glass: 255 255 255;
-    --glass-opacity: .045;
+    --background: 240 6% 4%;
+    --foreground: 0 0% 96%;
+    --card: 240 5% 8%;
+    --card-foreground: 0 0% 96%;
+    --popover: 240 5% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 268 92% 76%;
+    --primary-foreground: 270 50% 10%;
+    --secondary: 240 5% 80%;
+    --secondary-foreground: 240 10% 10%;
+    --muted: 240 4% 15%;
+    --muted-foreground: 240 5% 72%;
+    --accent: 268 92% 78%;
+    --accent-foreground: 270 50% 10%;
+    --destructive: 0 78% 72%;
+    --destructive-foreground: 270 50% 10%;
+    --border: 240 5% 38%;
+    --input: 240 5% 38%;
+    --ring: 268 92% 78%;
+    --gold: 268 92% 78%;
+    --oxblood: 268 92% 78%;
+    --forest: 240 5% 80%;
+    --glass: 30 30 34;
+    --glass-opacity: .52;
     --glass-edge: 255 255 255;
-    --glass-shadow: 9 2 16;
-    --glass-highlight: .38;
-    --glass-border: .22;
-    --glass-tint: 29 13 40;
+    --glass-shadow: 0 0 0;
+    --glass-highlight: .3;
+    --glass-border: .16;
+    --glass-tint: 18 18 22;
   }
   * { @apply border-border; }
   html { scroll-behavior: smooth; scroll-padding-top: 110px; }
@@ -117,8 +117,8 @@
     transition: background-color 180ms, box-shadow 180ms, border-color 180ms;
   }
   .glass-button:hover { background-color: rgb(var(--glass-edge) / .14); border-color: rgb(var(--glass-edge) / .65); box-shadow: inset 0 1.5px 1px rgb(var(--glass-edge) / .7), 0 6px 22px rgb(var(--glass-shadow) / .22); }
-  .glass-button-primary { background-color: hsl(275 70% 42% / .65); border-color: hsl(285 80% 87% / .6); color: white; }
-  .glass-button-primary:hover { background-color: hsl(275 65% 46% / .85); }
+  .glass-button-primary { background-color: hsl(272 82% 46% / .85); border-color: hsl(285 80% 87% / .55); color: white; }
+  .glass-button-primary:hover { background-color: hsl(272 82% 50% / .95); }
   .section-title { @apply font-heading text-4xl font-medium tracking-[-0.045em] md:text-5xl; }
   .section-kicker { @apply mb-4 text-sm font-medium text-accent; }
   .page-shell { @apply mx-auto max-w-7xl px-6 pb-24 pt-12 md:px-12 md:pt-16; }
@@ -128,12 +128,39 @@
   .studio-link { text-underline-offset: 6px; text-decoration: underline; text-decoration-color: hsl(var(--border)); }
   .studio-link:hover { color: hsl(var(--accent)); text-decoration-color: currentColor; }
   .rubric { @apply text-xs font-medium text-accent; letter-spacing: .03em; }
-  .work-canvas { background: linear-gradient(145deg, hsl(276 36% 64% / .17), hsl(282 26% 88% / .05)); }
-  .work-canvas-astryn { background: linear-gradient(145deg, hsl(277 55% 68% / .23), hsl(282 35% 90% / .025)); }
-  .work-canvas-nudge { background: linear-gradient(145deg, hsl(292 47% 65% / .18), hsl(271 50% 70% / .1)); }
-  .work-canvas-crimelens { background: linear-gradient(145deg, hsl(274 48% 66% / .2), hsl(290 40% 85% / .04)); }
-  .work-canvas-quickdev { background: linear-gradient(145deg, hsl(280 45% 60% / .2), hsl(271 40% 90% / .04)); }
+  /* Preview canvas tinted by each project's own accent hue (--card-accent). */
+  .work-canvas { background: radial-gradient(ellipse 85% 75% at 30% 12%, hsl(var(--card-accent, 262 85%) 60% / .24), transparent 65%), linear-gradient(145deg, hsl(var(--card-accent, 262 85%) 55% / .16), hsl(var(--card-accent, 262 85%) 55% / .05)); }
 
+}
+
+/* Journey timeline: a continuous accent spine with glass nodes marking each stop. */
+.journey { position: relative; margin: 0; padding: 0; list-style: none; }
+.journey > li { display: grid; grid-template-columns: 26px 1fr; column-gap: 16px; }
+.journey-item { --node-top: 27px; padding-bottom: 28px; }
+.journey-item--compact { --node-top: 26px; padding-bottom: 18px; }
+.journey-item:last-child { padding-bottom: 0; }
+.journey-cap { --node-top: 3px; padding-bottom: 22px; }
+.journey-rail { position: relative; display: block; }
+.journey-rail::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; border-radius: 2px; background: hsl(var(--accent) / .28); }
+.journey > li:first-child .journey-rail::before { top: var(--node-top); }
+.journey > li:last-child .journey-rail::before { bottom: auto; height: calc(var(--node-top) + 14px); background: linear-gradient(to bottom, hsl(var(--accent) / .28), hsl(var(--accent) / 0)); }
+.journey-node { position: relative; z-index: 1; display: block; width: 14px; height: 14px; margin: var(--node-top) auto 0; border-radius: 999px; background: hsl(var(--background)); border: 1px solid hsl(var(--accent) / .55); box-shadow: 0 0 0 4px hsl(var(--accent) / .1), 0 0 14px hsl(var(--accent) / .28); transition: box-shadow 220ms; }
+.journey-node::after { content: ""; position: absolute; inset: 3.5px; border-radius: 999px; background: hsl(var(--accent)); }
+.journey-item:hover .journey-node { box-shadow: 0 0 0 6px hsl(var(--accent) / .16), 0 0 22px hsl(var(--accent) / .5); }
+.journey-node--now::before { content: ""; position: absolute; inset: -5px; border-radius: 999px; border: 1px solid hsl(var(--accent) / .5); animation: journey-pulse 2.8s cubic-bezier(.2, .6, .35, 1) infinite; }
+@keyframes journey-pulse { 0% { transform: scale(.55); opacity: .95; } 75%, 100% { transform: scale(1.9); opacity: 0; } }
+.journey-date { display: none; }
+.journey-connector { display: none; }
+.journey-cap-label { display: block; margin-top: 1px; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: hsl(var(--accent)); }
+.journey-chip { display: inline-flex; align-items: center; min-height: 22px; padding: 0 10px; border-radius: 999px; border: 1px solid hsl(var(--accent) / .3); background: hsl(var(--accent) / .08); font-size: 11px; font-weight: 500; letter-spacing: .02em; color: hsl(var(--accent)); }
+@media (min-width: 768px) {
+  .journey > li { grid-template-columns: 170px 34px 1fr; column-gap: 0; }
+  .journey-item { --node-top: 37px; padding-bottom: 34px; }
+  .journey-item--compact { --node-top: 29px; padding-bottom: 22px; }
+  .journey-date { display: block; padding: calc(var(--node-top) - 2px) 24px 0 0; text-align: right; font-size: 12px; line-height: 1.5; color: hsl(var(--muted-foreground)); }
+  .journey-connector { display: block; position: absolute; top: calc(var(--node-top) + 7px); left: 50%; width: 47px; height: 1px; background: linear-gradient(to right, hsl(var(--accent) / .5), hsl(var(--accent) / 0)); }
+  .journey-card { margin-left: 30px; }
+  .journey-cap-label { padding-right: 24px; text-align: right; }
 }
 
 .site-header { position: sticky; top: 16px; z-index: 50; margin: 16px auto 0; max-width: 1184px; width: calc(100% - 48px); }
@@ -146,16 +173,125 @@
 .hero-intro h1 { font-size: clamp(2.5rem, 5.5vw, 4.75rem); }
 .portrait-glass { padding: 9px; }
 .portrait-glass img { border-radius: 21px; }
-.hero-caption { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); background: linear-gradient(135deg, rgb(255 255 255 / .2), rgb(255 255 255 / .04)), rgb(22 10 32 / .48); color: #fff; border: 1px solid rgb(255 255 255 / .32); box-shadow: inset 0 1px 0 rgb(255 255 255 / .4), 0 6px 16px rgb(0 0 0 / .12); }
-.ambient-scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #cbb5db; }
-.ambient-art { width: 100%; height: 100%; opacity: .3; filter: saturate(.8); }
-.ambient-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgb(245 232 255 / .48), rgb(240 219 255 / .24)); }
-.dark .ambient-scene { background: #160c1e; }
-.dark .ambient-art { opacity: .85; filter: saturate(.75); }
-.dark .ambient-scrim { background: linear-gradient(100deg, rgb(14 6 22 / .43), rgb(15 7 22 / .08) 70%), linear-gradient(0deg, rgb(14 6 22 / .23), transparent 55%); }
+.hero-caption { -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%); background: linear-gradient(135deg, rgb(255 255 255 / .18), rgb(255 255 255 / .04)), rgb(10 10 14 / .55); color: #fff; border: 1px solid rgb(255 255 255 / .28); box-shadow: inset 0 1px 0 rgb(255 255 255 / .4), 0 6px 16px rgb(0 0 0 / .12); }
+.ambient-scene { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #e6e6ec; }
+.ambient-art { width: 100%; height: 100%; opacity: .25; filter: saturate(.35) brightness(1.05); }
+.ambient-scrim { position: absolute; inset: 0; background: linear-gradient(100deg, rgb(244 244 248 / .55), rgb(240 240 246 / .28)); }
+.dark .ambient-scene { background: #0a0a0d; }
+.dark .ambient-art { opacity: .6; filter: saturate(.3) brightness(.7); }
+.dark .ambient-scrim { background: linear-gradient(100deg, rgb(8 8 10 / .6), rgb(9 9 11 / .2) 70%), linear-gradient(0deg, rgb(8 8 10 / .38), transparent 55%); }
+/* Subtle multi-hue glows keep the dark scene lively without tinting the glass. */
+.ambient-glows { position: absolute; inset: 0; display: none; }
+.dark .ambient-glows { display: block; }
+.ambient-glows .glow { position: absolute; border-radius: 9999px; filter: blur(100px); }
+.glow-a { width: 46vw; height: 46vw; left: -12vw; top: 6vh; background: hsl(262 85% 58% / .13); }
+.glow-b { width: 38vw; height: 38vw; right: -10vw; top: 34vh; background: hsl(172 75% 42% / .1); }
+.glow-c { width: 32vw; height: 32vw; left: 32vw; bottom: -14vh; background: hsl(38 92% 50% / .08); }
+.dark .glass-field { background: rgb(var(--glass-tint) / .5); }
 .glass-field { border-color: hsl(var(--border) / .75); border-radius: 14px; background: rgb(var(--glass-tint) / .22); box-shadow: inset 0 1px 5px rgb(var(--glass-shadow) / .12), 0 1px 0 rgb(var(--glass-edge) / .14); }
-.project-card { transition: border-color 200ms, box-shadow 200ms; }
-.project-card:hover { border-color: hsl(var(--accent) / .35); box-shadow: 0 16px 40px -24px rgb(var(--glass-shadow) / .35); }
+/* Per-project accent: --card-accent is an "H S%" triple set inline per card. */
+.project-card { --card-accent: 262 85%; transition: border-color 200ms, box-shadow 200ms; }
+.project-card:hover { border-color: hsl(var(--card-accent) 55% / .55); box-shadow: 0 18px 44px -20px hsl(var(--card-accent) 55% / .4), inset 0 1px 0 rgb(var(--glass-edge) / .2); }
+.accent-text { color: hsl(var(--card-accent, 268 92%) 40%); }
+.dark .accent-text { color: hsl(var(--card-accent, 268 92%) 68%); }
+.project-card:hover .card-title { color: hsl(var(--card-accent) 40%); }
+.dark .project-card:hover .card-title { color: hsl(var(--card-accent) 68%); }
+.project-card:hover .card-arrow { background: hsl(var(--card-accent) 46%); border-color: transparent; color: #fff; }
+.dark .project-card:hover .card-arrow { background: hsl(var(--card-accent) 62%); color: #0b0b0d; }
+/* Project index tabs on /projects pick up the same per-project hue. */
+.quest-tab { --card-accent: 262 85%; }
+.quest-tab:hover { border-color: hsl(var(--card-accent) 55% / .45); }
+.quest-tab[aria-selected="true"] { border-color: hsl(var(--card-accent) 55% / .55); }
+.tab-chip { color: hsl(var(--card-accent) 40%); }
+.dark .tab-chip { color: hsl(var(--card-accent) 68%); }
+.tab-chip[aria-hidden] { border-color: hsl(var(--card-accent) 55% / .3); }
+.quest-tab[aria-selected="true"] .tab-chip { background: hsl(var(--card-accent) 45%); border-color: transparent; color: #fff; }
+.dark .quest-tab[aria-selected="true"] .tab-chip { background: hsl(var(--card-accent) 62%); color: #0b0b0d; }
+/* ---- Book spread on /projects: two facing pages with a shaded gutter. ---- */
+.book-stage { position: relative; perspective: 2200px; }
+/* The turning sheet: a single page that swings from one side of the spread to
+   the other around the spine, carrying the old page on its front and the new
+   page on its back. */
+.book-leaf {
+  position: absolute; top: 0; bottom: 0; width: 50%; z-index: 5;
+  pointer-events: none; transform-style: preserve-3d; will-change: transform;
+}
+.book-leaf-next { right: 0; transform-origin: left center; }
+.book-leaf-prev { left: 0; transform-origin: right center; }
+.leaf-face {
+  position: absolute; inset: 0; overflow: hidden;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.leaf-back { transform: rotateY(180deg); }
+/* Opaque paper faces: backdrop-blur glitches on rotating 3D surfaces. */
+.book-leaf .book-page { -webkit-backdrop-filter: none; backdrop-filter: none; background: hsl(var(--card)); }
+@media (max-width: 1023.98px) { .book-leaf { display: none; } }
+.book-spread {
+  position: relative;
+  display: grid;
+  border-radius: 26px;
+  transform-style: preserve-3d;
+  box-shadow: 0 42px 80px -32px rgb(var(--glass-shadow) / .45), 0 18px 34px -20px rgb(var(--glass-shadow) / .3);
+}
+@media (min-width: 1024px) { .book-spread { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+/* Slivers of stacked page-edges peeking past the covers. */
+.book-spread::before,
+.book-spread::after {
+  content: ""; position: absolute; top: 10px; bottom: 10px; width: 6px; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgb(var(--glass-edge) / .35) 0 1px, rgb(var(--glass) / .7) 1px 3px);
+}
+.book-spread::before { left: -6px; border-radius: 4px 0 0 4px; }
+.book-spread::after { right: -6px; border-radius: 0 4px 4px 0; }
+.book-page {
+  position: relative; z-index: 1; min-width: 0;
+  border: 1px solid rgb(var(--glass-edge) / var(--glass-border));
+  background:
+    linear-gradient(150deg, rgb(var(--glass-edge) / .1), rgb(var(--glass-edge) / .02) 45%, rgb(var(--glass-edge) / .05)),
+    rgb(var(--glass) / calc(var(--glass-opacity) + .2));
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  backdrop-filter: blur(22px) saturate(140%);
+}
+.book-page-left { border-radius: 26px 26px 0 0; border-bottom: 0; }
+.book-page-right { border-radius: 0 0 26px 26px; border-top: 0; }
+@media (min-width: 1024px) {
+  .book-page-left { border-radius: 26px 0 0 26px; border-bottom: 1px solid rgb(var(--glass-edge) / var(--glass-border)); border-right: 0; }
+  .book-page-right { border-radius: 0 26px 26px 0; border-top: 1px solid rgb(var(--glass-edge) / var(--glass-border)); border-left: 0; }
+}
+/* Page-curl shading falling into the gutter between the pages. */
+.book-page-left::after,
+.book-page-right::after { content: ""; position: absolute; pointer-events: none; z-index: 2; }
+.book-page-left::after { inset: 0 0 0 auto; width: 76px; border-radius: inherit; background: linear-gradient(to left, rgb(0 0 0 / .12), transparent); }
+.book-page-right::after { inset: 0 auto 0 0; width: 76px; border-radius: inherit; background: linear-gradient(to right, rgb(0 0 0 / .12), transparent); }
+.dark .book-page-left::after { background: linear-gradient(to left, rgb(0 0 0 / .5), rgb(0 0 0 / .18) 55%, transparent); }
+.dark .book-page-right::after { background: linear-gradient(to right, rgb(0 0 0 / .5), rgb(0 0 0 / .18) 55%, transparent); }
+@media (max-width: 1023.98px) {
+  .book-page-left::after { inset: auto 0 0 0; width: auto; height: 56px; background: linear-gradient(to top, rgb(0 0 0 / .12), transparent); }
+  .book-page-right::after { inset: 0 0 auto 0; width: auto; height: 56px; background: linear-gradient(to bottom, rgb(0 0 0 / .12), transparent); }
+  .dark .book-page-left::after { background: linear-gradient(to top, rgb(0 0 0 / .5), transparent); }
+  .dark .book-page-right::after { background: linear-gradient(to bottom, rgb(0 0 0 / .5), transparent); }
+}
+/* Mounted plate frame holding the thumbnail on the left page. */
+.book-plate { border: 1px solid rgb(var(--glass-edge) / .2); border-radius: 14px; background: hsl(var(--card) / .45); padding: 10px; box-shadow: 0 10px 24px -14px rgb(var(--glass-shadow) / .35), inset 0 1px 0 rgb(var(--glass-edge) / .25); }
+/* Folio row: page numbers and turn controls at the foot of each page. */
+.book-folio { display: flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: hsl(var(--muted-foreground)); }
+.folio-turn { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; border: 1px solid rgb(var(--glass-edge) / .3); color: hsl(var(--muted-foreground)); transition: color 180ms, border-color 180ms, background-color 180ms; }
+.folio-turn:hover:not(:disabled) { color: hsl(var(--foreground)); border-color: hsl(var(--card-accent, 262 85%) 55% / .6); background: rgb(var(--glass-edge) / .08); }
+.folio-turn:disabled { opacity: .35; cursor: default; }
+/* Skill chips on the landing page: icon + name pills, brand-tinted icons. */
+.skill-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid hsl(var(--border) / .7); border-radius: 999px;
+  background: hsl(var(--card) / .6); padding: 6px 14px 6px 10px;
+  font-size: 12px; line-height: 1; color: hsl(var(--foreground) / .85);
+  cursor: default;
+  transition: transform 180ms, border-color 180ms, box-shadow 180ms;
+}
+.skill-chip svg { color: var(--chip-color, hsl(var(--foreground) / .7)); flex-shrink: 0; }
+.skill-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--chip-color, hsl(var(--foreground) / .4));
+  box-shadow: 0 8px 18px -10px rgb(var(--glass-shadow) / .35);
+}
 .project-card .project-preview { transition: transform 350ms ease; }
 .project-card:hover .project-preview { transform: scale(1.025); }
 .skip-link { position: fixed; top: -100px; left: 24px; z-index: 100; padding: 12px 20px; background: hsl(var(--card)); border-radius: 12px; }
@@ -163,7 +299,7 @@
 .no-visible-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
 .no-visible-scrollbar::-webkit-scrollbar { display: none; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .glass-panel, .glass-button, .hero-caption { background: hsl(var(--card)); color: hsl(var(--foreground)); }
+  .glass-panel, .glass-button, .hero-caption, .book-page { background: hsl(var(--card)); color: hsl(var(--foreground)); }
   .glass-button-primary { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
 }
 @media (max-width: 640px) {

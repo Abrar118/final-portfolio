@@ -9,6 +9,14 @@ export const achievements = [
     type: "Research",
   },
   {
+    title: "Final Year Research & Thesis Book",
+    organization: "MIST, Dept. of Computer Science and Engineering",
+    description:
+      "Analysing Low-Resource Language Feedback Across Industries — multiparadigm ML for Romanized Bengali sentiment and emotion detection",
+    date: "2025",
+    type: "Research",
+  },
+  {
     title: "Finalist (Top 11)",
     organization: "WebXtreme Hackathon 2025, NSU, Dhaka",
     description:
@@ -20,7 +28,7 @@ export const achievements = [
     title: "Specialist Rank",
     organization: "Codeforces",
     description:
-      "Handle: Abrar_Mahir_Esam, Highest Rating: 1425",
+      "Handle: Abrar_Mahir_Esam · Max rating 1425 · 496 problems solved",
     date: "2024",
     type: "Competitive Programming",
   },

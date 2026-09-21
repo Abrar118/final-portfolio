@@ -23,6 +23,11 @@ export default function AmbientBackdrop() {
         </g>
       </svg>
       <div className="ambient-scrim" />
+      <div className="ambient-glows">
+        <span className="glow glow-a" />
+        <span className="glow glow-b" />
+        <span className="glow glow-c" />
+      </div>
     </div>
   );
 }

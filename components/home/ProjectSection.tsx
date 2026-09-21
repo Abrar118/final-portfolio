@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/home/projects";
+import { accentFor } from "@/lib/projectAccents";
 import type { Project } from "@/types/project";
 
 const selected = ["astryn", "nudge", "crimelens", "quickdev"];
@@ -17,9 +19,12 @@ function Work({ project }: { project: Project }) {
   const preview = project.slug === "astryn" ? project.images[1] ?? project.thumbnail : project.thumbnail;
   const portrait = typeof project.thumbnail !== "string" && project.thumbnail.height > project.thumbnail.width;
   return (
-    <article className="glass-panel project-card overflow-hidden p-2.5">
+    <article
+      className="glass-panel project-card overflow-hidden p-2.5"
+      style={{ "--card-accent": accentFor(project.slug) } as CSSProperties}
+    >
       <Link href={`/projects/${project.slug}`} className="group block rounded-[20px] focus-visible:outline-offset-8">
-        <div className={`work-canvas work-canvas-${project.slug} relative flex aspect-[16/11] items-center justify-center overflow-hidden rounded-[20px]`}>
+        <div className="work-canvas relative flex aspect-[16/11] items-center justify-center overflow-hidden rounded-[20px]">
           {portrait ? (
             <div className="project-preview flex h-[83%] w-[80%] justify-center gap-4 sm:gap-6">
               {project.images.slice(0, 2).map((image, i) => (
@@ -35,8 +40,8 @@ function Work({ project }: { project: Project }) {
           )}
         </div>
         <div className="p-4 pb-3 sm:p-5">
-          <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground"><span>{labels[project.category ?? ""] ?? project.category}</span><span>{project.year}</span></div>
-          <div className="flex items-center justify-between gap-4"><h3 className="font-heading text-2xl font-medium tracking-tight transition-colors group-hover:text-accent sm:text-3xl">{project.title}</h3><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-colors group-hover:bg-primary group-hover:text-primary-foreground"><ArrowUpRight className="h-5 w-5" /></span></div>
+          <div className="mb-3 flex items-center justify-between text-xs text-muted-foreground"><span className="accent-text font-medium">{labels[project.category ?? ""] ?? project.category}</span><span>{project.year}</span></div>
+          <div className="flex items-center justify-between gap-4"><h3 className="card-title font-heading text-2xl font-medium tracking-tight transition-colors sm:text-3xl">{project.title}</h3><span className="card-arrow flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border/70 transition-colors"><ArrowUpRight className="h-5 w-5" /></span></div>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{summaries[project.slug ?? ""] ?? project.description}</p>
         </div>
       </Link>
