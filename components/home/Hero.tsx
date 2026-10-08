@@ -1,38 +1,108 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Code2, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, ScrollText } from "lucide-react";
 
-export default function Hero({ projectCount = 14 }: { projectCount?: number }) {
+const stats = [
+  { value: "1,000+", label: "Users served", note: "Psycloud clinical platform" },
+  { value: "300", label: "Concurrent users", note: "Government duty platform" },
+  { value: "1425", label: "Codeforces peak", note: "Specialist rank" },
+  { value: "496", label: "Problems solved", note: "Competitive programming" },
+];
+
+const equipped = ["Spring Boot", "Next.js", "FastAPI", "Flutter", "PostgreSQL", "Rust"];
+
+export default function Hero({ questCount }: { questCount: number }) {
   return (
-    <section className="mx-auto max-w-7xl px-6 pb-8 pt-12 md:px-12 md:pt-20">
-      <div className="grid items-center gap-8 lg:grid-cols-[1.45fr,1fr] lg:gap-6">
-        <div className="hero-intro glass-panel relative z-10">
-          <p className="mb-6 flex items-center gap-2 text-sm text-muted-foreground"><span className="h-1.5 w-1.5 rounded-full bg-accent" /> Hello, I’m Abrar.</p>
-          <h1 className="font-heading text-[clamp(2.5rem,6.3vw,5.5rem)] font-medium leading-[1.04] tracking-[-0.065em]">Thoughtful code.<br /><span className="text-accent">Useful products.</span></h1>
-          <p className="mt-7 max-w-[440px] text-base leading-7 text-muted-foreground md:text-lg md:leading-8">Principal architect of Psycloud, a clinical platform serving 1,000+ users — and builder of a government duty-management system running 300 concurrent users. End to end: Spring Boot, FastAPI, and Node.js behind React and Next.js.</p>
+    <section className="page-wrap hero">
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <p className="chapter-chip">
+            <span className="chapter-dot" aria-hidden="true" />
+            Chapter I · The Trailhead
+          </p>
+          <h1 className="hero-name">
+            Abrar
+            <br />
+            <span className="text-glow">Mahir Esam</span>
+          </h1>
+          <p className="hero-role">
+            Full-stack software engineer
+            <span aria-hidden="true"> ✦ </span>
+            competitive programmer
+          </p>
+          <p className="hero-lede">
+            I build calm, solid systems end to end — Spring Boot, FastAPI and
+            Node.js behind React and Next.js. Principal architect of Psycloud,
+            a clinical platform serving 1,000+ users, and builder of a
+            government duty platform running 300 concurrent users.
+          </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="#quests" className="glass-button glass-button-primary">View my work <ArrowDown className="h-4 w-4" /></Link>
-            <a href="https://drive.google.com/file/d/1eZUsSET8zvuxdD0g8htX1td60L3bXPXC/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="glass-button">View résumé <ArrowUpRight className="h-4 w-4" /></a>
+            <Link href="/projects" className="btn btn-primary">
+              Open the quest log <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <Link href="/profile" className="btn">
+              <ScrollText className="h-4 w-4" aria-hidden="true" /> Read the lore
+            </Link>
           </div>
-          <p className="mt-8 flex flex-wrap items-center gap-2 text-xs text-muted-foreground"><MapPin className="h-3.5 w-3.5" /> Dhaka, Bangladesh <span className="mx-2 text-border">/</span> Building across platforms</p>
+          <p className="hero-hint hidden lg:block">
+            <kbd>1</kbd>–<kbd>4</kbd> quick-travel · scroll to walk the trail
+          </p>
         </div>
-        <div className="hero-visual relative">
-          <figure className="portrait-glass glass-panel absolute right-0 top-0 w-[265px] sm:right-0 sm:w-[310px]">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-[21px]">
-              <Image src="/hero-portrait.jpg" alt="Abrar Mahir Esam" fill priority sizes="(max-width: 640px) 240px, 280px" className="object-cover object-top" />
-              <figcaption className="hero-caption absolute bottom-3 left-3 right-3 rounded-2xl px-4 py-3">
-                <p className="text-sm font-semibold">Abrar Mahir Esam</p><p className="mt-1 text-xs opacity-75">Engineer. Builder. Curious human.</p>
-              </figcaption>
+
+        <aside className="glass char-sheet" aria-labelledby="sheet-title">
+          <div className="flex items-center gap-4">
+            <span className="sheet-portrait">
+              <Image
+                src="/hero-portrait.jpg"
+                alt="Portrait of Abrar Mahir Esam"
+                width={76}
+                height={76}
+                priority
+              />
+            </span>
+            <div className="min-w-0">
+              <p className="hud-label" id="sheet-title">
+                Character sheet
+              </p>
+              <p className="mt-1 font-display text-lg font-semibold tracking-wide">
+                Full-stack Engineer
+              </p>
+              <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <MapPin className="h-3 w-3" aria-hidden="true" /> Dhaka, Bangladesh
+              </p>
             </div>
-          </figure>
-          <Link href="/profile" className="glass-panel absolute bottom-6 left-0 flex items-center gap-4 !rounded-2xl px-5 py-4 sm:bottom-0 sm:left-0">
-            <Code2 className="h-6 w-6 text-accent" /><div><p className="text-sm font-medium">From idea to interface</p><p className="mt-1 text-xs text-muted-foreground">Web · Mobile · Desktop</p></div><ArrowUpRight className="ml-2 h-4 w-4 text-muted-foreground" />
+          </div>
+
+          <dl className="sheet-stats">
+            {stats.map((s) => (
+              <div key={s.label} className="sheet-stat">
+                <dt>{s.label}</dt>
+                <dd>
+                  <span className="sheet-value">{s.value}</span>
+                  <span className="sheet-note">{s.note}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-5">
+            <p className="hud-label">Equipped</p>
+            <ul className="mt-2.5 flex flex-wrap gap-1.5">
+              {equipped.map((e) => (
+                <li key={e} className="chip">
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <Link href="/projects" className="sheet-footer">
+            <span>
+              <span className="text-primary">{questCount}</span> quests completed
+            </span>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-        </div>
-      </div>
-      <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-6 md:mt-14">
-        <p className="text-xs text-muted-foreground">Thoughtful design. Solid engineering.</p>
-        <Link href="/projects" className="flex min-h-11 items-center gap-3 text-xs text-muted-foreground hover:text-accent"><span className="font-medium text-foreground">{String(projectCount).padStart(2, "0")}</span> projects and counting <ArrowUpRight className="h-4 w-4" /></Link>
+        </aside>
       </div>
     </section>
   );
