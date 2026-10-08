@@ -18,66 +18,58 @@ No test framework is configured.
 
 ## Architecture
 
-Next.js 14 App Router with React 18. Uses `@/*` path alias mapped to project root. Dark theme by default via `next-themes`. React Strict Mode is disabled (`next.config.mjs`).
+Next.js 15 App Router with React 19. Uses `@/*` path alias mapped to project root. Dark theme ("Dusk") by default via `next-themes`; light theme is "Dawn".
+
+### Concept: the Forest of Code
+
+The site is a game-like journey through a low-poly 3D forest. Every route is a **zone** on one trail (`data/zones.ts`): `/` The Trailhead (spirit-fire camp), `/profile` The Elder Grove (ancient tree), `/projects` The Crystal Hollow (one crystal per project), `/contact` Beacon Hill (tower with a sky beam). The camera walks the trail between zones on navigation.
+
+- `components/world/forest/ForestWorld.ts` — framework-free three.js scene (procedural terrain, instanced trees, fireflies, aurora sky, landmarks). Lazy-loaded as its own chunk; never import it statically.
+- `components/world/forest/palette.ts` — dusk/dawn color palettes for the scene.
+- `components/world/ForestCanvas.tsx` — mounts the scene and syncs route → zone, theme, scroll, pointer, focused project, beacon flare.
+- `components/world/WorldStage.tsx` — fixed backdrop in the layout: `StaticForest` (CSS/SVG, always painted first) + the 3D canvas (loaded in idle time, fades in) + readability scrim.
+- `components/world/TitleScreen.tsx` — "press start" screen shown once per session on `/`; choose 3D or static ("quiet path").
+- `components/world/ZoneBanner.tsx` — "New area discovered" title card on zone change.
+- `lib/world.ts` — zustand store (world mode, gate, scene status, focused project, flare, visited zones) plus `worldBootScript`, an inline `<head>` script that sets `html[data-world]`/`html[data-gate]` before paint.
+
+World mode (`3d`/`static`) persists in localStorage (`forest-world`); defaults to static for reduced-motion or save-data users, and falls back to static if WebGL fails. The scene adapts pixel ratio to frame time and caps mobile at ~30fps.
 
 ### Routes
 
-- `/` — Home: illuminated title-page hero, "The Armory" skills grid, "Quests & Works" featured project cards (ruled "catalogue plates" — flat card stock with a hairline set inside the border, roman numeral + rubricated shelf-mark on a folio rule)
-- `/profile` — About page with bio, timeline, achievements (server component with metadata)
-- `/projects` — Game-style showcase: vertical "quest index" tablist (roman-numeral spines) selects one project into a large stage panel with image, features, stack, and links; category filters on top. Keyboard-navigable (arrow keys), horizontal rail on mobile.
-- `/projects/[slug]` — Individual project detail with image gallery, features, breadcrumb nav (server component with dynamic metadata via `generateMetadata`)
-- `/contact` — Contact form using EmailJS (client-side email via `@emailjs/browser`)
+- `/` — Hero + character sheet, "Main Quests" (featured projects), "The Inventory" (skills as item slots in tabbed bags)
+- `/profile` — "The Lore": bio, "The Path So Far" timeline, "Achievements Unlocked"
+- `/projects` — "Quest Log": vertical quest tablist (roman numerals) + stage panel; keyboard-navigable; selecting a quest lights its crystal
+- `/projects/[slug]` — Quest detail (statically generated): gallery, lore, objectives, rewards (stack), prev/next quest
+- `/contact` — "Light the Beacon" EmailJS form; a successful send flares the beacon in 3D
 
-### Design System
+### Navigation
 
-Medieval / illuminated-manuscript aesthetic. Dark mode (default) is a "candlelit scriptorium" (warm near-black, parchment text); light mode is aged parchment with iron-gall ink text. Accents: oxblood (`--primary`/`--accent`/`--oxblood`), forest green (`--secondary`/`--forest`), restrained gold-leaf (`--gold`, `--ring`). All colors are HSL CSS variables in `app/globals.css`; in dark mode `--accent` shifts to gold ("rubrication by day, gilding by night"). No neon, no pure white; keep gold decorative (borders, large display text) — it fails AA for body text.
+`components/shared/GameMenu.tsx`: on lg+ a fixed left "pause menu" (player card, explored-zones bar, chapter bars with hotkeys 1–4, World 3D/Static and Time Dusk/Dawn toggles, résumé, socials). Below lg it becomes a bottom dock with a settings sheet. Content is offset with `.app-main` (`padding-left: 300px` on lg).
 
-Typography: Cinzel (section headings, `font-heading`) + Cinzel Decorative (hero name and drop caps, `font-display`) + EB Garamond (body, `font-body`) + Geist Mono (`font-mono`, legacy). Loaded via `next/font/google` in `app/layout.tsx`.
+### Design system
 
-Manuscript utilities in `globals.css`: `text-gilded` (gold-leaf gradient text), `rubric` (red-ink small-caps eyebrow), `drop-cap` (illuminated first letter), `frame-double` (double-rule frame), `wax-seal` (oxblood seal social buttons). A fixed SVG-noise paper grain overlays the whole page via `body::after`. Shared ornament components (Crest, FiligreeDivider, SectionHeading, WaxSeal, CornerOrnaments) live in `components/ui/ornaments.tsx`.
+Forest palette: primary = chartreuse (green + yellow), secondary = teal, deep teal-black background. All colors are HSL CSS variables in `app/globals.css`. Glassmorphism via `.glass` (blurred tinted panel + chartreuse→teal rim). Other building blocks: `.btn`/`.btn-primary`, `.seg` (segmented toggle), `.hud-label`, `.chapter-chip`, `.chip`, `.quest-tag`, `.text-glow`, `.page-wrap`, `.page-title`, `.section-title`.
 
-Sections use medieval framing: Home hero (illuminated title page) → "The Armory" (skills) → "Quests & Works" (projects); `/profile` is "The Chronicle" + "Deeds & Service" + "Honours & Feats"; `/contact` is "Send Word". Nav labels: Home / Chronicle / Quests / Send Word. Decorative numerals are Roman (with Arabic equivalents for screen readers).
-
-### Page transitions
-
-`app/template.tsx` wraps all routes in `framer-motion` `AnimatePresence` with a subtle fade+slide transition (250ms). Re-mounts on every navigation.
+Typography: Cinzel (`font-display`, via `next/font/google`) for titles and game UI; Geist (`font-body`) for text; Geist Mono for keys/HUD numbers. `prefers-reduced-motion` is respected (CSS + slowed scene, no camera flights).
 
 ### Data layer
 
 All portfolio content lives in static TypeScript files under `data/`:
-- `data/home/projects.tsx` — Project entries with JSX content, images, tech stacks, features. Uses the `Project` type from `types/project.ts`.
-- `data/home/skillsTab.ts` — Skills organized by category (Web, Mobile, Systems, Databases) with icon components and colors.
-- `data/home/socials.ts` — Social media links.
-- `data/about/timeline.ts` — Work/experience history.
-- `data/about/achievements.ts` — Awards and competition results.
+- `data/home/projects.tsx` — Project entries (type in `types/project.ts`). Order defines quest numbers and crystal order.
+- `data/home/skillsTab.ts` — Skills by category with icons and brand colors.
+- `data/home/socials.ts`, `data/about/timeline.ts`, `data/about/achievements.ts`.
+- `data/zones.ts` — zones/routes, hotkeys, résumé URL.
 
-To add a new project: add an entry to `data/home/projects.tsx` with a unique `slug`, import project images from `public/projects/<slug>/`, and it appears in both the home grid and the projects page automatically.
-
-### Component organization
-
-- `components/ui/` — shadcn/ui primitives plus custom UI components (`spotlight.tsx`, `floating-dock.tsx`, etc.).
-- `components/home/` — Home page sections (Hero, GridLayout/skills bento, ProjectSection grid, SkillCard).
-- `components/projects/` — Project detail page (`ProjectDetailsContainer`).
-- `components/shared/` — Layout-level components (Navbar, Footer).
-- `components/about/` — Profile page content.
-
-### Styling
-
-Tailwind CSS 3 with `tailwindcss-animate`. shadcn/ui with "default" style, CSS variables. Palette colors `gold`, `oxblood`, `forest` map to CSS variables in tailwind config. Custom animations: `fade-in`, `slide-up`, `slide-in-right`, `float`, `pulse-glow`, `spotlight`, `shimmer`. `--radius` is 0.25rem (rectilinear, manuscript-like); `prefers-reduced-motion` is respected globally (CSS media query + `MotionConfig reducedMotion="user"` in `app/template.tsx`).
+To add a project: add an entry to `data/home/projects.tsx` with a unique `slug` and images under `public/projects/<slug>/`; it appears in the quest log, gets a detail page and a crystal automatically.
 
 ### Key dependencies
 
-- `framer-motion` — Animations and page transitions.
-- `@react-three/fiber` + `three` — 3D rendering (Avatar components, legacy).
-- `developer-icons` — Tech stack icons in project entries.
-- `react-icons` + `@tabler/icons-react` + `lucide-react` — Icons (prefer `lucide-react` for new code).
-- `@emailjs/browser` — Client-side contact form email sending.
-- `sonner` — Toast notifications.
-
-### Navigation
-
-Single consolidated bottom nav bar (`components/shared/Navbar.tsx`). Floating pill design with animated active indicator (`layoutId="nav-pill"`). Includes theme toggle. Fixed at bottom center of viewport.
+- `three` — 3D forest (dynamic import only).
+- `framer-motion` — page/title/banner transitions (`app/template.tsx`).
+- `zustand` — world store.
+- `developer-icons`, `react-icons`, `lucide-react` (prefer lucide for new UI icons).
+- `@emailjs/browser`, `sonner`.
 
 ### Images
 
-All remote image hostnames are allowed (`hostname: "**"` in `next.config.mjs`). Project images are stored in `public/projects/<project-name>/`. Avatar images in `public/` root.
+All remote image hostnames are allowed (`next.config.mjs`). Project images live in `public/projects/<project-name>/`.

@@ -98,6 +98,11 @@ import javaLanding from "@/public/projects/java/langing.png";
 import java2 from "@/public/projects/java/java2.png";
 import java5 from "@/public/projects/java/java5.png";
 import java4 from "@/public/projects/java/java4.png";
+import matbankLanding from "@/public/projects/java/matbank-landing.png";
+import matbankDashboard from "@/public/projects/java/matbank-dashboard.png";
+import matbankHistory from "@/public/projects/java/matbank-history.png";
+import matbankCurrency from "@/public/projects/java/matbank-currency.png";
+import matbankAdminClients from "@/public/projects/java/matbank-admin-clients.png";
 
 import elyriaLanding from "@/public/projects/landing-elyria.png";
 import promptLanding from "@/public/projects/landing-prompt.png";
@@ -674,8 +679,18 @@ export const projects: Project[] = [
     title: "Bank Management System",
     description:
       "Desktop banking application with AES-encrypted transactions, multi-threaded sessions, and automated JavaMail alerts",
-    thumbnail: javaLanding,
-    images: [javaLanding, java2, java4, java5],
+    thumbnail: matbankLanding,
+    images: [
+      matbankLanding,
+      matbankDashboard,
+      matbankHistory,
+      matbankCurrency,
+      matbankAdminClients,
+      javaLanding,
+      java2,
+      java4,
+      java5,
+    ],
     stack: [
       { name: "JavaFX", Icon: <Java size={iconSize} /> },
       { name: "Maven", Icon: <Java size={iconSize} /> },

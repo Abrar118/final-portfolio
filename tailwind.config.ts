@@ -22,7 +22,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-heading)", "serif"],
+        heading: ["var(--font-display)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         display: ["var(--font-display)", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
@@ -61,9 +61,6 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: "hsl(var(--gold))",
-        oxblood: "hsl(var(--oxblood))",
-        forest: "hsl(var(--forest))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -112,8 +109,8 @@ const config = {
           "50%": { transform: "translateY(-10px)" },
         },
         pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(42 55% 40% / 0.15)" },
-          "50%": { boxShadow: "0 0 40px hsl(42 55% 40% / 0.3)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.15)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.3)" },
         },
       },
     },

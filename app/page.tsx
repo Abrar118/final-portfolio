@@ -1,16 +1,14 @@
-import SkillsSection from "@/components/home/GridLayout";
 import Hero from "@/components/home/Hero";
-import ProjectSection from "@/components/home/ProjectSection";
+import Inventory from "@/components/home/Inventory";
+import FeaturedQuests from "@/components/home/FeaturedQuests";
 import { projects } from "@/data/home/projects";
 
 export default function Home() {
   return (
-    <main className="relative flex justify-center items-center flex-col overflow-hidden mx-auto">
-      <div className="w-full">
-        <Hero projectCount={projects.length} />
-        <ProjectSection />
-        <SkillsSection />
-      </div>
+    <main>
+      <Hero questCount={projects.length} />
+      <FeaturedQuests />
+      <Inventory />
     </main>
   );
 }

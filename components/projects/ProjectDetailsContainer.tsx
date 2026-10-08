@@ -3,255 +3,205 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Flame, Github } from "lucide-react";
 import type { Project } from "@/types/project";
-import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { motion } from "framer-motion";
+import { categoryLabel, toRoman } from "@/lib/quests";
+import { useWorld } from "@/lib/world";
 
-
-const categoryLabel: Record<string, string> = {
-  web: "Web App",
-  mobile: "Mobile App",
-  desktop: "Desktop App",
-  backend: "Backend Service",
-};
+type Neighbor = { slug: string; title: string } | null;
 
 export default function ProjectDetailsContainer({
   project,
+  number,
+  prev,
+  next,
 }: {
   project: Project;
+  number: number;
+  prev: Neighbor;
+  next: Neighbor;
 }) {
+  const setFocusSlug = useWorld((s) => s.setFocusSlug);
+  React.useEffect(() => {
+    setFocusSlug(project.slug ?? null);
+    return () => setFocusSlug(null);
+  }, [project.slug, setFocusSlug]);
+
   return (
-    <div className="min-h-screen pb-24 pt-6 text-foreground">
-      <nav className="mx-auto max-w-5xl px-4 py-6 md:px-8">
-        <Link
-          href="/projects"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-accent"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          All projects
-        </Link>
+    <main className="page-wrap page-top">
+      <nav aria-label="Breadcrumb" className="text-sm">
+        <ol className="flex flex-wrap items-center gap-2 text-muted-foreground">
+          <li>
+            <Link href="/projects" className="inline-flex min-h-11 items-center gap-1.5 hover:text-primary">
+              <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" /> Quest Log
+            </Link>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" className="text-foreground">
+            {project.title}
+          </li>
+        </ol>
       </nav>
 
-      <div className="mx-auto max-w-5xl px-4 pb-12 pt-4 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="text-center"
-        >
-          <p className="rubric flex flex-wrap items-center justify-center gap-2">
-            {project.category && (
-              <span>{categoryLabel[project.category] ?? project.category}</span>
-            )}
-            {project.year && (
-              <>
-                <span aria-hidden="true" className="text-gold">
-                  ·
-                </span>
-                <span className="text-muted-foreground">{project.year}</span>
-              </>
-            )}
-            {project.context && (
-              <>
-                <span aria-hidden="true" className="text-gold">
-                  ·
-                </span>
-                <span className="text-secondary normal-case tracking-normal font-body italic">
-                  {project.context}
-                </span>
-              </>
-            )}
-          </p>
-
-          <h1 className="page-title mt-5">
-            {project.title}
-          </h1>
-
-
-          <p className="mx-auto mt-5 max-w-2xl font-body text-lg leading-relaxed text-muted-foreground">
-            {project.description}
-          </p>
-
-          <div className="mt-7 flex justify-center gap-3">
-            {project.href && (
-              <Button asChild className="glass-button glass-button-primary">
-                <Link href={project.href} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4" />
-                  Live Preview
-                </Link>
-              </Button>
-            )}
-            {project.github && (
-              <Button asChild variant="outline" className="glass-button">
-                <Link href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  Source Code
-                </Link>
-              </Button>
-            )}
-          </div>
-        </motion.div>
-      </div>
-
-      <div className="mx-auto max-w-5xl px-4 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-          className="mb-14 grid grid-cols-1 gap-4 md:grid-cols-2"
-        >
-          {project.images.map((image, index) => {
-            const portrait =
-              typeof image !== "string" && image.height > image.width;
-
-            return (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <button
-                    aria-label={`Enlarge ${project.title} screenshot ${index + 1}`}
-                    className={`glass-panel group relative cursor-pointer overflow-hidden p-2 transition-colors duration-300 hover:border-gold/60
-                    ${
-                      portrait
-                        ? "aspect-[9/19.5]"
-                        : index === 0
-                          ? "aspect-video md:col-span-2"
-                          : "aspect-video"
-                    }`}
-                  >
-                    <span className="relative block h-full w-full overflow-hidden rounded-2xl">
-                      <Image
-                        src={typeof image === "string" ? image : image.src}
-                        alt={`${project.title} screenshot ${index + 1}`}
-                        fill
-                        sizes="(max-width: 768px) 90vw, 960px"
-                        className={`${
-                          portrait ? "object-contain" : "object-cover"
-                        } transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
-                      />
-                    </span>
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-h-[90vh] max-w-[90vw] border-border bg-card p-2">
-                  <DialogTitle className="sr-only">{project.title} — screenshot {index + 1}</DialogTitle>
-                  <DialogDescription className="sr-only">Enlarged project screenshot.</DialogDescription>
-                  <Image
-                    src={typeof image === "string" ? image : image.src}
-                    alt={`${project.title} screenshot ${index + 1}`}
-                    width={1920}
-                    height={1080}
-                    className="max-h-[85vh] w-full object-contain"
-                  />
-                </DialogContent>
-              </Dialog>
-            );
-          })}
-        </motion.div>
-
-        <div className="grid gap-12 md:grid-cols-[1fr,260px]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
-            className="space-y-10"
-          >
-            {project.content && (
-              <div>
-                <h2 className="font-heading text-xl font-semibold tracking-wide">
-                  About this project
-                </h2>
-                <div className="mt-4 border-l-2 border-gold/40 pl-5 font-body leading-relaxed text-muted-foreground">
-                  {typeof project.content === "string" ? (
-                    <p>{project.content}</p>
-                  ) : (
-                    project.content
-                  )}
-                </div>
-              </div>
-            )}
-
-            {project.features && project.features.length > 0 && (
-              <div>
-                <h2 className="font-heading text-xl font-semibold tracking-wide">
-                  Notable Features
-                </h2>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {project.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="glass-panel flex items-start gap-3 !rounded-xl p-4"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-0.5 flex-shrink-0 font-heading text-sm leading-none text-gold"
-                      >
-                        ·
-                      </span>
-                      <span className="font-body text-sm leading-snug text-muted-foreground">
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
-            className="space-y-8"
-          >
-            {project.stack && project.stack.length > 0 && (
-              <div>
-                <h3 className="rubric !text-[10px] mb-3">Tech stack</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <span
-                      key={tech.name}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-card/60 px-3 py-1.5 font-body text-xs text-foreground/85"
-                    >
-                      <span className="flex-shrink-0">{tech.Icon}</span>
-                      {tech.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {project.pages && project.pages.length > 0 && (
-              <div>
-                <h3 className="rubric !text-[10px] mb-3">Pages</h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.pages.map((page) => (
-                    <span
-                      key={page}
-                      className="border border-border/60 px-2 py-0.5 font-body text-xs text-muted-foreground"
-                    >
-                      {page}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div>
-              <h3 className="rubric !text-[10px] mb-3">Let’s talk</h3>
-              <p className="font-body text-sm text-muted-foreground">
-                Interested in this work?{" "}
-                <Link
-                  href="/contact"
-                  className="text-accent underline-offset-4 hover:underline"
-                >
-                  Send me a message
-                </Link>
-              </p>
-            </div>
-          </motion.div>
+      <header className="mt-4 max-w-3xl">
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+          <span className="quest-tag">
+            Quest {toRoman(number)} · {project.category ? categoryLabel[project.category] : "Quest"}
+          </span>
+          {project.year && <span className="text-muted-foreground">{project.year}</span>}
+          {project.context && <span className="text-secondary">{project.context}</span>}
+        </p>
+        <h1 className="page-title mt-4">{project.title}</h1>
+        <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{project.description}</p>
+        <div className="mt-7 flex flex-wrap gap-3">
+          {project.href && (
+            <a href={project.href} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              <ExternalLink className="h-4 w-4" aria-hidden="true" /> Live preview
+            </a>
+          )}
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="btn">
+              <Github className="h-4 w-4" aria-hidden="true" /> Source code
+            </a>
+          )}
         </div>
+      </header>
+
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+        {project.images.map((image, index) => {
+          const portrait = typeof image !== "string" && image.height > image.width;
+          return (
+            <Dialog key={index}>
+              <DialogTrigger asChild>
+                <button
+                  aria-label={`Enlarge ${project.title} screenshot ${index + 1}`}
+                  className={`glass gallery-shot group ${
+                    portrait ? "aspect-[9/19.5]" : index === 0 ? "aspect-video md:col-span-2" : "aspect-video"
+                  }`}
+                >
+                  <span className="relative block h-full w-full overflow-hidden rounded-[14px]">
+                    <Image
+                      src={image}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 90vw, 900px"
+                      priority={index === 0}
+                      className={`${portrait ? "object-contain" : "object-cover"} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
+                    />
+                  </span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="glass max-h-[90vh] max-w-[90vw] p-2">
+                <DialogTitle className="sr-only">
+                  {project.title} — screenshot {index + 1}
+                </DialogTitle>
+                <DialogDescription className="sr-only">Enlarged project screenshot.</DialogDescription>
+                <Image
+                  src={image}
+                  alt={`${project.title} screenshot ${index + 1}`}
+                  width={1920}
+                  height={1080}
+                  className="max-h-[85vh] w-full object-contain"
+                />
+              </DialogContent>
+            </Dialog>
+          );
+        })}
       </div>
-    </div>
+
+      <div className="mt-12 grid gap-8 lg:grid-cols-[1fr,300px]">
+        <div className="space-y-8">
+          {project.content && (
+            <section className="glass p-6 md:p-8" aria-labelledby="lore-title">
+              <p className="hud-label" id="lore-title">
+                Quest lore
+              </p>
+              <div className="prose-forest mt-4">
+                {typeof project.content === "string" ? <p>{project.content}</p> : project.content}
+              </div>
+            </section>
+          )}
+
+          {project.features && project.features.length > 0 && (
+            <section aria-labelledby="objectives-title">
+              <h2 id="objectives-title" className="section-title !text-2xl md:!text-3xl">
+                Objectives completed
+              </h2>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {project.features.map((f) => (
+                  <li key={f} className="glass objective !p-4">
+                    <span className="objective-box" aria-hidden="true">
+                      <Check className="h-3 w-3" />
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+
+        <aside className="space-y-6">
+          {project.stack && project.stack.length > 0 && (
+            <div className="glass p-5">
+              <h2 className="hud-label">Rewards · Tech stack</h2>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {project.stack.map((t) => (
+                  <li key={t.name} className="chip chip-icon">
+                    <span className="chip-glyph" aria-hidden="true">
+                      {t.Icon}
+                    </span>
+                    {t.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {project.pages && project.pages.length > 0 && (
+            <div className="glass p-5">
+              <h2 className="hud-label">Areas explored</h2>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {project.pages.map((page) => (
+                  <li key={page} className="chip">
+                    {page}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <div className="glass p-5">
+            <h2 className="hud-label">Party up?</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Interested in work like this?</p>
+            <Link href="/contact" className="btn btn-primary mt-4 w-full">
+              <Flame className="h-4 w-4" aria-hidden="true" /> Light the beacon
+            </Link>
+          </div>
+        </aside>
+      </div>
+
+      <nav aria-label="More quests" className="mt-12 grid gap-4 sm:grid-cols-2">
+        {prev ? (
+          <Link href={`/projects/${prev.slug}`} className="glass quest-nav">
+            <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+            <span>
+              <span className="hud-label block">Previous quest</span>
+              <span className="mt-1 block font-display text-lg font-semibold">{prev.title}</span>
+            </span>
+          </Link>
+        ) : (
+          <span />
+        )}
+        {next && (
+          <Link href={`/projects/${next.slug}`} className="glass quest-nav justify-end text-right">
+            <span>
+              <span className="hud-label block">Next quest</span>
+              <span className="mt-1 block font-display text-lg font-semibold">{next.title}</span>
+            </span>
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </Link>
+        )}
+      </nav>
+    </main>
   );
 }

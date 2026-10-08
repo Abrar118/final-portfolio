@@ -1,40 +1,53 @@
 import ProjectDetailsContainer from "@/components/projects/ProjectDetailsContainer";
 import { projects } from "@/data/home/projects";
-import type { Project } from "@/types/project";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import React from "react";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export function generateStaticParams() {
+  return projects.flatMap((p) => (p.slug ? [{ slug: p.slug }] : []));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = projects.find((p) => p.slug === slug) as Project | undefined;
-  if (product) {
+  const project = projects.find((p) => p.slug === slug);
+  if (project) {
     return {
-      title: product.title,
-      description: product.description,
+      title: `${project.title} | Abrar Mahir Esam`,
+      description: project.description,
     };
   }
 
   return {
-    title: "Projects | Abrar Mahir Esam",
-    description:
-      "Here are some of the projects I have worked on. Click on the project to learn more.",
+    title: "Quest Log | Abrar Mahir Esam",
+    description: "Projects by Abrar Mahir Esam.",
   };
 }
 
 const ProjectDetails = async ({ params }: Props) => {
   const { slug } = await params;
-  const product = projects.find((p) => p.slug === slug);
+  const index = projects.findIndex((p) => p.slug === slug);
 
-  if (!product) {
+  if (index === -1) {
     redirect("/projects");
   }
 
-  return <ProjectDetailsContainer project={product} />;
+  const neighbor = (i: number) => {
+    const p = projects[i];
+    return p?.slug ? { slug: p.slug, title: p.title } : null;
+  };
+
+  return (
+    <ProjectDetailsContainer
+      project={projects[index]}
+      number={index + 1}
+      prev={neighbor(index - 1)}
+      next={neighbor(index + 1)}
+    />
+  );
 };
 
 export default ProjectDetails;
