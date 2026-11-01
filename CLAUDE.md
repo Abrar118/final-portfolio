@@ -39,6 +39,7 @@ Map mode (`3d`/`flat`) persists in localStorage (`network-map-mode`); defaults t
 
 ### Routes
 
+- Phones get the wide map at full scale with sideways swiping; only the flat fallback turns on end (`tall`).
 - `/` — Full-bleed draggable model + sign with avatar, career figures, four featured projects as colour fields, the seven lines
 - `/projects` — Work list beside the live map, which turns on end on desktop; pointing at a row lifts its station
 - `/projects/[slug]` — Statically generated; camera flies to the station, other lines drain

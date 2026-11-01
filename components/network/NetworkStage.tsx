@@ -42,8 +42,6 @@ const THEMES: Record<"light" | "dark", WorldTheme> = {
   },
 };
 
-/* Phones have room for the headline stops; the rest are in the work list. */
-const NARROW_LABELS = new Set(["pmo", "psycloud", "spendsplit", "astryn", "next-stop"]);
 /* Short enough to sit on the map at all times; other details wait for focus. */
 const PROOF = new Set(["pmo", "psycloud"]);
 
@@ -86,7 +84,6 @@ export default function NetworkStage() {
   const boot = useNetwork((s) => s.boot);
   const setStatus = useNetwork((s) => s.setStatus);
 
-  const [orientation, setOrientation] = useState<"wide" | "tall">("wide");
   const [size, setSize] = useState({ w: 1440, h: 900 });
   const [ready, setReady] = useState(false);
   const [hoverId, setHoverId] = useState<string | null>(null);
@@ -100,15 +97,18 @@ export default function NetworkStage() {
   useEffect(() => {
     const onResize = () => {
       setSize({ w: window.innerWidth, h: window.innerHeight });
-      setOrientation(window.innerWidth < 768 ? "tall" : "wide");
     };
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const layout: NetworkLayout = useMemo(() => buildLayout(orientation), [orientation]);
   const live = booted && mode === "3d" && status !== "failed";
+  const narrow = size.w < 768;
+  /* The model pans, so a phone gets the wide map at full scale. The flat
+     diagram can't pan, so there it turns on end to fit. */
+  const orientation = narrow && !live ? "tall" : "wide";
+  const layout: NetworkLayout = useMemo(() => buildLayout(orientation), [orientation]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const worldRef = useRef<NetworkWorld | null>(null);
@@ -205,6 +205,7 @@ export default function NetworkStage() {
       }
       worldRef.current = world;
       const s = useNetwork.getState();
+      world.setNarrow(window.innerWidth < 768);
       world.setInsets(s.insets);
       world.setView(viewFor(pathnameRef.current, window.innerWidth));
       world.setActiveLine(s.activeLine);
@@ -250,6 +251,7 @@ export default function NetworkStage() {
   useEffect(() => worldRef.current?.setHover(hoverId), [hoverId, ready]);
   useEffect(() => worldRef.current?.setActiveLine(activeLine), [activeLine, ready]);
   useEffect(() => worldRef.current?.setFocus(focusId), [focusId, ready]);
+  useEffect(() => worldRef.current?.setNarrow(narrow), [narrow, ready]);
   useEffect(() => worldRef.current?.setInsets(insets), [insets, ready]);
   useEffect(() => worldRef.current?.resize(), [size, ready]);
   useEffect(() => {
@@ -278,10 +280,9 @@ export default function NetworkStage() {
   }, []);
 
   const view = viewFor(pathname, size.w);
-  const narrow = orientation === "tall";
   const showingModel = live && ready;
   // The flat diagram never turns on end, so its labels stay in map orientation.
-  const frame: LabelFrame = narrow ? "tall" : view.kind === "column" && showingModel ? "column" : "wide";
+  const frame: LabelFrame = orientation === "tall" ? "tall" : view.kind === "column" && showingModel ? "column" : "wide";
 
   /* Lines that keep their colour on this page; the rest drain away. */
   const keptLines: LineId[] | null =
@@ -303,9 +304,11 @@ export default function NetworkStage() {
     }
     if (view.kind === "line") return stop.lines.includes(view.id as never);
     if (activeLine) return stop.lines.includes(activeLine);
+    // A phone keeps every name; swiping gives each one room.
+    if (narrow) return true;
     if (pathname === "/projects") return !!stop.major;
     if (id === "llm-stack") return false; // Sits between two projects; its detail is on hover.
-    return narrow ? NARROW_LABELS.has(id) : true;
+    return true;
   };
 
   const baseKey = layout.stops.map((s) => (labelled(s.id) ? s.id : "")).join(",");
@@ -319,7 +322,9 @@ export default function NetworkStage() {
         ? Math.min(clearH / (layout.width * 0.86 + 11), clearW / (layout.height + 14))
         : frame === "tall"
           ? Math.min(clearW / (layout.width + 10), clearH / (layout.height * 0.87 + 11))
-          : Math.min(clearW / (layout.width + 14), clearH / (layout.height * 0.76 + 11));
+          : narrow
+            ? clearH / (layout.height * 0.76 + 11)
+            : Math.min(clearW / (layout.width + 14), clearH / (layout.height * 0.76 + 11));
     const items: LabelItem[] = layout.stops.map((s) => {
       const stop = stopById.get(s.id)!;
       const proof = PROOF.has(s.id) && view.kind !== "stop";
@@ -333,7 +338,7 @@ export default function NetworkStage() {
         ghost: !baseKey.split(",").includes(s.id),
       };
     });
-    return { ...placeLabels(layout, items, { frame, pxPerUnit, lines: keptLines }), pxPerUnit };
+    return { ...placeLabels(layout, items, { frame, pxPerUnit, lines: keptLines, keepAll: narrow }), pxPerUnit };
     // keptLines is derived from the view and active line, both named here.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [layout, baseKey, frame, size, insets, activeLine, pathname]);
@@ -388,7 +393,7 @@ export default function NetworkStage() {
         e.stopPropagation();
       }}
     >
-      {showFlat && (
+      {showFlat && !(narrow && live) && (
         <FlatMap
           layout={layout}
           keptLines={keptLines}
@@ -400,7 +405,10 @@ export default function NetworkStage() {
       )}
       {live && <canvas ref={canvasRef} className={`map-canvas ${ready ? "is-ready" : ""}`} aria-hidden="true" />}
 
-      <nav className="map-labels" aria-label="Stations on the network">
+      <nav
+        className={`map-labels ${narrow && live && !ready ? "is-waiting" : ""}`}
+        aria-label="Stations on the network"
+      >
         {(view.kind === "overview" || view.kind === "column") &&
           layout.zones
             .filter((z) => z.year < 2027)

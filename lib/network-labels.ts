@@ -41,12 +41,15 @@ const PREFERENCE: Record<LabelFrame, Partial<Record<LabelPosition, number>>> = {
   tall: { e: 0, w: 0.3 },
   column: { e: 0, w: 0.3 },
 };
-/* Where a name may move to, nearest first. */
+/* Where a name may move to. Every one is scored, leader line included. */
+const around = (xs: number[], ys: number[]) => xs.flatMap((x) => ys.map((y) => ({ x, y })));
 const LEADER_SHIFTS: Record<LabelFrame, Point[]> = {
-  wide: [4, -4, 6, -6, 8, -8, 11, -11].map((y) => ({ x: 0, y })),
-  tall: [3, -3, 5, -5, 7, -7].map((y) => ({ x: 0, y })),
-  column: [3, -3, 5, -5, 7, -7].map((y) => ({ x: 0, y })),
+  wide: around([0, -3, 3, -6, 6], [3, -3, 5, -5, 7, -7, 10, -10]),
+  tall: around([0], [3, -3, 5, -5, 7, -7]),
+  column: around([0, -3, 3], [3, -3, 5, -5, 7, -7]),
 };
+/* A leader may cross a track when nothing better exists, but it costs. */
+const LEADER_CROSSING = 25;
 
 const toScreen = (frame: LabelFrame) => (p: Point): Point => {
   if (frame === "wide") return { x: p.x, y: p.y * 0.76 };
@@ -64,9 +67,9 @@ const distanceToSegment = (p: Point, a: Point, b: Point) => {
 export function placeLabels(
   layout: NetworkLayout,
   items: LabelItem[],
-  options: { frame: LabelFrame; pxPerUnit: number; lines?: string[] | null },
+  options: { frame: LabelFrame; pxPerUnit: number; lines?: string[] | null; keepAll?: boolean },
 ): LabelPlacement {
-  const { frame, pxPerUnit, lines: only } = options;
+  const { frame, pxPerUnit, lines: only, keepAll } = options;
   const screen = toScreen(frame);
   const tracks = layout.lines
     .filter((l) => !only || only.includes(l.id))
@@ -147,6 +150,17 @@ export function placeLabels(
           cost += FAILURE;
         }
       }
+      // Tie-break toward short leaders, and pay for each track one crosses.
+      const reach = Math.hypot(shift.x, shift.y);
+      cost += reach * 0.6;
+      for (let d = 1.9; d < reach; d += 0.5) {
+        const p = { x: home.x + (shift.x / reach) * d, y: home.y + (shift.y / reach) * d };
+        for (const track of tracks) {
+          for (let i = 1; i < track.length; i++) {
+            if (distanceToSegment(p, track[i - 1], track[i]) < layout.lineWidth / 2) cost += LEADER_CROSSING;
+          }
+        }
+      }
       return { position: key, shift, cost, samples };
     };
 
@@ -160,13 +174,12 @@ export function placeLabels(
       for (const shift of LEADER_SHIFTS[frame]) {
         const moved = cheapest(shift);
         if (moved.cost < best.cost) best = moved;
-        if (best.cost < FAILURE) break;
       }
     }
 
     positions.set(item.id, best.position);
     if (item.ghost) continue;
-    if (best.cost >= FAILURE && !item.must) {
+    if (best.cost >= FAILURE && !item.must && !keepAll) {
       hidden.add(item.id);
       continue;
     }

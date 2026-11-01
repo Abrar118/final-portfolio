@@ -134,6 +134,8 @@ export class NetworkWorld {
   /** How far the visitor has dragged the map from the view's own framing. */
   private pan = new THREE.Vector3();
   private dragging = false;
+  /** A phone shows the wide map at a readable scale and pans along it. */
+  private narrow = false;
   private distance = 100;
   private goalDistance = 100;
   private polar = 0.02;
@@ -446,6 +448,11 @@ export class NetworkWorld {
     this.hoverId = id;
   }
 
+  setNarrow(narrow: boolean) {
+    this.narrow = narrow;
+    this.frame();
+  }
+
   setDragging(dragging: boolean) {
     this.dragging = dragging;
   }
@@ -528,6 +535,7 @@ export class NetworkWorld {
       // Height the tilted span occupies on screen, scaled to the clear area.
       const viewH = (spanZ * Math.cos(polar) + 11) * (this.height / clearH);
       const viewW = (spanX + 14) * (this.width / clearW);
+      if (this.narrow && spanX > 30) return viewH / (2 * tan);
       return Math.max(viewH, viewW / this.camera.aspect) / (2 * tan);
     };
 
@@ -562,8 +570,8 @@ export class NetworkWorld {
           else this.goalTarget.z -= 9;
         }
         this.goalDistance = s.hollow
-          ? fit(l.orientation === "wide" ? 40 : 24, 7, 0.92)
-          : fit(l.orientation === "wide" ? 46 : 24, 20, 0.92);
+          ? fit(this.narrow ? 24 : 40, 7, 0.92)
+          : fit(this.narrow ? 24 : 46, 20, 0.92);
         this.goalPolar = 0.92;
         this.goalAzimuth = -0.3;
         return;
@@ -596,6 +604,8 @@ export class NetworkWorld {
       this.goalDistance = overview * 0.8;
     } else {
       this.goalTarget.copy(this.center);
+      // Open on the recent work; the earlier years are a swipe away.
+      if (this.narrow) this.goalTarget.x = l.width * 0.66;
       this.goalDistance = overview;
     }
     this.goalPolar = wideMap ? 0.7 : 0.5;

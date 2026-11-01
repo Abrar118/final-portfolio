@@ -408,6 +408,9 @@
   position: absolute;
   inset: 0;
 }
+.map-labels.is-waiting {
+  visibility: hidden;
+}
 .map-stop {
   position: absolute;
   left: 0;
@@ -422,15 +425,16 @@
   opacity: 0;
   pointer-events: none;
 }
+/* Starts at the edge of the station, so it never cuts across its white face. */
 .map-stop-lead {
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--lead);
+  width: max(calc(var(--lead) - 6px), 0px);
   height: 1.5px;
   background: var(--ink);
   transform-origin: 0 50%;
-  transform: rotate(var(--lead-angle));
+  transform: rotate(var(--lead-angle)) translateX(14px);
   pointer-events: none;
 }
 .map-stop.is-quiet .map-stop-lead,
@@ -517,9 +521,6 @@
 .map-stop.has-proof .map-stop-detail,
 .map-stop.is-focus .map-stop-detail {
   display: block;
-}
-.map-stop.is-narrow .map-stop-text {
-  font-size: 0.75rem;
 }
 .map-stop.is-narrow.is-major .map-stop-name {
   font-size: 0.8125rem;
@@ -666,6 +667,9 @@
 }
 .line-picker-row:has([aria-pressed="true"]) .line-button:not([aria-pressed="true"]) {
   opacity: 0.45;
+}
+.note-narrow {
+  display: none;
 }
 .line-picker-note {
   flex: 1 1 260px;
@@ -835,8 +839,11 @@
     width: 40px;
     height: 40px;
   }
-  .line-picker-note {
+  .note-wide {
     display: none;
+  }
+  .note-narrow {
+    display: inline;
   }
   .sign-name {
     font-size: clamp(2.75rem, 13vw, 4rem);

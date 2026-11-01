@@ -270,7 +270,7 @@ On Day, line text is On-Line White except on Signal Yellow, which uses Ink. At n
 - **Title** (750, 1.5rem, 1.15): Work rows; line names and career employers run this weight on their own fluid sizes.
 - **Body** (400, 1.0625rem, 1.6): Running text, capped between 42ch and 68ch by context.
 - **Label** (550 to 650, 0.9375rem): Navigation, buttons, form labels. Always sentence case.
-- **Station** (600, 0.8125rem, 1.15) and **Station Major** (800, 0.9375rem): Names on the map, 0.75rem and 0.8125rem on phones.
+- **Station** (600, 0.8125rem, 1.15) and **Station Major** (800, 0.9375rem): Names on the map, the same size on phones.
 - **Data** (Geist Mono, 0.875rem, tabular numerals): Dates, stop counts, years on the map, hotkeys, inline code.
 
 ### Named Rules

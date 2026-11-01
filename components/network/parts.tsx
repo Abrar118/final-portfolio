@@ -41,7 +41,12 @@ export function LinePicker({ showHelp = true }: { showHelp?: boolean }) {
         <p className="line-picker-note" role="status">
           {active
             ? `${active.name}: ${stopsOnLine(active.id).length} stops. ${active.blurb}`
-            : "Drag the map. Pick a line to light its stops, or press its letter."}
+            : (
+                <>
+                  <span className="note-wide">Drag the map. Pick a line to light its stops, or press its letter.</span>
+                  <span className="note-narrow">Swipe the map sideways. Tap a line to light its stops.</span>
+                </>
+              )}
         </p>
       )}
     </div>
