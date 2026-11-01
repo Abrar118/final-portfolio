@@ -4,13 +4,14 @@ export const timeline = [
     location: "Nikunja 2, Dhaka-1229",
     title: "Fullstack Software Engineer",
     date: "Aug 2025 - Aug 2026",
+    stack: "Next.js (TypeScript), FastAPI (Python), PostgreSQL, Redis, Docker",
     description:
       "One of the first engineers and a principal architect of Psycloud — a production clinical platform now serving over 1,000 users",
     responsibilities: [
       "Designed and built core systems from the ground up, setting the structural patterns the team still builds against",
-      "Built the clinical dashboard for patient records, case histories, and treatment data, plus the questionnaire and assessment subsystem",
+      "Built the practitioner dashboard for patient records, case histories, and treatment data, plus the assessment engine that scores questionnaires and tracks patient progress between sessions",
       "Designed backend services, data models, and APIs handling patient health data to EU data-protection standards",
-      "Worked test-driven with layered review — manual plus multi-agent AI review — before anything merged",
+      "Shipped test-driven, with manual code review layered on multi-agent AI review (Claude Code, Codex) before every merge",
     ],
   },
   {
@@ -18,12 +19,13 @@ export const timeline = [
     location: "Dhaka, Bangladesh",
     title: "Fullstack Web & Mobile Engineer (Part-time Contract)",
     date: "May 2024 - May 2026",
+    stack: "Java 21, Spring Boot, React (TypeScript), Flutter, PostgreSQL, Redis, Docker",
     description:
       "Architected a personnel and duty-management platform carrying 300 concurrent users in production",
     responsibilities: [
       "Architected the Spring Boot (Java 21) backend on PostgreSQL with Flyway-managed migrations and HATEOAS REST APIs",
       "Built server-side PDF generation for duty forms and real-time notifications via Firebase Cloud Messaging",
-      "Built a Redis caching layer with stateless JWT, RBAC, MFA, passkeys, and rate limiting",
+      "Secured it with JWT, OAuth, RBAC, Redis-backed session revocation, rate limiting, audit logging, MFA, and passkeys, and tuned PostgreSQL indexes and queries behind a Redis cache",
       "Developed the React + TypeScript web client and Flutter app; ran CI/CD, deployments, and monitoring",
     ],
   },
@@ -32,6 +34,7 @@ export const timeline = [
     location: "Mirpur DOHS, Dhaka",
     title: "Fullstack Web Developer",
     date: "Apr 2025 - Aug 2025",
+    stack: "React 18 (TypeScript), Express.js, MongoDB",
     description:
       "Full-stack development on the SoftCar rental platform and an AI-agent data training extension",
     responsibilities: [

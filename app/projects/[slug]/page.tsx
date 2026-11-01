@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: "Quest Log | Abrar Mahir Esam",
+    title: "Work | Abrar Mahir Esam",
     description: "Projects by Abrar Mahir Esam.",
   };
 }
@@ -43,7 +43,6 @@ const ProjectDetails = async ({ params }: Props) => {
   return (
     <ProjectDetailsContainer
       project={projects[index]}
-      number={index + 1}
       prev={neighbor(index - 1)}
       next={neighbor(index + 1)}
     />
