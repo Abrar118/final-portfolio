@@ -1,6 +1,6 @@
 import { projects } from "@/data/home/projects";
 import type { Project } from "@/types/project";
-import type { Orientation, NetworkLayout } from "@/lib/network-layout";
+import type { NetworkLayout } from "@/lib/network-layout";
 import { layoutNetwork } from "@/lib/network-layout";
 
 /* The network: each stack is a line, each project or job a stop. Projects join
@@ -140,8 +140,7 @@ export const projectStops: Stop[] = projects.flatMap((p) => {
 
 export const stopsOnLine = (id: LineId) => stops.filter((s) => s.lines.includes(id));
 
-export const buildLayout = (orientation: Orientation): NetworkLayout =>
-  layoutNetwork(lines, stops, orientation);
+export const buildLayout = (col?: number): NetworkLayout => layoutNetwork(lines, stops, col);
 
 export const routes = [
   { path: "/", label: "Network", hotkey: "1" },

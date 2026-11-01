@@ -6,7 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { buildLayout, lineById, stopById, stops, type LineId } from "@/data/network";
-import type { NetworkLayout } from "@/lib/network-layout";
 import { placeLabels, type LabelFrame, type LabelItem } from "@/lib/network-labels";
 import { useNetwork } from "@/lib/network-store";
 import FlatMap, { FLAT_PADDING } from "./FlatMap";
@@ -14,6 +13,10 @@ import type { NetworkWorld, WorldTheme, WorldView, Projected } from "./NetworkWo
 
 const majorIds = stops.filter((s) => s.major).map((s) => s.id);
 const hollowIds = stops.filter((s) => s.hollow).map((s) => s.id);
+const modelLayout = buildLayout();
+/* The flat map on a phone can't lean back, and swiping makes width cheap. */
+const FLAT_PHONE_COL = 7.4;
+const flatPhoneLayout = buildLayout(FLAT_PHONE_COL);
 
 const THEMES: Record<"light" | "dark", WorldTheme> = {
   light: {
@@ -105,14 +108,16 @@ export default function NetworkStage() {
 
   const live = booted && mode === "3d" && status !== "failed";
   const narrow = size.w < 768;
-  /* The model pans, so a phone gets the wide map at full scale. The flat
-     diagram can't pan, so there it turns on end to fit. */
-  const orientation = narrow && !live ? "tall" : "wide";
-  const layout: NetworkLayout = useMemo(() => buildLayout(orientation), [orientation]);
+  /* A phone shows the map at full height and swipes along it, model or flat. */
+  const flatPans = narrow && !live;
+  const layout = flatPans ? flatPhoneLayout : modelLayout;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const worldRef = useRef<NetworkWorld | null>(null);
   const labelRefs = useRef(new Map<string, HTMLElement>());
+  const flatRef = useRef<SVGSVGElement>(null);
+  const flatPan = useRef(0);
+  const panTouched = useRef(false);
 
   const moveLabels = useCallback((points: Projected[]) => {
     const { insets: clear } = useNetwork.getState();
@@ -140,34 +145,63 @@ export default function NetworkStage() {
     const areaH = Math.max(size.h - insets.top - insets.bottom, 1);
     const fullW = layout.width + FLAT_PADDING * 2;
     const fullH = layout.height + FLAT_PADDING * 2;
+    const y = (scale: number) => insets.top + (areaH - fullH * scale) / 2;
+    if (size.w < 768) {
+      const scale = Math.max(areaW / fullW, areaH / fullH);
+      return {
+        scale,
+        areaW,
+        minPan: Math.min(areaW - fullW * scale, 0),
+        x: insets.left,
+        y: y(scale),
+        style: { left: insets.left, top: y(scale), width: fullW * scale, height: fullH * scale },
+      };
+    }
     const scale = Math.min(areaW / fullW, areaH / fullH);
     return {
       scale,
+      areaW,
+      minPan: 0,
       x: insets.left + (areaW - fullW * scale) / 2,
-      y: insets.top + (areaH - fullH * scale) / 2,
+      y: y(scale),
       style: { left: insets.left, top: insets.top, width: areaW, height: areaH },
     };
   }, [size, insets, layout]);
 
   const showFlat = !live || !ready;
 
-  useEffect(() => {
-    if (!showFlat) return;
+  const paintFlat = useCallback(() => {
+    const pan = flatPan.current;
+    if (flatRef.current) flatRef.current.style.transform = `translate3d(${pan}px, 0, 0)`;
     const toScreen = (id: string, x: number, y: number) => ({
       id,
-      x: flatFrame.x + (x + FLAT_PADDING) * flatFrame.scale,
+      x: flatFrame.x + pan + (x + FLAT_PADDING) * flatFrame.scale,
       y: flatFrame.y + (y + FLAT_PADDING) * flatFrame.scale,
     });
     moveLabels([
       ...layout.stops.map((s) => toScreen(s.id, s.x, s.y)),
-      ...layout.zones.map((z) => {
-        const along = z.from + 2.4;
-        return layout.orientation === "wide"
-          ? toScreen(`zone-${z.year}`, along, -5)
-          : toScreen(`zone-${z.year}`, -5, along);
-      }),
+      ...layout.zones.map((z) => toScreen(`zone-${z.year}`, z.from + 2.4, -5)),
     ]);
-  }, [showFlat, flatFrame, layout, moveLabels]);
+  }, [flatFrame, layout, moveLabels]);
+
+  const clampPan = useCallback((pan: number) => Math.min(Math.max(pan, flatFrame.minPan), 0), [flatFrame]);
+
+  useEffect(() => {
+    panTouched.current = false;
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!showFlat) return;
+    // Opens on this page's stop, or on the recent work, until the visitor swipes.
+    if (!panTouched.current) {
+      const here = viewFor(pathname, size.w);
+      const stop = here.kind === "stop" ? layout.stops.find((s) => s.id === here.id) : undefined;
+      const anchor = stop ? stop.x : layout.width * 0.66;
+      flatPan.current = flatFrame.areaW / 2 - (anchor + FLAT_PADDING) * flatFrame.scale;
+    }
+    flatPan.current = clampPan(flatPan.current);
+    paintFlat();
+  }, [showFlat, flatFrame, layout, pathname, size.w, clampPan, paintFlat]);
 
   /* Boot and tear down the model. */
   useEffect(() => {
@@ -185,7 +219,7 @@ export default function NetworkStage() {
         world = new NetworkWorld(
           canvas,
           {
-            layout,
+            layout: modelLayout,
             theme: THEMES[themeRef.current],
             hollowIds,
             majorIds,
@@ -234,7 +268,7 @@ export default function NetworkStage() {
       worldRef.current = null;
       setReady(false);
     };
-  }, [live, layout, moveLabels, setStatus]);
+  }, [live, moveLabels, setStatus]);
 
   const themeRef = useRef(theme);
   themeRef.current = theme;
@@ -281,8 +315,8 @@ export default function NetworkStage() {
 
   const view = viewFor(pathname, size.w);
   const showingModel = live && ready;
-  // The flat diagram never turns on end, so its labels stay in map orientation.
-  const frame: LabelFrame = orientation === "tall" ? "tall" : view.kind === "column" && showingModel ? "column" : "wide";
+  // The flat diagram never turns on end, and is seen straight on.
+  const frame: LabelFrame = !live ? "flat" : view.kind === "column" && showingModel ? "column" : "wide";
 
   /* Lines that keep their colour on this page; the rest drain away. */
   const keptLines: LineId[] | null =
@@ -316,15 +350,15 @@ export default function NetworkStage() {
     const clearW = Math.max(size.w - insets.left - insets.right, 120);
     const clearH = Math.max(size.h - insets.top - insets.bottom, 120);
     const pxPerUnit =
-      view.kind === "stop"
+      frame === "flat"
+        ? flatFrame.scale
+        : view.kind === "stop"
         ? clearW / ((narrow ? 24 : 46) + 14)
         : frame === "column"
         ? Math.min(clearH / (layout.width * 0.86 + 11), clearW / (layout.height + 14))
-        : frame === "tall"
-          ? Math.min(clearW / (layout.width + 10), clearH / (layout.height * 0.87 + 11))
-          : narrow
-            ? clearH / (layout.height * 0.76 + 11)
-            : Math.min(clearW / (layout.width + 14), clearH / (layout.height * 0.76 + 11));
+        : narrow
+          ? clearH / (layout.height * 0.76 + 11)
+          : Math.min(clearW / (layout.width + 14), clearH / (layout.height * 0.76 + 11));
     const items: LabelItem[] = layout.stops.map((s) => {
       const stop = stopById.get(s.id)!;
       const proof = PROOF.has(s.id) && view.kind !== "stop";
@@ -345,10 +379,10 @@ export default function NetworkStage() {
 
   const focusStop = hoverId && !dragging ? stopById.get(hoverId) : null;
 
-  /* Dragging pans the model. Movement under a few pixels is still a click. */
+  /* Dragging pans the map. Movement under a few pixels is still a click. */
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     justDragged.current = false;
-    if (!showingModel || e.button !== 0) return;
+    if ((!showingModel && !flatPans) || e.button !== 0) return;
     drag.current = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
   };
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -363,7 +397,12 @@ export default function NetworkStage() {
       worldRef.current?.setDragging(true);
       setDragging(true);
     }
-    worldRef.current?.panBy(dx, dy);
+    if (showingModel) worldRef.current?.panBy(dx, dy);
+    else {
+      panTouched.current = true;
+      flatPan.current = clampPan(flatPan.current + dx);
+      paintFlat();
+    }
     d.x = e.clientX;
     d.y = e.clientY;
   };
@@ -378,7 +417,7 @@ export default function NetworkStage() {
 
   return (
     <div
-      className={`map-stage ${offscreen ? "is-covered" : ""} ${showingModel ? "is-draggable" : ""} ${
+      className={`map-stage ${offscreen ? "is-covered" : ""} ${showingModel || flatPans ? "is-draggable" : ""} ${
         dragging ? "is-dragging" : ""
       }`}
       data-active-line={activeLine ?? undefined}
@@ -401,6 +440,7 @@ export default function NetworkStage() {
           majorIds={majorIds}
           hollowIds={hollowIds}
           style={flatFrame.style}
+          svgRef={flatRef}
         />
       )}
       {live && <canvas ref={canvasRef} className={`map-canvas ${ready ? "is-ready" : ""}`} aria-hidden="true" />}

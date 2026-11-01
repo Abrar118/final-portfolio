@@ -339,7 +339,7 @@ A full-width black panel at the foot of the map, with the name at display scale 
 - **Dock:** Below 860px, four equal 56px cells on black with the same active fill and safe-area padding.
 
 ### Station Labels and Ticket
-Station names are real links positioned over the map, with a 32px circular hit area (44px on phones). Major stops are heavier; the two proof stations also carry their figure. On a pointer device, hovering or focusing a stop on the overview shows a 300px black ticket at the upper right with the screenshot, bullets, year and description. Hidden below 860px and on coarse pointers.
+Station names are real links positioned over the map, with a 32px circular hit area (44px on phones). Major stops are heavier; the two proof stations also carry their figure. On a pointer device, hovering or focusing a stop on the overview shows a 300px black ticket at the upper right with the screenshot, bullets, year and description. Hidden below 860px and on coarse pointers. On phones the map, 3D or flat, fills the clear height and swipes sideways, and every name stays on.
 
 ### Posters
 Full-bleed sections in a line's colour, with a poster-scale title, bullets and year, a short note, and a framed screenshot rising from the section's foot. The frame lifts 10px on hover.

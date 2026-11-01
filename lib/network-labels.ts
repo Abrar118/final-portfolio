@@ -7,7 +7,7 @@ import type { NetworkLayout, Point } from "@/lib/network-layout";
    by a leader line, as on a printed map; a minor one waits for hover. Works in a
    screen-like space, because how the map is viewed changes what collides. */
 
-export type LabelFrame = "wide" | "tall" | "column";
+export type LabelFrame = "wide" | "flat" | "column";
 export type LabelPosition = "ne" | "sw" | "e" | "w";
 
 export type LabelItem = {
@@ -38,22 +38,26 @@ const DIRECTION: Record<LabelPosition, Point> = {
 };
 const PREFERENCE: Record<LabelFrame, Partial<Record<LabelPosition, number>>> = {
   wide: { ne: 0, sw: 0.5 },
-  tall: { e: 0, w: 0.3 },
+  flat: { ne: 0, sw: 0.5 },
   column: { e: 0, w: 0.3 },
 };
 /* Where a name may move to. Every one is scored, leader line included. */
 const around = (xs: number[], ys: number[]) => xs.flatMap((x) => ys.map((y) => ({ x, y })));
+const SLANTED_SHIFTS = around([0, -3, 3, -6, 6], [3, -3, 5, -5, 7, -7, 10, -10]);
 const LEADER_SHIFTS: Record<LabelFrame, Point[]> = {
-  wide: around([0, -3, 3, -6, 6], [3, -3, 5, -5, 7, -7, 10, -10]),
-  tall: around([0], [3, -3, 5, -5, 7, -7]),
+  wide: SLANTED_SHIFTS,
+  flat: SLANTED_SHIFTS,
   column: around([0, -3, 3], [3, -3, 5, -5, 7, -7]),
 };
+/* The flat map on a phone has rails too close for a slanted name to clear.
+   Crossing one reads better than a name far from its stop, so it costs little. */
+const SOFT_TRACK = 3;
 /* A leader may cross a track when nothing better exists, but it costs. */
 const LEADER_CROSSING = 25;
 
 const toScreen = (frame: LabelFrame) => (p: Point): Point => {
   if (frame === "wide") return { x: p.x, y: p.y * 0.76 };
-  if (frame === "tall") return { x: p.x, y: p.y * 0.87 };
+  if (frame === "flat") return p;
   return { x: -p.y, y: p.x * 0.85 }; // turned on end, time running downward
 };
 
@@ -70,6 +74,8 @@ export function placeLabels(
   options: { frame: LabelFrame; pxPerUnit: number; lines?: string[] | null; keepAll?: boolean },
 ): LabelPlacement {
   const { frame, pxPerUnit, lines: only, keepAll } = options;
+  const trackCost = frame === "flat" && keepAll ? SOFT_TRACK : FAILURE;
+  const stationClear = trackCost === SOFT_TRACK ? 2.4 : 1.5;
   const screen = toScreen(frame);
   const tracks = layout.lines
     .filter((l) => !only || only.includes(l.id))
@@ -84,7 +90,7 @@ export function placeLabels(
     }),
     { x0: Infinity, x1: -Infinity, y0: Infinity, y1: -Infinity },
   );
-  const margin = frame === "wide" ? 4 : 5;
+  const margin = frame === "column" ? 5 : 4;
   const positions = new Map<string, LabelPosition>();
   const shifts = new Map<string, Point>();
   const hidden = new Set<string>();
@@ -92,7 +98,7 @@ export function placeLabels(
   // The year labels are fixed, so they are taken before anything else.
   const taken: Point[] = layout.zones.flatMap((z) => {
     const along = z.from + 2.4;
-    const year = screen(layout.orientation === "wide" ? { x: along, y: -5 } : { x: -5, y: along });
+    const year = screen({ x: along, y: -5 });
     return [-2, 0, 2].map((dx) => ({ x: year.x + dx, y: year.y }));
   });
 
@@ -131,12 +137,12 @@ export function placeLabels(
         if (!nearHome) {
           for (const track of tracks) {
             for (let i = 1; i < track.length; i++) {
-              if (distanceToSegment(p, track[i - 1], track[i]) < layout.lineWidth / 2 + 0.2) cost += FAILURE;
+              if (distanceToSegment(p, track[i - 1], track[i]) < layout.lineWidth / 2 + 0.2) cost += trackCost;
             }
           }
         }
         for (const s of stations) {
-          if (s.id !== item.id && Math.hypot(p.x - s.x, p.y - s.y) < 1.5) cost += FAILURE;
+          if (s.id !== item.id && Math.hypot(p.x - s.x, p.y - s.y) < stationClear) cost += FAILURE;
         }
         for (const t of taken) {
           if (Math.hypot(p.x - t.x, p.y - t.y) < lineHeight * 0.95) cost += FAILURE;
@@ -170,7 +176,7 @@ export function placeLabels(
       keys.map((k) => evaluate(k, shift)).reduce((a, b) => (b.cost < a.cost ? b : a));
 
     let best = cheapest(none);
-    if (best.cost >= FAILURE && !item.ghost && item.major) {
+    if (best.cost >= FAILURE && !item.ghost && (item.major || trackCost === SOFT_TRACK)) {
       for (const shift of LEADER_SHIFTS[frame]) {
         const moved = cheapest(shift);
         if (moved.cost < best.cost) best = moved;

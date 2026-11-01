@@ -6,7 +6,7 @@ export type LayoutLine = { id: string };
 export type LayoutStop = {
   id: string;
   lines: string[];
-  /** Decimal year. Sets the left-to-right (or top-to-bottom) order. */
+  /** Decimal year. Sets the left-to-right order. */
   at: number;
 };
 export type Point = { x: number; y: number };
@@ -19,10 +19,7 @@ export type PlacedStop = Point & {
   zone: number;
 };
 
-export type Orientation = "wide" | "tall";
-
 export type NetworkLayout = {
-  orientation: Orientation;
   width: number;
   height: number;
   lineWidth: number;
@@ -31,10 +28,9 @@ export type NetworkLayout = {
   zones: { year: number; from: number; to: number }[];
 };
 
-const METRICS: Record<Orientation, { col: number; rail: number; lineWidth: number }> = {
-  wide: { col: 4.6, rail: 6, lineWidth: 0.8 },
-  tall: { col: 2.7, rail: 4.2, lineWidth: 0.58 },
-};
+const COL = 4.6;
+const RAIL = 6;
+const LINE_WIDTH = 0.8;
 const BUNDLE_GAP = 1.2; // spacing between lines sharing a stop, in line widths
 
 const pushPoint = (points: Point[], p: Point) => {
@@ -61,16 +57,11 @@ const route = (points: Point[], a: Point, b: Point, rail: number) => {
   pushPoint(points, b);
 };
 
-export function layoutNetwork(
-  lines: LayoutLine[],
-  stops: LayoutStop[],
-  orientation: Orientation,
-): NetworkLayout {
-  const { col, rail, lineWidth } = METRICS[orientation];
-  const railOf = new Map(lines.map((l, i) => [l.id, i * rail]));
+export function layoutNetwork(lines: LayoutLine[], stops: LayoutStop[], col = COL): NetworkLayout {
+  const railOf = new Map(lines.map((l, i) => [l.id, i * RAIL]));
   const orderOf = new Map(lines.map((l, i) => [l.id, i]));
   const sorted = [...stops].sort((a, b) => a.at - b.at);
-  const gap = lineWidth * BUNDLE_GAP;
+  const gap = LINE_WIDTH * BUNDLE_GAP;
 
   const placed: PlacedStop[] = sorted.map((s, i) => {
     const known = s.lines.filter((l) => railOf.has(l));
@@ -117,22 +108,9 @@ export function layoutNetwork(
   });
 
   const width = placed.length ? placed[placed.length - 1].x : 0;
-  const height = (lines.length - 1) * rail;
+  const height = (lines.length - 1) * RAIL;
 
-  if (orientation === "wide") {
-    return { orientation, width, height, lineWidth, lines: routed, stops: placed, zones };
-  }
-  // Tall: time runs downward, rails spread across the width.
-  const swap = <T extends Point>(p: T): T => ({ ...p, x: p.y, y: p.x });
-  return {
-    orientation,
-    width: height,
-    height: width,
-    lineWidth,
-    lines: routed.map((l) => ({ id: l.id, points: l.points.map(swap) })),
-    stops: placed.map(swap),
-    zones,
-  };
+  return { width, height, lineWidth: LINE_WIDTH, lines: routed, stops: placed, zones };
 }
 
 /** Rounds a polyline's corners; used by both the SVG and the 3D ribbons. */

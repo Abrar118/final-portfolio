@@ -28,7 +28,7 @@ Next.js 15 App Router with React 19. Uses `@/*` path alias mapped to project roo
 The site is a transit map of the career: each stack is a line, each project or job a station, and interchanges show where stacks meet. The map is generated from data, so it is an accurate index and not decoration.
 
 - `data/network.ts` — the seven lines, non-project stops (jobs, research, contests), routes and résumé URL. Projects join lines automatically by matching their `stack`.
-- `lib/network-layout.ts` — pure geometry: rails, 45° bends, bundles at interchanges, year zones. `wide` and `tall` (phones) orientations.
+- `lib/network-layout.ts` — pure geometry: rails, 45° bends, bundles at interchanges, year zones.
 - `lib/network-labels.ts` — scores label positions against tracks, stations and other labels.
 - `components/network/NetworkWorld.ts` — framework-free three.js model on a lit enamel plate. Lazy-loaded as its own chunk; never import it statically.
 - `components/network/NetworkStage.tsx` — fixed behind every page. Paints the flat SVG (`FlatMap.tsx`), loads the model in idle time, positions station labels as real links, and maps route to camera view.
@@ -39,7 +39,7 @@ Map mode (`3d`/`flat`) persists in localStorage (`network-map-mode`); defaults t
 
 ### Routes
 
-- Phones get the wide map at full scale with sideways swiping; only the flat fallback turns on end (`tall`).
+- Phones get the map at full height with sideways swiping, in both 3D and flat modes.
 - `/` — Full-bleed draggable model + sign with avatar, career figures, four featured projects as colour fields, the seven lines
 - `/projects` — Work list beside the live map, which turns on end on desktop; pointing at a row lifts its station
 - `/projects/[slug]` — Statically generated; camera flies to the station, other lines drain
@@ -66,7 +66,7 @@ To add a project: add an entry to `data/home/projects.tsx` with a unique `slug`,
 
 - `three` — the model (dynamic import only).
 - `zustand` — map store.
-- `lucide-react` for UI icons; `developer-icons` and `react-icons` for brands.
+- `lucide-react` for UI icons; `react-icons` for brands.
 - `@emailjs/browser`, `sonner`.
 
 ### Images

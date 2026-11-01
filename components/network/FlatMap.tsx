@@ -17,6 +17,7 @@ export default function FlatMap({
   majorIds,
   hollowIds,
   style,
+  svgRef,
 }: {
   layout: NetworkLayout;
   keptLines: LineId[] | null;
@@ -24,13 +25,13 @@ export default function FlatMap({
   majorIds: string[];
   hollowIds: string[];
   style?: React.CSSProperties;
+  svgRef?: React.Ref<SVGSVGElement>;
 }) {
-  const wide = layout.orientation === "wide";
   const pad = FLAT_PADDING;
-  const span = wide ? layout.height : layout.width;
 
   return (
     <svg
+      ref={svgRef}
       className="flat-map"
       style={style}
       viewBox={`${-pad} ${-pad} ${layout.width + pad * 2} ${layout.height + pad * 2}`}
@@ -42,10 +43,10 @@ export default function FlatMap({
           <rect
             key={z.year}
             className="flat-zone"
-            x={wide ? z.from : -pad * 40}
-            y={wide ? -pad * 40 : z.from}
-            width={wide ? z.to - z.from : span + pad * 80}
-            height={wide ? span + pad * 80 : z.to - z.from}
+            x={z.from}
+            y={-pad * 40}
+            width={z.to - z.from}
+            height={layout.height + pad * 80}
           />
         ) : null,
       )}
@@ -71,10 +72,10 @@ export default function FlatMap({
           <rect
             key={s.id}
             className={`flat-stop ${dimmed ? "flat-drained" : ""} ${hollow ? "flat-hollow" : ""}`}
-            x={s.x - r - (wide ? 0 : s.span)}
-            y={s.y - r - (wide ? s.span : 0)}
-            width={r * 2 + (wide ? 0 : s.span * 2)}
-            height={r * 2 + (wide ? s.span * 2 : 0)}
+            x={s.x - r}
+            y={s.y - r - s.span}
+            width={r * 2}
+            height={r * 2 + s.span * 2}
             rx={r}
             strokeWidth={focused ? 0.5 : 0.28}
           />

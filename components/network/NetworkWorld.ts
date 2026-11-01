@@ -88,15 +88,10 @@ const ribbonShape = (path: Point[], halfWidth: number) => {
   return new THREE.Shape([...left, ...right.reverse()]);
 };
 
-const capsuleShape = (halfLength: number, radius: number, vertical: boolean) => {
+const capsuleShape = (halfLength: number, radius: number) => {
   const s = new THREE.Shape();
-  if (vertical) {
-    s.absarc(0, halfLength, radius, 0, Math.PI, false);
-    s.absarc(0, -halfLength, radius, Math.PI, Math.PI * 2, false);
-  } else {
-    s.absarc(halfLength, 0, radius, -Math.PI / 2, Math.PI / 2, false);
-    s.absarc(-halfLength, 0, radius, Math.PI / 2, (Math.PI * 3) / 2, false);
-  }
+  s.absarc(0, halfLength, radius, 0, Math.PI, false);
+  s.absarc(0, -halfLength, radius, Math.PI, Math.PI * 2, false);
   s.closePath();
   return s;
 };
@@ -260,11 +255,10 @@ export class NetworkWorld {
 
   private buildZones() {
     const { layout: l } = this;
-    const wide = l.orientation === "wide";
-    const crossLength = (wide ? l.height : l.width) + 2400;
+    const crossLength = l.height + 2400;
     l.zones.forEach((zone, i) => {
       const length = zone.to - zone.from;
-      const geom = new THREE.PlaneGeometry(wide ? length : crossLength, wide ? crossLength : length);
+      const geom = new THREE.PlaneGeometry(length, crossLength);
       const mat = new THREE.MeshPhysicalMaterial({
         color: this.theme.zone,
         roughness: 0.66,
@@ -276,7 +270,7 @@ export class NetworkWorld {
       const mesh = new THREE.Mesh(geom, mat);
       mesh.rotation.x = -Math.PI / 2;
       const along = (zone.from + zone.to) / 2;
-      mesh.position.set(wide ? along : this.center.x, 0, wide ? this.center.z : along);
+      mesh.position.set(along, 0, this.center.z);
       mesh.visible = i % 2 === 0;
       mesh.receiveShadow = true;
       this.scene.add(mesh);
@@ -332,7 +326,6 @@ export class NetworkWorld {
 
   private buildStations() {
     const { layout: l, opts } = this;
-    const wide = l.orientation === "wide";
     const topHeight = Math.max(...this.tracks.map((t) => t.height)) + 0.12;
     const extrude = (shape: THREE.Shape, depth: number) => {
       const g = new THREE.ExtrudeGeometry(shape, {
@@ -354,9 +347,9 @@ export class NetworkWorld {
       group.position.set(stop.x, 0, stop.y);
 
       const ringMat = new THREE.MeshPhysicalMaterial({ color: this.theme.ring, roughness: 0.3, clearcoat: 1 });
-      const ringShape = capsuleShape(stop.span, r, wide);
+      const ringShape = capsuleShape(stop.span, r);
       // The unbuilt station is a real ring: you see the plate through it.
-      if (hollow) ringShape.holes.push(capsuleShape(stop.span, r * 0.7, wide));
+      if (hollow) ringShape.holes.push(capsuleShape(stop.span, r * 0.7));
       const ring = new THREE.Mesh(extrude(ringShape, topHeight), ringMat);
       ring.castShadow = true;
       group.add(ring);
@@ -365,7 +358,7 @@ export class NetworkWorld {
       const faceMat = new THREE.MeshPhysicalMaterial({ color: this.theme.station, roughness: 0.22, clearcoat: 1 });
       // The hollow stop's disc sits just under its rim, above the track that ends here.
       const faceHeight = hollow ? topHeight - 0.06 : topHeight + 0.05;
-      const face = new THREE.Mesh(extrude(capsuleShape(stop.span, hollow ? r * 0.7 : r * 0.62, wide), faceHeight), faceMat);
+      const face = new THREE.Mesh(extrude(capsuleShape(stop.span, hollow ? r * 0.7 : r * 0.62), faceHeight), faceMat);
       group.add(face);
       if (hollow) faceMat.color.set(this.theme.plate);
       else this.stationMats.push(faceMat);
@@ -565,10 +558,7 @@ export class NetworkWorld {
       if (s) {
         this.goalTarget.set(s.x, 0, s.z);
         // Nothing lies beyond the last station: look back along the line.
-        if (s.hollow) {
-          if (l.orientation === "wide") this.goalTarget.x -= 12;
-          else this.goalTarget.z -= 9;
-        }
+        if (s.hollow) this.goalTarget.x -= 12;
         this.goalDistance = s.hollow
           ? fit(this.narrow ? 24 : 40, 7, 0.92)
           : fit(this.narrow ? 24 : 46, 20, 0.92);
@@ -592,8 +582,7 @@ export class NetworkWorld {
       }
     }
 
-    const wideMap = l.orientation === "wide";
-    const overview = fit(l.width, l.height, wideMap ? 0.7 : 0.5);
+    const overview = fit(l.width, l.height, 0.7);
     if (focus) {
       // Drift toward what is being read, without losing the whole map.
       this.goalTarget.set(
@@ -608,8 +597,8 @@ export class NetworkWorld {
       if (this.narrow) this.goalTarget.x = l.width * 0.66;
       this.goalDistance = overview;
     }
-    this.goalPolar = wideMap ? 0.7 : 0.5;
-    this.goalAzimuth = wideMap ? -0.07 : -0.05;
+    this.goalPolar = 0.7;
+    this.goalAzimuth = -0.07;
   }
 
   private applyTheme(theme: WorldTheme) {
@@ -769,10 +758,8 @@ export class NetworkWorld {
         y: (-this.projector.y * 0.5 + 0.5) * this.height,
       });
     });
-    const wide = this.layout.orientation === "wide";
     this.layout.zones.forEach((zone) => {
-      const along = zone.from + 2.4;
-      this.projector.set(wide ? along : -5, 0, wide ? -5 : along).project(this.camera);
+      this.projector.set(zone.from + 2.4, 0, -5).project(this.camera);
       this.projected.push({
         id: `zone-${zone.year}`,
         x: (this.projector.x * 0.5 + 0.5) * this.width,
