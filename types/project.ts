@@ -14,7 +14,6 @@ export type Project = {
   slug?: string;
   stack?: {
     name: string;
-    Icon: React.ReactNode;
   }[];
   content?: React.ReactNode | string;
   features?: string[];
