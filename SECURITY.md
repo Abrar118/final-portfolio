@@ -10,8 +10,7 @@ Only the `master` branch, which is what the live site at https://www.abrarmahire
 
 ## Changes to `master`
 
-`master` is protected by a repository ruleset:
+`master` is protected by two repository rulesets:
 
-- Every change goes through a pull request.
-- Only the repository owner, Abrar118, can merge.
-- Force pushes and deleting the branch are blocked.
+- Only the repository owner, Abrar118, can merge or otherwise update it. Everyone else is blocked, and the owner does this by bypassing the rule.
+- Force pushes and deleting the branch are blocked for everyone, including the owner.
