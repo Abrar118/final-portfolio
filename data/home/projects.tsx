@@ -31,45 +31,23 @@ import {
   Slack,
 } from "developer-icons";
 
-import astrynLanding from "@/public/projects/astryn/landing.png";
 import astrynDashboard from "@/public/projects/astryn/dashboard.png";
-import astrynCalendar from "@/public/projects/astryn/calendar.png";
-import astrynCalendarSchedule from "@/public/projects/astryn/calendar-schedule.png";
-import astrynIssuesList from "@/public/projects/astryn/issues-list.png";
-import astrynIssuesListGrouped from "@/public/projects/astryn/issues-list-grouped.png";
-import astrynIssuesBoard from "@/public/projects/astryn/issues-board.png";
-import astrynIssueDetail from "@/public/projects/astryn/issue-detail.png";
-import astrynIssueEditor from "@/public/projects/astryn/issue-editor.png";
-import astrynIssueContextMenu from "@/public/projects/astryn/issue-context-menu.png";
+import astrynDashboardLight from "@/public/projects/astryn/dashboard-light.png";
 import astrynThisWeek from "@/public/projects/astryn/this-week.png";
-import astrynThisWeekDays from "@/public/projects/astryn/this-week-days.png";
-import astrynDependencyGraph from "@/public/projects/astryn/dependency-graph.png";
+import astrynCalendar from "@/public/projects/astryn/calendar.png";
+import astrynTasksBoard from "@/public/projects/astryn/tasks-board.png";
+import astrynIssues from "@/public/projects/astryn/issues.png";
+import astrynSplit from "@/public/projects/astryn/split.png";
+import astrynDependencies from "@/public/projects/astryn/dependencies.png";
 import astrynPullRequests from "@/public/projects/astryn/pull-requests.png";
-import astrynPrOverview from "@/public/projects/astryn/pr-overview.png";
-import astrynPrDiff from "@/public/projects/astryn/pr-diff.png";
 import astrynSlack from "@/public/projects/astryn/slack.png";
-import astrynDocs from "@/public/projects/astryn/docs.png";
 import astrynReports from "@/public/projects/astryn/reports.png";
-import astrynInbox from "@/public/projects/astryn/inbox.png";
-import astrynSplitView from "@/public/projects/astryn/split-view.png";
-import astrynCommandPalette from "@/public/projects/astryn/command-palette.png";
-import astrynSettings from "@/public/projects/astryn/settings.png";
 
 import crimeLensLanding from "@/public/projects/crimelens/landing.png";
 import quickDevLanding from "@/public/projects/quickdev/landing.png";
 import acpscmLanding from "@/public/projects/acpscm/landing.png";
 import acpscm2 from "@/public/projects/acpscm/acp2.png";
 import acpscm3 from "@/public/projects/acpscm/acp3.png";
-import spendSplitLanding from "@/public/projects/spendsplit/landing.jpeg";
-import spend1 from "@/public/projects/spendsplit/spend1.png";
-import spend2 from "@/public/projects/spendsplit/spend2.png";
-import spend3 from "@/public/projects/spendsplit/spend3.png";
-import spend4 from "@/public/projects/spendsplit/spend4.png";
-import spend5 from "@/public/projects/spendsplit/spend5.png";
-import spend6 from "@/public/projects/spendsplit/spend6.png";
-import spend7 from "@/public/projects/spendsplit/spend7.png";
-import nudgeGoalsOverview from "@/public/projects/nudge/goals-overview.png";
-import nudgeGoalDetail from "@/public/projects/nudge/goal-detail.png";
 
 import eduVerse from "@/public/projects/eduverse/landing.png";
 import edu2 from "@/public/projects/eduverse/edu2.png";
@@ -94,23 +72,433 @@ import rhub2 from "@/public/projects/rhub/rhub2.png";
 import rhub3 from "@/public/projects/rhub/rhub3.png";
 import rhub4 from "@/public/projects/rhub/rhub4.png";
 
-import javaLanding from "@/public/projects/java/langing.png";
-import java2 from "@/public/projects/java/java2.png";
-import java5 from "@/public/projects/java/java5.png";
-import java4 from "@/public/projects/java/java4.png";
-import matbankLanding from "@/public/projects/java/matbank-landing.png";
-import matbankDashboard from "@/public/projects/java/matbank-dashboard.png";
-import matbankHistory from "@/public/projects/java/matbank-history.png";
-import matbankCurrency from "@/public/projects/java/matbank-currency.png";
-import matbankAdminClients from "@/public/projects/java/matbank-admin-clients.png";
 
 import elyriaLanding from "@/public/projects/landing-elyria.png";
 import promptLanding from "@/public/projects/landing-prompt.png";
 import sniffPawsLanding from "@/public/projects/foster.png";
 
+import psycloudLanding from "@/public/projects/psycloud/landing.png";
+import psycloudQuestionnaires from "@/public/projects/psycloud/questionnaires.png";
+import psycloudPracticeDay from "@/public/projects/psycloud/practice-day.png";
+import psycloudLogin from "@/public/projects/psycloud/login.png";
+import softcarHome from "@/public/projects/softcar/home.png";
+import softcarPlatform from "@/public/projects/softcar/platform.png";
+import softcarInsurance from "@/public/projects/softcar/insurance.png";
+import softcarPricing from "@/public/projects/softcar/pricing.png";
+import nudgeFocus from "@/public/projects/nudge/focus.png";
+import nudgeCalendar from "@/public/projects/nudge/calendar.png";
+import nudgeHabits from "@/public/projects/nudge/habits.png";
+import nudgeGoalDetail from "@/public/projects/nudge/goal-detail.png";
+import nudgeSettings from "@/public/projects/nudge/settings.png";
+import spendHome from "@/public/projects/spendsplit/01-home.png";
+import spendHistory from "@/public/projects/spendsplit/02-history.png";
+import spendAddEntry from "@/public/projects/spendsplit/03-add-entry.png";
+import spendMonthly from "@/public/projects/spendsplit/04-monthly.png";
+import spendGraphs from "@/public/projects/spendsplit/05-graphs.png";
+import spendGoals from "@/public/projects/spendsplit/06-goals.png";
+import spendDollarTracker from "@/public/projects/spendsplit/07-dollar-tracker.png";
+import spendSettings from "@/public/projects/spendsplit/08-settings.png";
+import spendLock from "@/public/projects/spendsplit/09-lock.png";
+import flowOverview from "@/public/projects/claude-workflow/overview.png";
+import flowAgentsRunning from "@/public/projects/claude-workflow/agents-running.png";
+import flowAgentPanel from "@/public/projects/claude-workflow/agent-panel.png";
+import flowAssumptionLog from "@/public/projects/claude-workflow/assumption-log.png";
+import flowPromptDeck from "@/public/projects/claude-workflow/prompt-deck.png";
+import flowStatusline from "@/public/projects/claude-workflow/statusline.png";
+import bankDashboard from "@/public/projects/java/dashboard.png";
+import bankDashboardDark from "@/public/projects/java/dashboard-dark.png";
+import bankWelcome from "@/public/projects/java/welcome.png";
+import bankSendMoney from "@/public/projects/java/send-money.png";
+import bankScheduledPayments from "@/public/projects/java/scheduled-payments.png";
+import bankStatements from "@/public/projects/java/statements.png";
+import bankHistory from "@/public/projects/java/history.png";
+import bankCurrency from "@/public/projects/java/currency.png";
+import bankAdminOverview from "@/public/projects/java/admin-overview.png";
+import bankAdminClients from "@/public/projects/java/admin-clients.png";
+
 export const iconSize = 24;
 
 export const projects: Project[] = [
+  {
+    href: "https://www.psycloud.ai/",
+    links: [{ label: "Dashboard", href: "https://app.psycloud.ai/login" }],
+    title: "Psycloud",
+    description:
+      "Clinical platform for psychotherapy practices, serving 1,000+ users: practitioner dashboard, assessment engine, and a backend built to EU data-protection rules",
+    thumbnail: psycloudLanding,
+    images: [psycloudLanding, psycloudQuestionnaires, psycloudPracticeDay, psycloudLogin],
+    stack: [
+      { name: "Next.js", Icon: <NextJs size={iconSize} /> },
+      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
+      { name: "FastAPI", Icon: <Python size={iconSize} /> },
+      { name: "PostgreSQL", Icon: <PostgreSQL size={iconSize} /> },
+      { name: "Redis", Icon: null },
+      { name: "Docker", Icon: null },
+    ],
+    slug: "psycloud",
+    category: "web",
+    year: "2025",
+    at: 2025.62,
+    lines: ["C", "T"],
+    context: "1,000+ users · Principal architect at Bengal Byte",
+    content: (
+      <div className="space-y-3">
+        <p>
+          Psycloud is built by GAM Medical for psychotherapy practices. I was
+          principal architect and one of the first engineers on it at Bengal
+          Byte, designing its core systems and the engineering conventions the team
+          still builds on. It now serves over 1,000 users.
+        </p>
+        <p>
+          I built the practitioner dashboard for patient records, case
+          histories and treatment data, and the assessment engine that scores
+          questionnaires and tracks patient progress between sessions. The
+          backend services, data models and REST APIs behind them keep patient
+          health data confidential and compliant with EU data-protection rules.
+        </p>
+      </div>
+    ),
+    features: [
+      "Practitioner dashboard for patient records, case histories and treatment data",
+      "Assessment engine that scores questionnaires and tracks progress between sessions",
+      "Backend services, data models and REST APIs handling health data under EU data-protection rules",
+      "Test-driven delivery, with manual code review layered on multi-agent AI review before every merge",
+    ],
+  },
+  {
+    href: "https://softcartech.com/",
+    title: "SoftCar",
+    description:
+      "Car rental and fleet insurance platform. At Nyntax I built React and Express features for its insurance, booking and admin modules",
+    thumbnail: softcarHome,
+    images: [softcarHome, softcarPlatform, softcarInsurance, softcarPricing],
+    stack: [
+      { name: "React 18", Icon: <React size={iconSize} /> },
+      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
+      { name: "Express.js", Icon: <ExpressJsDark size={iconSize} /> },
+      { name: "MongoDB", Icon: <MongoDB size={iconSize} /> },
+    ],
+    slug: "softcar",
+    category: "web",
+    year: "2025",
+    at: 2025.3,
+    lines: ["C", "T"],
+    context: "Built at Nyntax",
+    content: (
+      <div className="space-y-3">
+        <p>
+          SoftCar brings direct bookings, reservations, payments, renter
+          screening and fleet insurance into one platform for car rental
+          operators. I worked on it as a full-stack developer at Nyntax.
+        </p>
+        <p>
+          I built React and Express.js features on MongoDB for the insurance,
+          booking and admin modules, and migrated legacy JavaScript to
+          type-safe TypeScript across a mixed-stack codebase.
+        </p>
+      </div>
+    ),
+    features: [
+      "Insurance, booking and admin modules in React and Express.js on MongoDB",
+      "Migration of legacy JavaScript to type-safe TypeScript across a mixed-stack codebase",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/spendsplit",
+    title: "SpendSplit",
+    description:
+      "Offline-only expense tracker that splits one bank balance into Available and Savings, with a biometric lock and a separate USD tracker",
+    thumbnail: spendHome,
+    images: [spendHome, spendHistory, spendAddEntry, spendMonthly, spendGraphs, spendGoals, spendDollarTracker, spendSettings, spendLock],
+    stack: [
+      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
+      { name: "Riverpod", Icon: <Dart size={iconSize} /> },
+      { name: "Drift (SQLite)", Icon: <MySQL size={iconSize} /> },
+      { name: "GoRouter", Icon: <Dart size={iconSize} /> },
+      { name: "fl_chart", Icon: <ViteJS size={iconSize} /> },
+    ],
+    slug: "spendsplit",
+    category: "mobile",
+    year: "2026",
+    context: "Personal finance app · v1.3.0",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A minimalist expense tracker for iOS and Android with no cloud, no
+          accounts and no sync. All data lives on the device in SQLite, and
+          sensitive settings stay in the platform keystore.
+        </p>
+        <p>
+          Every figure is derived from the entries and never stored, so the
+          ledger is always the source of truth. Bank SMS alerts become entries
+          flagged for review: Android reads them directly, and iOS takes them
+          through a Shortcuts automation.
+        </p>
+      </div>
+    ),
+    features: [
+      "Split balance: Available and Savings, derived from entries and never stored",
+      "Monthly budget with a pace marker and per-category budgets",
+      "Graphs: running spend, 12-month income overlay, daily heatmap and balance trend",
+      "Savings goals with a completion forecast from your saving pace",
+      "Separate USD ledger with an annual allowance and year-end projection",
+      "Bank SMS import, flagged for review, with a balance check on Home",
+      "CSV and PDF export, CSV import, and a full JSON backup",
+      "Biometric lock, with balances hidden in the app switcher",
+    ],
+    pages: ["Home", "History", "New entry", "Monthly", "Graphs", "Goals", "Dollar Tracker", "Settings", "Lock"],
+  },
+  {
+    github: "https://github.com/Abrar118/todo_list",
+    title: "Nudge",
+    description:
+      "Local-first task manager for Android and iOS: important tasks stay visible and keep reminding you until they are handled",
+    thumbnail: nudgeFocus,
+    images: [nudgeFocus, nudgeCalendar, nudgeHabits, nudgeGoalDetail, nudgeSettings],
+    stack: [
+      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
+      { name: "Dart", Icon: <Dart size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "Local notifications", Icon: <Dart size={iconSize} /> },
+    ],
+    slug: "nudge",
+    category: "mobile",
+    year: "2026",
+    context: "Personal productivity app · v2.0.0",
+    content: (
+      <div className="space-y-3">
+        <p>
+          No accounts, no backend, no analytics: everything stays on the device.
+          The Focus tab shows a streak, one spotlight task, then overdue, today
+          and up-next lists.
+        </p>
+        <p>
+          Tasks that keep being put off climb back into the spotlight with a
+          &quot;Put off N times&quot; marker and a daily nudge once their
+          reminders have fired. Quiet hours shift reminders and never drop them.
+        </p>
+      </div>
+    ),
+    features: [
+      "Escalation engine for tasks that are snoozed, deferred or left overdue",
+      "Natural-language quick add with tags, such as \"call mom tomorrow 5pm\"",
+      "Fixed or repeat-after-completion recurrence, with custom rules",
+      "Multiple reminders, opt-in persistent alarms, quiet hours and snooze",
+      "Daily and monthly habits with check-ins, timers, checkpoints and streaks",
+      "Goals with checkpoints and a progress chart",
+      "Pomodoro focus timer that credits time to the task",
+      "Home-screen widgets with deep links, and eight colour palettes",
+      "JSON export and import, and .ics export",
+    ],
+    pages: ["Focus", "Calendar", "Habits", "Goals", "Settings"],
+  },
+  {
+    github: "https://github.com/Abrar118/astryn",
+    title: "Astryn",
+    description:
+      "Local-first desktop command center that pulls Linear, GitHub, Slack, and documentation into one tabbed Tauri workspace — with generated standup and weekly reports",
+    thumbnail: astrynDashboard,
+    images: [
+      astrynDashboard,
+      astrynDashboardLight,
+      astrynThisWeek,
+      astrynCalendar,
+      astrynTasksBoard,
+      astrynIssues,
+      astrynSplit,
+      astrynDependencies,
+      astrynPullRequests,
+      astrynSlack,
+      astrynReports,
+    ],
+    stack: [
+      { name: "Tauri 2", Icon: <RustDark size={iconSize} /> },
+      { name: "Rust", Icon: <RustDark size={iconSize} /> },
+      { name: "React 19", Icon: <React size={iconSize} /> },
+      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
+      { name: "TanStack Query", Icon: <ReactQuery size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "GitHub API", Icon: <GitHubDark size={iconSize} /> },
+      { name: "Slack API", Icon: <Slack size={iconSize} /> },
+    ],
+    slug: "astryn",
+    category: "desktop",
+    year: "2026",
+    context: "Personal command center · v5.0.1",
+    content: (
+      <div className="space-y-3">
+        <p>
+          A desktop workspace for the surfaces a working day actually touches.
+          It began as a power client for Linear — issues on a real calendar
+          with drag-to-reschedule, list and Kanban views, a Markdown editor
+          with threaded comments, and a dependency graph — and grew to carry
+          GitHub pull requests, a Slack catch-up board, and a cached
+          documentation browser in the same tabbed, splittable window.
+        </p>
+        <p>
+          The Rust core owns everything sensitive: credentials live in the OS
+          keychain, every Linear, GitHub, Slack, and LLM call runs in Rust
+          behind typed Tauri commands, and SQLite backs a local-first cache
+          with optimistic updates and background sync. Standup and weekly
+          reports are generated deterministically from that cache first, with
+          an optional prose pass over any OpenAI-compatible endpoint — so the
+          facts survive even when the model does not.
+        </p>
+      </div>
+    ),
+    features: [
+      "Dashboard ranking what needs attention across Linear, GitHub, Slack, and Inbox",
+      "Calendar with drag-to-reschedule and an unscheduled rail",
+      "List and Kanban views with display controls that persist across launches",
+      "Markdown issue editor with comments, reactions, mentions, and Mermaid diagrams",
+      "Dependency graph of issue hierarchy and blocks/related relations",
+      "GitHub PR workspace with unified diffs and CI, review, and conflict badges",
+      "Slack catch-up board and a synced, offline-readable docs browser",
+      "Daily scrum and weekly review generators — deterministic facts, optional LLM prose",
+      "Two-pane split workspace, browser-style tabs, and a ⌘K command palette",
+      "Keychain-secured credentials — the webview never sees a token",
+    ],
+    pages: [
+      "Dashboard",
+      "Calendar",
+      "Issues",
+      "This Week",
+      "Dependencies",
+      "Pull Requests",
+      "Slack",
+      "Docs",
+      "Reports",
+      "Inbox",
+      "Settings",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/QuickDev",
+    title: "QuickDev",
+    description:
+      "Cross-platform Rust CLI that saves and launches a project's terminal tabs and applications with one command",
+    thumbnail: quickDevLanding,
+    images: [quickDevLanding],
+    stack: [
+      { name: "Rust", Icon: <RustDark size={iconSize} /> },
+      { name: "fzf", Icon: <Bash size={iconSize} /> },
+      { name: "TOML", Icon: <Prettier size={iconSize} /> },
+    ],
+    slug: "quickdev",
+    category: "desktop",
+    year: "2025",
+    context: "On crates.io and npm · v0.5.0 · 530 downloads/week at peak",
+    content: (
+      <div className="space-y-3">
+        <p>
+          Every time you start on a project you open the same terminals, go to
+          the same directories, run the same commands and launch the same apps.
+          QuickDev removes that repetition: configure once in a per-project
+          <code> .quickdev.toml</code>, then <code>quickdev launch</code> opens
+          everything, from anywhere.
+        </p>
+        <p>
+          It runs on macOS, Linux and Windows, ships through crates.io, npm and
+          prebuilt binaries, and is written in asynchronous Rust.
+        </p>
+      </div>
+    ),
+    features: [
+      "Terminal tabs with working directories and startup commands",
+      "Application launching with tool detection for VS Code, Cursor and Zed",
+      "Capture running apps into the project config on macOS",
+      "Interactive fzf pickers for adding, removing and selectively launching",
+      "Global project index, config templates and recent-first ordering",
+      "Diagnostics with doctor, validate and prune, with --json for CI",
+      "Shell completion for bash, zsh, fish and PowerShell",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/claude-workflow",
+    title: "claude-workflow",
+    description:
+      "My Claude Code setup as an installable plugin marketplace: 11 mods I built, a skill, a status line and a one-script install",
+    thumbnail: flowOverview,
+    images: [flowOverview, flowAgentsRunning, flowAgentPanel, flowAssumptionLog, flowPromptDeck, flowStatusline],
+    stack: [
+      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
+      { name: "Claude Code plugins", Icon: null },
+      { name: "Bash", Icon: <Bash size={iconSize} /> },
+    ],
+    slug: "claude-workflow",
+    category: "desktop",
+    year: "2026",
+    context: "Open-source developer tooling",
+    content: (
+      <div className="space-y-3">
+        <p>
+          Mods are Claude Code plugins that change the interface or hook into
+          what Claude does. Install all of them with one script, or pick single
+          ones from the plugin marketplace. They work on macOS, Linux and
+          Windows, including both of Claude Code&apos;s Windows shells.
+        </p>
+        <p>
+          They cover the things I wanted while working: a side pane of agents
+          and background jobs, a reviewable log of the assumptions Claude makes,
+          a usage band above the prompt, and guards that stop force pushes or
+          block a push when checks fail.
+        </p>
+      </div>
+    ),
+    features: [
+      "agent-panel: tasks, background jobs, agents and a live file tree in a side pane",
+      "assumption-log: mark each assumption Claude makes as right or wrong",
+      "prompt-deck and turn-meter: context, usage, cost and git health above the prompt",
+      "prompt-queue: save prompt ideas while Claude works",
+      "safety-guard and push-preflight: ask before risky commands, block failing pushes",
+      "verify-outside-feedback: a skill that checks pasted reviews claim by claim",
+    ],
+  },
+  {
+    github: "https://github.com/Abrar118/Final_bank",
+    title: "MAT Bank",
+    description:
+      "Desktop banking app first built by three students in 2022 and rebuilt in 2026: exact-money ledger, bcrypt sign-in, native installers and 84 tests",
+    thumbnail: bankDashboard,
+    images: [bankDashboard, bankDashboardDark, bankWelcome, bankSendMoney, bankScheduledPayments, bankStatements, bankHistory, bankCurrency, bankAdminOverview, bankAdminClients],
+    stack: [
+      { name: "Java 21", Icon: <Java size={iconSize} /> },
+      { name: "JavaFX 21", Icon: <Java size={iconSize} /> },
+      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
+      { name: "JUnit", Icon: <Java size={iconSize} /> },
+      { name: "GitHub Actions", Icon: <GitHubDark size={iconSize} /> },
+    ],
+    slug: "bank-system",
+    category: "desktop",
+    year: "2026",
+    at: 2026.2,
+    context: "Rebuild of a 2022 course project · v2.0",
+    content: (
+      <div className="space-y-3">
+        <p>
+          MAT Bank began in 2022 as a JavaFX course project at MIST, by me,
+          Mehmil Khan and Farheen Mahjarin Trisha. Version 2.0 keeps the same
+          screens and ideas and replaces the foundations underneath.
+        </p>
+        <p>
+          Text files became SQLite with versioned migrations. Money moved from
+          doubles to exact integer poisha in one ledger with running balances.
+          Plain-text passwords became bcrypt hashes with lockout and an audit
+          log, and transfers now run in one all-or-nothing database transaction.
+        </p>
+      </div>
+    ),
+    features: [
+      "Exact integer money in one ledger with running balances",
+      "bcrypt passwords, lockout after 5 attempts, and an audit log",
+      "All-or-nothing transfers in a single database transaction",
+      "PDF statements, scheduled payments, live exchange rates and search",
+      "One window with light and dark themes",
+      "84 JUnit tests, including UI flows on a virtual display",
+      "Native deb, dmg and msi installers built by GitHub Actions",
+    ],
+    pages: ["Welcome", "Dashboard", "Send money", "Scheduled payments", "Statements", "History", "Currency", "Admin"],
+  },
   {
     href: "https://crimelens-one.vercel.app",
     github: "https://github.com/Abrar118/crimelens",
@@ -161,194 +549,6 @@ export const projects: Project[] = [
       "Heatmap",
       "Alerts & Updates",
       "Profile",
-    ],
-  },
-  {
-    github: "https://github.com/Abrar118/astryn",
-    title: "Astryn",
-    description:
-      "Local-first desktop command center that pulls Linear, GitHub, Slack, and documentation into one tabbed Tauri workspace — with generated standup and weekly reports",
-    thumbnail: astrynLanding,
-    images: [
-      astrynLanding,
-      astrynDashboard,
-      astrynCalendar,
-      astrynCalendarSchedule,
-      astrynIssuesList,
-      astrynIssuesListGrouped,
-      astrynIssuesBoard,
-      astrynIssueDetail,
-      astrynIssueEditor,
-      astrynIssueContextMenu,
-      astrynThisWeek,
-      astrynThisWeekDays,
-      astrynDependencyGraph,
-      astrynPullRequests,
-      astrynPrOverview,
-      astrynPrDiff,
-      astrynSlack,
-      astrynDocs,
-      astrynReports,
-      astrynInbox,
-      astrynSplitView,
-      astrynCommandPalette,
-      astrynSettings,
-    ],
-    stack: [
-      { name: "Tauri 2", Icon: <RustDark size={iconSize} /> },
-      { name: "Rust", Icon: <RustDark size={iconSize} /> },
-      { name: "React 19", Icon: <React size={iconSize} /> },
-      { name: "TypeScript", Icon: <TypeScript size={iconSize} /> },
-      { name: "TanStack Query", Icon: <ReactQuery size={iconSize} /> },
-      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
-      { name: "GitHub API", Icon: <GitHubDark size={iconSize} /> },
-      { name: "Slack API", Icon: <Slack size={iconSize} /> },
-    ],
-    slug: "astryn",
-    category: "desktop",
-    year: "2026",
-    context: "Personal command center · v0.4.0",
-    content: (
-      <div className="space-y-3">
-        <p>
-          A desktop workspace for the surfaces a working day actually touches.
-          It began as a power client for Linear — issues on a real calendar
-          with drag-to-reschedule, list and Kanban views, a Markdown editor
-          with threaded comments, and a dependency graph — and grew to carry
-          GitHub pull requests, a Slack catch-up board, and a cached
-          documentation browser in the same tabbed, splittable window.
-        </p>
-        <p>
-          The Rust core owns everything sensitive: credentials live in the OS
-          keychain, every Linear, GitHub, Slack, and LLM call runs in Rust
-          behind typed Tauri commands, and SQLite backs a local-first cache
-          with optimistic updates and background sync. Standup and weekly
-          reports are generated deterministically from that cache first, with
-          an optional prose pass over any OpenAI-compatible endpoint — so the
-          facts survive even when the model does not.
-        </p>
-      </div>
-    ),
-    features: [
-      "Dashboard ranking what needs attention across Linear, GitHub, Slack, and Inbox",
-      "Calendar with drag-to-reschedule and an unscheduled rail",
-      "List and Kanban views with display controls that persist across launches",
-      "Markdown issue editor with comments, reactions, mentions, and Mermaid diagrams",
-      "Dependency graph of issue hierarchy and blocks/related relations",
-      "GitHub PR workspace with unified diffs and CI, review, and conflict badges",
-      "Slack catch-up board and a synced, offline-readable docs browser",
-      "Daily scrum and weekly review generators — deterministic facts, optional LLM prose",
-      "Two-pane split workspace, browser-style tabs, and a ⌘K command palette",
-      "Keychain-secured credentials — the webview never sees a token",
-    ],
-    pages: [
-      "Dashboard",
-      "Calendar",
-      "Issues",
-      "This Week",
-      "Dependencies",
-      "Pull Requests",
-      "Slack",
-      "Docs",
-      "Reports",
-      "Inbox",
-      "Settings",
-    ],
-  },
-  {
-    github: "https://github.com/Abrar118/todo_list",
-    title: "Nudge",
-    description:
-      "Local-first task, habit, and goal manager that keeps important work visible with escalating reminders, progress tracking, and home-screen widgets",
-    thumbnail: nudgeGoalsOverview,
-    images: [nudgeGoalsOverview, nudgeGoalDetail],
-    stack: [
-      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
-      { name: "Dart", Icon: <Dart size={iconSize} /> },
-      { name: "Provider", Icon: <Dart size={iconSize} /> },
-      { name: "SQLite", Icon: <MySQL size={iconSize} /> },
-      { name: "Local Notifications", Icon: <Dart size={iconSize} /> },
-    ],
-    slug: "nudge",
-    category: "mobile",
-    year: "2026",
-    context: "Personal productivity app · v1.0.0",
-    content: (
-      <div className="space-y-3">
-        <p>
-          Nudge is a private, offline-first productivity app built around one
-          promise: important work should remain visible until it is handled.
-          Its Focus screen ranks urgent tasks, resurfaces work that has been
-          deferred repeatedly, and keeps the day readable instead of turning
-          it into an endless backlog.
-        </p>
-        <p>
-          Tasks, daily and monthly habits, and longer-term goals share a
-          consistent progress language. Habits can carry timed checkpoints or
-          tracked sessions, while goals combine target dates, milestones, and
-          manual progress. SQLite keeps everything on-device, with JSON backup
-          and restore for portability.
-        </p>
-      </div>
-    ),
-    features: [
-      "Focus queue with urgency, deferral, and overdue escalation",
-      "Natural-language quick add, tags, full-text search, and rich task details",
-      "Recurring tasks with multiple reminders, quiet hours, snooze, and persistent alarms",
-      "Daily and monthly habits with checkpoints, individual times, and timer tracking",
-      "Goals with target dates, milestone checkpoints, and visual progress tracking",
-      "Calendar export, Pomodoro focus sessions, and interactive home-screen widgets",
-      "Offline SQLite storage with JSON backup and restore",
-    ],
-    pages: [
-      "Focus",
-      "Calendar",
-      "Habits",
-      "Goals",
-      "Task Editor",
-      "Search",
-      "Completed",
-      "Settings",
-    ],
-  },
-  {
-    github: "https://github.com/Abrar118/QuickDev",
-    title: "QuickDev",
-    description:
-      "Cross-platform Rust CLI that launches entire dev environments — terminal tabs, working directories, startup commands, and editors — in a single command",
-    thumbnail: quickDevLanding,
-    images: [quickDevLanding],
-    stack: [
-      { name: "Rust", Icon: <RustDark size={iconSize} /> },
-      { name: "fzf", Icon: <Bash size={iconSize} /> },
-      { name: "TOML", Icon: <Prettier size={iconSize} /> },
-    ],
-    slug: "quickdev",
-    category: "desktop",
-    year: "2025",
-    content: (
-      <div className="space-y-3">
-        <p>
-          A command-line launcher that brings a whole project workspace to
-          life in one command: terminal tabs open in the right directories,
-          startup commands run, and your editor launches — all from a
-          per-project <code>.quickdev.toml</code> with a global project index
-          so any project can be launched from anywhere.
-        </p>
-        <p>
-          Interactive selection is powered by fzf, and an emulator
-          auto-detection and priority system picks the right terminal
-          (Ghostty, Terminal.app, Windows Terminal). Written entirely in
-          asynchronous Rust for fast, dependency-light native execution.
-        </p>
-      </div>
-    ),
-    features: [
-      "Launch terminals, directories, commands, and editors in one command",
-      "Per-project TOML config with a global project index",
-      "Interactive fuzzy selection via fzf",
-      "Terminal emulator auto-detection and priority system",
-      "Asynchronous Rust — fast and dependency-light",
     ],
   },
   {
@@ -507,56 +707,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    github: "https://github.com/Abrar118/spendsplit",
-    title: "SpendSplit",
-    description:
-      "Offline-first personal finance tracker that splits one account into spendable and savings buckets, secured with biometric lock in a dark glassmorphic UI",
-    thumbnail: spendSplitLanding,
-    images: [
-      spendSplitLanding,
-      spend1,
-      spend2,
-      spend3,
-      spend4,
-      spend5,
-      spend6,
-      spend7,
-    ],
-    stack: [
-      { name: "Flutter", Icon: <Flutter size={iconSize} /> },
-      { name: "Riverpod", Icon: <Dart size={iconSize} /> },
-      { name: "Drift (SQLite)", Icon: <MySQL size={iconSize} /> },
-      { name: "GoRouter", Icon: <Dart size={iconSize} /> },
-      { name: "fl_chart", Icon: <ViteJS size={iconSize} /> },
-    ],
-    slug: "spendsplit",
-    category: "mobile",
-    year: "2026",
-    content: (
-      <div className="space-y-3">
-        <p>
-          A personal finance tracker built to work fully offline: one account
-          is split into spendable and savings buckets, with an isolated
-          tracker for foreign currency. All data persists locally through
-          Drift on SQLite.
-        </p>
-        <p>
-          Balances are derived, not stored — totals recompute from the
-          transaction history, so the ledger is always the source of truth.
-          The app locks behind biometrics (local_auth) and visualizes
-          spending with category donut charts.
-        </p>
-      </div>
-    ),
-    features: [
-      "Offline-first with local Drift/SQLite persistence",
-      "Spendable and savings buckets with an isolated foreign-currency tracker",
-      "Derived balance computation from transaction history",
-      "Biometric lock via local_auth",
-      "Category donut charts and spending velocity analytics",
-    ],
-  },
-  {
     href: "https://pioneer-mist-two.vercel.app/",
     title: "MIST Pioneers",
     description:
@@ -673,54 +823,6 @@ export const projects: Project[] = [
       "Community upload and curation system",
     ],
     pages: ["Home", "Resources", "Search", "Categories", "Upload", "Profile"],
-  },
-  {
-    github: "https://github.com/Abrar118/Final_bank",
-    title: "Bank Management System",
-    description:
-      "Desktop banking application with AES-encrypted transactions, multi-threaded sessions, and automated JavaMail alerts",
-    thumbnail: matbankLanding,
-    images: [
-      matbankLanding,
-      matbankDashboard,
-      matbankHistory,
-      matbankCurrency,
-      matbankAdminClients,
-      javaLanding,
-      java2,
-      java4,
-      java5,
-    ],
-    stack: [
-      { name: "JavaFX", Icon: <Java size={iconSize} /> },
-      { name: "Maven", Icon: <Java size={iconSize} /> },
-      { name: "JavaMail", Icon: <Java size={iconSize} /> },
-    ],
-    slug: "bank-system",
-    category: "desktop",
-    year: "2023",
-    context: "SDP-II Course Project",
-    content: (
-      <div className="space-y-3">
-        <p>
-          A desktop banking application built with JavaFX for the Software
-          Development Project course. Implements secure transaction workflows
-          using AES-based data encryption and multi-threaded session handling
-          for concurrent customer operations.
-        </p>
-        <p>
-          JavaMail API sends automated transaction alerts, and NIO file-based
-          persistence manages account records.
-        </p>
-      </div>
-    ),
-    features: [
-      "AES-based data encryption for secure transactions",
-      "Multi-threaded concurrent customer session handling",
-      "Automated transaction alerts via JavaMail API",
-      "NIO file-based persistence layer for account records",
-    ],
-    pages: ["Home", "Accounts", "Transactions", "Email Notifications"],
   },
   {
     href: "https://ai-prompt-ebon.vercel.app/",

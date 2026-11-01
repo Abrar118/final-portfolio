@@ -1,0 +1,848 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T09:49:10.758Z",
+  "title": "Design System: Abrar Mahir Esam",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Vitreous Ground",
+        "canonical": "#e9ebe6",
+        "tonalRamp": [
+          "oklch(15% 0.002 124.5)",
+          "oklch(26% 0.004 124.5)",
+          "oklch(37% 0.006 124.5)",
+          "oklch(48% 0.007 124.5)",
+          "oklch(59% 0.007 124.5)",
+          "oklch(70% 0.006 124.5)",
+          "oklch(82% 0.004 124.5)",
+          "oklch(95% 0.001 124.5)"
+        ]
+      },
+      "ground-deep": {
+        "role": "neutral",
+        "displayName": "Deep Ground",
+        "canonical": "#dcdfd7",
+        "tonalRamp": [
+          "oklch(15% 0.003 123.5)",
+          "oklch(26% 0.007 123.5)",
+          "oklch(37% 0.010 123.5)",
+          "oklch(48% 0.011 123.5)",
+          "oklch(59% 0.011 123.5)",
+          "oklch(70% 0.010 123.5)",
+          "oklch(82% 0.006 123.5)",
+          "oklch(95% 0.002 123.5)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#14171a",
+        "tonalRamp": [
+          "oklch(15% 0.002 248.2)",
+          "oklch(26% 0.005 248.2)",
+          "oklch(37% 0.007 248.2)",
+          "oklch(48% 0.008 248.2)",
+          "oklch(59% 0.008 248.2)",
+          "oklch(70% 0.007 248.2)",
+          "oklch(82% 0.004 248.2)",
+          "oklch(95% 0.001 248.2)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#4a5057",
+        "tonalRamp": [
+          "oklch(15% 0.004 252.2)",
+          "oklch(26% 0.008 252.2)",
+          "oklch(37% 0.013 252.2)",
+          "oklch(48% 0.014 252.2)",
+          "oklch(59% 0.014 252.2)",
+          "oklch(70% 0.012 252.2)",
+          "oklch(82% 0.007 252.2)",
+          "oklch(95% 0.002 252.2)"
+        ]
+      },
+      "rule-soft": {
+        "role": "neutral",
+        "displayName": "Soft Rule",
+        "canonical": "#b9bdb4",
+        "tonalRamp": [
+          "oklch(15% 0.004 126.4)",
+          "oklch(26% 0.008 126.4)",
+          "oklch(37% 0.012 126.4)",
+          "oklch(48% 0.013 126.4)",
+          "oklch(59% 0.013 126.4)",
+          "oklch(70% 0.011 126.4)",
+          "oklch(82% 0.007 126.4)",
+          "oklch(95% 0.002 126.4)"
+        ]
+      },
+      "sign": {
+        "role": "primary",
+        "displayName": "Sign Black",
+        "canonical": "#101316",
+        "tonalRamp": [
+          "oklch(15% 0.002 248.2)",
+          "oklch(26% 0.005 248.2)",
+          "oklch(37% 0.007 248.2)",
+          "oklch(48% 0.008 248.2)",
+          "oklch(59% 0.008 248.2)",
+          "oklch(70% 0.007 248.2)",
+          "oklch(82% 0.004 248.2)",
+          "oklch(95% 0.001 248.2)"
+        ]
+      },
+      "sign-ink": {
+        "role": "primary",
+        "displayName": "Sign Ink",
+        "canonical": "#f4f5f1",
+        "tonalRamp": [
+          "oklch(15% 0.002 117.9)",
+          "oklch(26% 0.003 117.9)",
+          "oklch(37% 0.005 117.9)",
+          "oklch(48% 0.005 117.9)",
+          "oklch(59% 0.005 117.9)",
+          "oklch(70% 0.005 117.9)",
+          "oklch(82% 0.003 117.9)",
+          "oklch(95% 0.001 117.9)"
+        ]
+      },
+      "sign-soft": {
+        "role": "primary",
+        "displayName": "Sign Soft",
+        "canonical": "#b4b9b2",
+        "tonalRamp": [
+          "oklch(15% 0.003 136.6)",
+          "oklch(26% 0.007 136.6)",
+          "oklch(37% 0.010 136.6)",
+          "oklch(48% 0.011 136.6)",
+          "oklch(59% 0.011 136.6)",
+          "oklch(70% 0.010 136.6)",
+          "oklch(82% 0.006 136.6)",
+          "oklch(95% 0.002 136.6)"
+        ]
+      },
+      "frame": {
+        "role": "neutral",
+        "displayName": "Frame Black",
+        "canonical": "#0b0e11",
+        "tonalRamp": [
+          "oklch(15% 0.002 248.3)",
+          "oklch(26% 0.005 248.3)",
+          "oklch(37% 0.007 248.3)",
+          "oklch(48% 0.008 248.3)",
+          "oklch(59% 0.008 248.3)",
+          "oklch(70% 0.007 248.3)",
+          "oklch(82% 0.004 248.3)",
+          "oklch(95% 0.001 248.3)"
+        ]
+      },
+      "on-line": {
+        "role": "neutral",
+        "displayName": "Station White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 89.9)",
+          "oklch(26% 0.000 89.9)",
+          "oklch(37% 0.000 89.9)",
+          "oklch(48% 0.000 89.9)",
+          "oklch(59% 0.000 89.9)",
+          "oklch(70% 0.000 89.9)",
+          "oklch(82% 0.000 89.9)",
+          "oklch(95% 0.000 89.9)"
+        ]
+      },
+      "line-M": {
+        "role": "secondary",
+        "displayName": "Research Violet",
+        "canonical": "#8b2fc9",
+        "tonalRamp": [
+          "oklch(15% 0.064 307.2)",
+          "oklch(26% 0.134 307.2)",
+          "oklch(37% 0.204 307.2)",
+          "oklch(48% 0.224 307.2)",
+          "oklch(59% 0.224 307.2)",
+          "oklch(70% 0.192 307.2)",
+          "oklch(82% 0.115 307.2)",
+          "oklch(95% 0.032 307.2)"
+        ]
+      },
+      "line-F": {
+        "role": "secondary",
+        "displayName": "Signal Yellow",
+        "canonical": "#f5b400",
+        "tonalRamp": [
+          "oklch(15% 0.048 82.3)",
+          "oklch(26% 0.100 82.3)",
+          "oklch(37% 0.152 82.3)",
+          "oklch(48% 0.167 82.3)",
+          "oklch(59% 0.167 82.3)",
+          "oklch(70% 0.143 82.3)",
+          "oklch(82% 0.086 82.3)",
+          "oklch(95% 0.024 82.3)"
+        ]
+      },
+      "line-J": {
+        "role": "secondary",
+        "displayName": "Interchange Green",
+        "canonical": "#007f4e",
+        "tonalRamp": [
+          "oklch(15% 0.035 157.9)",
+          "oklch(26% 0.074 157.9)",
+          "oklch(37% 0.112 157.9)",
+          "oklch(48% 0.123 157.9)",
+          "oklch(59% 0.123 157.9)",
+          "oklch(70% 0.105 157.9)",
+          "oklch(82% 0.063 157.9)",
+          "oklch(95% 0.018 157.9)"
+        ]
+      },
+      "line-T": {
+        "role": "secondary",
+        "displayName": "Express Blue",
+        "canonical": "#1447d6",
+        "tonalRamp": [
+          "oklch(15% 0.064 264.1)",
+          "oklch(26% 0.134 264.1)",
+          "oklch(37% 0.205 264.1)",
+          "oklch(48% 0.224 264.1)",
+          "oklch(59% 0.224 264.1)",
+          "oklch(70% 0.192 264.1)",
+          "oklch(82% 0.115 264.1)",
+          "oklch(95% 0.032 264.1)"
+        ]
+      },
+      "line-R": {
+        "role": "secondary",
+        "displayName": "Rust Red",
+        "canonical": "#d6330f",
+        "tonalRamp": [
+          "oklch(15% 0.058 33.0)",
+          "oklch(26% 0.122 33.0)",
+          "oklch(37% 0.186 33.0)",
+          "oklch(48% 0.204 33.0)",
+          "oklch(59% 0.204 33.0)",
+          "oklch(70% 0.175 33.0)",
+          "oklch(82% 0.105 33.0)",
+          "oklch(95% 0.029 33.0)"
+        ]
+      },
+      "line-A": {
+        "role": "secondary",
+        "displayName": "Algorithm Magenta",
+        "canonical": "#c81f75",
+        "tonalRamp": [
+          "oklch(15% 0.060 356.7)",
+          "oklch(26% 0.126 356.7)",
+          "oklch(37% 0.191 356.7)",
+          "oklch(48% 0.209 356.7)",
+          "oklch(59% 0.209 356.7)",
+          "oklch(70% 0.179 356.7)",
+          "oklch(82% 0.108 356.7)",
+          "oklch(95% 0.030 356.7)"
+        ]
+      },
+      "focus-ring": {
+        "role": "neutral",
+        "displayName": "Focus Blue",
+        "canonical": "hsl(224 83% 46%)",
+        "tonalRamp": [
+          "oklch(15% 0.064 264.0)",
+          "oklch(26% 0.134 264.0)",
+          "oklch(37% 0.205 264.0)",
+          "oklch(48% 0.224 264.0)",
+          "oklch(59% 0.224 264.0)",
+          "oklch(70% 0.192 264.0)",
+          "oklch(82% 0.115 264.0)",
+          "oklch(95% 0.032 264.0)"
+        ]
+      },
+      "ground-night": {
+        "role": "neutral",
+        "displayName": "Vitreous Ground, Night",
+        "canonical": "#0e1216",
+        "tonalRamp": [
+          "oklch(15% 0.003 248.4)",
+          "oklch(26% 0.006 248.4)",
+          "oklch(37% 0.010 248.4)",
+          "oklch(48% 0.010 248.4)",
+          "oklch(59% 0.010 248.4)",
+          "oklch(70% 0.009 248.4)",
+          "oklch(82% 0.005 248.4)",
+          "oklch(95% 0.001 248.4)"
+        ]
+      },
+      "ground-deep-night": {
+        "role": "neutral",
+        "displayName": "Deep Ground, Night",
+        "canonical": "#161b21",
+        "tonalRamp": [
+          "oklch(15% 0.004 253.1)",
+          "oklch(26% 0.008 253.1)",
+          "oklch(37% 0.013 253.1)",
+          "oklch(48% 0.014 253.1)",
+          "oklch(59% 0.014 253.1)",
+          "oklch(70% 0.012 253.1)",
+          "oklch(82% 0.007 253.1)",
+          "oklch(95% 0.002 253.1)"
+        ]
+      },
+      "ink-night": {
+        "role": "neutral",
+        "displayName": "Ink, Night",
+        "canonical": "#f1f2ee",
+        "tonalRamp": [
+          "oklch(15% 0.002 117.9)",
+          "oklch(26% 0.003 117.9)",
+          "oklch(37% 0.005 117.9)",
+          "oklch(48% 0.005 117.9)",
+          "oklch(59% 0.005 117.9)",
+          "oklch(70% 0.005 117.9)",
+          "oklch(82% 0.003 117.9)",
+          "oklch(95% 0.001 117.9)"
+        ]
+      },
+      "ink-soft-night": {
+        "role": "neutral",
+        "displayName": "Soft Ink, Night",
+        "canonical": "#a9afa9",
+        "tonalRamp": [
+          "oklch(15% 0.003 145.5)",
+          "oklch(26% 0.006 145.5)",
+          "oklch(37% 0.010 145.5)",
+          "oklch(48% 0.011 145.5)",
+          "oklch(59% 0.011 145.5)",
+          "oklch(70% 0.009 145.5)",
+          "oklch(82% 0.006 145.5)",
+          "oklch(95% 0.002 145.5)"
+        ]
+      },
+      "rule-soft-night": {
+        "role": "neutral",
+        "displayName": "Soft Rule, Night",
+        "canonical": "#333a42",
+        "tonalRamp": [
+          "oklch(15% 0.005 251.8)",
+          "oklch(26% 0.010 251.8)",
+          "oklch(37% 0.015 251.8)",
+          "oklch(48% 0.017 251.8)",
+          "oklch(59% 0.017 251.8)",
+          "oklch(70% 0.015 251.8)",
+          "oklch(82% 0.009 251.8)",
+          "oklch(95% 0.002 251.8)"
+        ]
+      },
+      "sign-night": {
+        "role": "primary",
+        "displayName": "Sign Black, Night",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.000 0.0)",
+          "oklch(26% 0.000 0.0)",
+          "oklch(37% 0.000 0.0)",
+          "oklch(48% 0.000 0.0)",
+          "oklch(59% 0.000 0.0)",
+          "oklch(70% 0.000 0.0)",
+          "oklch(82% 0.000 0.0)",
+          "oklch(95% 0.000 0.0)"
+        ]
+      },
+      "line-M-night": {
+        "role": "secondary",
+        "displayName": "Research Violet, Night",
+        "canonical": "#b56bff",
+        "tonalRamp": [
+          "oklch(15% 0.061 304.3)",
+          "oklch(26% 0.129 304.3)",
+          "oklch(37% 0.196 304.3)",
+          "oklch(48% 0.215 304.3)",
+          "oklch(59% 0.215 304.3)",
+          "oklch(70% 0.184 304.3)",
+          "oklch(82% 0.110 304.3)",
+          "oklch(95% 0.031 304.3)"
+        ]
+      },
+      "line-F-night": {
+        "role": "secondary",
+        "displayName": "Signal Yellow, Night",
+        "canonical": "#ffc21a",
+        "tonalRamp": [
+          "oklch(15% 0.048 84.9)",
+          "oklch(26% 0.102 84.9)",
+          "oklch(37% 0.155 84.9)",
+          "oklch(48% 0.169 84.9)",
+          "oklch(59% 0.169 84.9)",
+          "oklch(70% 0.145 84.9)",
+          "oklch(82% 0.087 84.9)",
+          "oklch(95% 0.024 84.9)"
+        ]
+      },
+      "line-J-night": {
+        "role": "secondary",
+        "displayName": "Interchange Green, Night",
+        "canonical": "#19c37d",
+        "tonalRamp": [
+          "oklch(15% 0.047 158.2)",
+          "oklch(26% 0.098 158.2)",
+          "oklch(37% 0.150 158.2)",
+          "oklch(48% 0.164 158.2)",
+          "oklch(59% 0.164 158.2)",
+          "oklch(70% 0.140 158.2)",
+          "oklch(82% 0.084 158.2)",
+          "oklch(95% 0.023 158.2)"
+        ]
+      },
+      "line-T-night": {
+        "role": "secondary",
+        "displayName": "Express Blue, Night",
+        "canonical": "#4d7cff",
+        "tonalRamp": [
+          "oklch(15% 0.058 265.9)",
+          "oklch(26% 0.121 265.9)",
+          "oklch(37% 0.184 265.9)",
+          "oklch(48% 0.202 265.9)",
+          "oklch(59% 0.202 265.9)",
+          "oklch(70% 0.173 265.9)",
+          "oklch(82% 0.104 265.9)",
+          "oklch(95% 0.029 265.9)"
+        ]
+      },
+      "line-R-night": {
+        "role": "secondary",
+        "displayName": "Rust Red, Night",
+        "canonical": "#ff5a33",
+        "tonalRamp": [
+          "oklch(15% 0.059 34.5)",
+          "oklch(26% 0.124 34.5)",
+          "oklch(37% 0.190 34.5)",
+          "oklch(48% 0.207 34.5)",
+          "oklch(59% 0.207 34.5)",
+          "oklch(70% 0.178 34.5)",
+          "oklch(82% 0.107 34.5)",
+          "oklch(95% 0.030 34.5)"
+        ]
+      },
+      "line-A-night": {
+        "role": "secondary",
+        "displayName": "Algorithm Magenta, Night",
+        "canonical": "#ff4fa3",
+        "tonalRamp": [
+          "oklch(15% 0.064 355.3)",
+          "oklch(26% 0.134 355.3)",
+          "oklch(37% 0.204 355.3)",
+          "oklch(48% 0.223 355.3)",
+          "oklch(59% 0.223 355.3)",
+          "oklch(70% 0.191 355.3)",
+          "oklch(82% 0.115 355.3)",
+          "oklch(95% 0.032 355.3)"
+        ]
+      },
+      "focus-ring-night": {
+        "role": "neutral",
+        "displayName": "Focus Blue, Night",
+        "canonical": "hsl(224 100% 65%)",
+        "tonalRamp": [
+          "oklch(15% 0.058 265.7)",
+          "oklch(26% 0.121 265.7)",
+          "oklch(37% 0.184 265.7)",
+          "oklch(48% 0.202 265.7)",
+          "oklch(59% 0.202 265.7)",
+          "oklch(70% 0.173 265.7)",
+          "oklch(82% 0.104 265.7)",
+          "oklch(95% 0.029 265.7)"
+        ]
+      },
+      "plate-day": {
+        "role": "neutral",
+        "displayName": "Plate, Day (3D)",
+        "canonical": "#c4c6c0",
+        "tonalRamp": [
+          "oklch(15% 0.002 121.7)",
+          "oklch(26% 0.005 121.7)",
+          "oklch(37% 0.008 121.7)",
+          "oklch(48% 0.009 121.7)",
+          "oklch(59% 0.009 121.7)",
+          "oklch(70% 0.007 121.7)",
+          "oklch(82% 0.004 121.7)",
+          "oklch(95% 0.001 121.7)"
+        ]
+      },
+      "zone-day": {
+        "role": "neutral",
+        "displayName": "Zone, Day (3D)",
+        "canonical": "#b4b7ad",
+        "tonalRamp": [
+          "oklch(15% 0.004 120.4)",
+          "oklch(26% 0.009 120.4)",
+          "oklch(37% 0.013 120.4)",
+          "oklch(48% 0.014 120.4)",
+          "oklch(59% 0.014 120.4)",
+          "oklch(70% 0.012 120.4)",
+          "oklch(82% 0.007 120.4)",
+          "oklch(95% 0.002 120.4)"
+        ]
+      },
+      "drained-day": {
+        "role": "neutral",
+        "displayName": "Drained, Day (3D)",
+        "canonical": "#cdd0c8",
+        "tonalRamp": [
+          "oklch(15% 0.003 123.5)",
+          "oklch(26% 0.007 123.5)",
+          "oklch(37% 0.010 123.5)",
+          "oklch(48% 0.011 123.5)",
+          "oklch(59% 0.011 123.5)",
+          "oklch(70% 0.010 123.5)",
+          "oklch(82% 0.006 123.5)",
+          "oklch(95% 0.002 123.5)"
+        ]
+      },
+      "plate-night": {
+        "role": "neutral",
+        "displayName": "Plate, Night (3D)",
+        "canonical": "#0d1115",
+        "tonalRamp": [
+          "oklch(15% 0.003 248.4)",
+          "oklch(26% 0.006 248.4)",
+          "oklch(37% 0.010 248.4)",
+          "oklch(48% 0.010 248.4)",
+          "oklch(59% 0.010 248.4)",
+          "oklch(70% 0.009 248.4)",
+          "oklch(82% 0.005 248.4)",
+          "oklch(95% 0.001 248.4)"
+        ]
+      },
+      "zone-night": {
+        "role": "neutral",
+        "displayName": "Zone, Night (3D)",
+        "canonical": "#171c22",
+        "tonalRamp": [
+          "oklch(15% 0.004 253.1)",
+          "oklch(26% 0.008 253.1)",
+          "oklch(37% 0.013 253.1)",
+          "oklch(48% 0.014 253.1)",
+          "oklch(59% 0.014 253.1)",
+          "oklch(70% 0.012 253.1)",
+          "oklch(82% 0.007 253.1)",
+          "oklch(95% 0.002 253.1)"
+        ]
+      },
+      "drained-night": {
+        "role": "neutral",
+        "displayName": "Drained, Night (3D)",
+        "canonical": "#2a3038",
+        "tonalRamp": [
+          "oklch(15% 0.005 255.6)",
+          "oklch(26% 0.010 255.6)",
+          "oklch(37% 0.015 255.6)",
+          "oklch(48% 0.017 255.6)",
+          "oklch(59% 0.017 255.6)",
+          "oklch(70% 0.014 255.6)",
+          "oklch(82% 0.009 255.6)",
+          "oklch(95% 0.002 255.6)"
+        ]
+      },
+      "ring-night": {
+        "role": "neutral",
+        "displayName": "Station Ring, Night (3D)",
+        "canonical": "#050608",
+        "tonalRamp": [
+          "oklch(15% 0.002 261.6)",
+          "oklch(26% 0.004 261.6)",
+          "oklch(37% 0.006 261.6)",
+          "oklch(48% 0.006 261.6)",
+          "oklch(59% 0.006 261.6)",
+          "oklch(70% 0.005 261.6)",
+          "oklch(82% 0.003 261.6)",
+          "oklch(95% 0.001 261.6)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name or page name on the sign."
+      },
+      "page-title": {
+        "displayName": "Page Title",
+        "purpose": "The Work index title, which has no sign."
+      },
+      "poster-title": {
+        "displayName": "Poster Title",
+        "purpose": "Project names on colour posters."
+      },
+      "figure-lead": {
+        "displayName": "Lead Figure",
+        "purpose": "The lead proof figure on the home page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles on the route."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Work rows, and the weight for line names and employers."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation, buttons and form labels, in sentence case."
+      },
+      "station": {
+        "displayName": "Station",
+        "purpose": "Names on the map."
+      },
+      "station-major": {
+        "displayName": "Station Major",
+        "purpose": "Major stops on the map."
+      },
+      "data": {
+        "displayName": "Data",
+        "purpose": "Dates, counts, map years, hotkeys and inline code."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hung-frame",
+        "value": "0 24px 50px -18px rgb(0 0 0 / 0.5)",
+        "purpose": "Screenshot frames."
+      },
+      {
+        "name": "hover-ticket",
+        "value": "0 18px 40px -12px rgb(0 0 0 / 0.45)",
+        "purpose": "The station ticket over the map."
+      },
+      {
+        "name": "train",
+        "value": "0 8px 18px -6px rgb(0 0 0 / 0.4)",
+        "purpose": "The sticky train on the route."
+      },
+      {
+        "name": "track-clearance",
+        "value": "0 0 0 2px var(--ground)",
+        "purpose": "Keyline separating the route line from what it crosses."
+      },
+      {
+        "name": "pressed-bullet",
+        "value": "0 0 0 3px var(--ground), 0 0 0 5px var(--line)",
+        "purpose": "Gapped ring on the pressed line button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-long-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Lifts, sign wipe, ticket entrance and hover travel."
+      },
+      {
+        "name": "state-change",
+        "value": "150ms",
+        "purpose": "Colour and background changes."
+      },
+      {
+        "name": "button-lift",
+        "value": "200ms",
+        "purpose": "Button hover lift of 2px."
+      },
+      {
+        "name": "ticket-in",
+        "value": "280ms",
+        "purpose": "Ticket rises 8px and fades in."
+      },
+      {
+        "name": "map-fade",
+        "value": "500ms ease-out",
+        "purpose": "The canvas fading in over the flat map."
+      },
+      {
+        "name": "poster-lift",
+        "value": "500ms",
+        "purpose": "Poster frame hover lift of 10px."
+      },
+      {
+        "name": "sign-wipe",
+        "value": "800ms",
+        "purpose": "The sign wiping in from the left on load."
+      },
+      {
+        "name": "model-rise",
+        "value": "2200ms",
+        "purpose": "The flat diagram rising into the 3D model."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "767px"
+      },
+      {
+        "name": "dock",
+        "value": "860px"
+      },
+      {
+        "name": "work-split",
+        "value": "1023px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Sign Button",
+      "kind": "button",
+      "refersTo": "button-sign",
+      "description": "The main action on a black sign.",
+      "html": "<div class=\"ds-on-sign\"><a class=\"ds-btn-sign\" href=\"#\">See the work <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a></div>",
+      "css": ".ds-on-sign{background:var(--sign);padding:24px;} .ds-btn-sign{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 18px;font-family:var(--font-sign),sans-serif;font-weight:650;border:0;border-radius:4px;cursor:pointer;transition:transform .2s cubic-bezier(0.16, 1, 0.3, 1),background-color .15s,color .15s,box-shadow .15s;background:var(--sign-ink);color:#0b0e11;text-decoration:none;} .ds-btn-sign:hover{transform:translateY(-2px);} .ds-btn-sign:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;}"
+    },
+    {
+      "name": "Quiet Sign Button",
+      "kind": "button",
+      "refersTo": "button-sign-quiet",
+      "description": "The secondary action on a sign, such as the résumé.",
+      "html": "<div class=\"ds-on-sign-q\"><a class=\"ds-btn-quiet\" href=\"#\">Résumé</a></div>",
+      "css": ".ds-on-sign-q{background:var(--sign);padding:24px;} .ds-btn-quiet{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 18px;font-family:var(--font-sign),sans-serif;font-weight:650;border:0;border-radius:4px;cursor:pointer;transition:transform .2s cubic-bezier(0.16, 1, 0.3, 1),background-color .15s,color .15s,box-shadow .15s;background:transparent;box-shadow:inset 0 0 0 1.5px rgb(255 255 255 / .5);color:var(--sign-ink);text-decoration:none;} .ds-btn-quiet:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1.5px var(--sign-ink);} .ds-btn-quiet:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "An action on the ground, such as sending the contact form.",
+      "html": "<button class=\"ds-btn-ink\" type=\"button\">Send</button>",
+      "css": ".ds-btn-ink{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:0 18px;font-family:var(--font-sign),sans-serif;font-weight:650;border:0;border-radius:4px;cursor:pointer;transition:transform .2s cubic-bezier(0.16, 1, 0.3, 1),background-color .15s,color .15s,box-shadow .15s;background:var(--ink);color:var(--ground);} .ds-btn-ink:hover{transform:translateY(-2px);} .ds-btn-ink:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;} .ds-btn-ink:disabled{opacity:.6;cursor:wait;transform:none;}"
+    },
+    {
+      "name": "Line Picker",
+      "kind": "custom",
+      "refersTo": "line-button",
+      "description": "Lettered line buttons; the pressed line stays lit and the others dim.",
+      "html": "<div class=\"ds-picker\"><button type=\"button\" class=\"ds-line\" style=\"--line:var(--line-M);--line-ink:var(--line-M-ink)\">M</button><button type=\"button\" class=\"ds-line\" style=\"--line:var(--line-F);--line-ink:var(--line-F-ink)\">F</button><button type=\"button\" class=\"ds-line\" aria-pressed=\"true\" style=\"--line:var(--line-T);--line-ink:var(--line-T-ink)\">T</button><button type=\"button\" class=\"ds-line\" style=\"--line:var(--line-R);--line-ink:var(--line-R-ink)\">R</button></div>",
+      "css": ".ds-picker{display:flex;flex-wrap:wrap;gap:6px;background:var(--sign);padding:24px;--ground:var(--sign);} .ds-line{display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:var(--line);color:var(--line-ink);font-family:var(--font-sign),sans-serif;font-size:1.125rem;font-weight:800;cursor:pointer;transition:transform .25s cubic-bezier(0.16, 1, 0.3, 1),opacity .2s,box-shadow .2s;} .ds-line:hover{transform:translateY(-3px);} .ds-line:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;} .ds-line[aria-pressed=\"true\"]{transform:translateY(-3px) scale(1.08);box-shadow:0 0 0 3px var(--ground),0 0 0 5px var(--line);} .ds-picker:has([aria-pressed=\"true\"]) .ds-line:not([aria-pressed=\"true\"]){opacity:.45;}"
+    },
+    {
+      "name": "Sign Bar",
+      "kind": "nav",
+      "refersTo": "signbar",
+      "description": "The fixed top bar: name, hotkeyed links, tools.",
+      "html": "<nav class=\"ds-bar\"><a class=\"ds-bar-name\" href=\"#\">Abrar Mahir Esam</a><div class=\"ds-bar-links\"><a class=\"ds-bar-link\" aria-current=\"page\" href=\"#\"><kbd>1</kbd>Network</a><a class=\"ds-bar-link\" href=\"#\"><kbd>2</kbd>Work</a><a class=\"ds-bar-link\" href=\"#\"><kbd>3</kbd>About</a><a class=\"ds-bar-link\" href=\"#\"><kbd>4</kbd>Contact</a></div></nav>",
+      "css": ".ds-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:56px;padding:0 24px;background:var(--sign);color:var(--sign-ink);font-family:var(--font-sign),sans-serif;} .ds-bar-name{font-weight:750;font-stretch:110%;letter-spacing:-.01em;white-space:nowrap;color:inherit;text-decoration:none;} .ds-bar-links{display:flex;gap:4px;} .ds-bar-link{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 12px;font-size:.9375rem;font-weight:550;color:var(--sign-soft);border-radius:3px;text-decoration:none;transition:color .15s,background-color .15s;} .ds-bar-link kbd{font-family:var(--font-geist-mono),monospace;font-size:.75rem;} .ds-bar-link:hover,.ds-bar-link[aria-current=\"page\"]{color:var(--sign-ink);} .ds-bar-link[aria-current=\"page\"]{background:rgb(255 255 255 / .13);} .ds-bar-link:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Ruled, transparent form field with a label above.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Your name</label><input id=\"ds-name\" class=\"ds-field\" placeholder=\"Name\">",
+      "css": ".ds-label{display:block;margin-bottom:8px;font-family:var(--font-sign),sans-serif;font-size:.9375rem;font-weight:650;color:var(--ink);} .ds-field{width:100%;height:52px;padding:0 12px;background:transparent;border:1.5px solid var(--rule);border-radius:4px;font-family:var(--font-sign),sans-serif;font-size:1.0625rem;color:var(--ink);caret-color:var(--line-R);} .ds-field:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;}"
+    },
+    {
+      "name": "Station Sign",
+      "kind": "card",
+      "refersTo": "sign",
+      "description": "The black sign at the foot of each map. Its gradient is the current state of an unfinished enamel treatment, not a finished finish.",
+      "html": "<section class=\"ds-sign\"><h1 class=\"ds-sign-name\">Abrar Mahir Esam</h1><p class=\"ds-sign-text\">Full-stack software engineer.</p></section>",
+      "css": ".ds-sign{background:linear-gradient(180deg,color-mix(in srgb,var(--sign),#fff 9%),var(--sign) 46%);color:var(--sign-ink);padding:22px 24px 26px;border-top:1px solid rgb(255 255 255 / .14);font-family:var(--font-sign),sans-serif;} .ds-sign-name{margin:0;font-size:clamp(3rem,7.2vw,6rem);font-weight:800;font-stretch:104%;line-height:.98;letter-spacing:-.035em;} .ds-sign-text{margin:12px 0 0;font-size:1.0625rem;line-height:1.45;}"
+    },
+    {
+      "name": "Line Row",
+      "kind": "custom",
+      "refersTo": "bullet-lg",
+      "description": "A record row headed by a large bullet and a 6px rule in the line's colour.",
+      "html": "<div class=\"ds-row\" style=\"--line:var(--line-R);--line-ink:var(--line-R-ink)\"><span class=\"ds-bullet\">R</span><div><h3 class=\"ds-row-title\">Rust</h3><p class=\"ds-row-text\">Native tools and desktop software that start instantly.</p></div><p class=\"ds-row-count\">Line R</p></div>",
+      "css": ".ds-row{display:grid;grid-template-columns:56px minmax(0,1fr) 88px;gap:8px 28px;align-items:center;padding-block:22px;border-top:6px solid var(--line);color:var(--ink);font-family:var(--font-sign),sans-serif;} .ds-bullet{display:inline-grid;place-items:center;width:3.5rem;height:3.5rem;border-radius:50%;background:var(--line);color:var(--line-ink);font-size:1.75rem;font-weight:800;line-height:1;} .ds-row-title{margin:0;font-size:clamp(1.375rem,2.2vw,1.875rem);font-weight:750;font-stretch:106%;line-height:1.15;letter-spacing:-.015em;} .ds-row-text{margin:0;color:var(--ink-soft);line-height:1.4;} .ds-row-count{margin:0;font-family:var(--font-geist-mono),monospace;font-size:.875rem;text-align:right;color:var(--ink-soft);}"
+    },
+    {
+      "name": "Hung Frame",
+      "kind": "custom",
+      "refersTo": "frame",
+      "description": "The black mount every screenshot hangs in.",
+      "html": "<a class=\"ds-frame\" href=\"#\"><span class=\"ds-frame-image\"></span></a>",
+      "css": ".ds-frame{display:block;max-width:420px;background:var(--frame);padding:clamp(6px,.8vw,12px);border-radius:6px;box-shadow:0 24px 50px -18px rgb(0 0 0 / .5);transition:transform .5s cubic-bezier(0.16, 1, 0.3, 1);} .ds-frame:hover{transform:translateY(-10px);} .ds-frame:focus-visible{outline:3px solid hsl(var(--ring));outline-offset:3px;} .ds-frame-image{display:block;aspect-ratio:16/9;border-radius:2px;background:var(--ground-deep);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Enamel Network",
+    "overview": "A career is a transit network you can read. Each stack is a line, each employer or project a station, each year a band across the ground. The map is generated from the site's data, so the 3D model, the flat diagram and the station links cannot disagree with one another or with the content. The visual system is the working vocabulary of a transit authority: pale enamel ground, black signs, seven saturated line colours, white station capsules, round lettered bullets.\n\nDensity is high on the map and in the record tables, then loosens into full-bleed colour posters and display-scale figures. Hierarchy comes from size, width and rules, not from containers. Night is the same system underground: every role survives the switch, with brighter line colours, a black sign and a dark plate.\n\nThe enamel is a direction the build has only partly reached. Tracks and stations are extruded, bevelled, clearcoated solids on a lit plate. The plate shows sheen but no visible panel edge, because it is a 1600-unit plane running past every frame. The sign's enamel finish is only a top-lit gradient. Both are open items, not finished material.",
+    "keyCharacteristics": [
+      "Seven line colours that each mean one stack, in every medium the site uses.",
+      "Black signs carrying the name, navigation and the end of every page.",
+      "One unbroken route line and a sticky train down each long page.",
+      "Archivo at slightly extended widths throughout; Geist Mono only for data.",
+      "A real-time model that loads after a flat SVG of the same map, which stays complete without WebGL or motion."
+    ],
+    "rules": [
+      {
+        "name": "The Line Means A Stack Rule",
+        "body": "A line colour appears only where that stack or its project is the subject: the track, its bullet, its route on a project page, its poster field. Colour is never chosen for variety.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Lit Line Rule",
+        "body": "Choosing a line keeps it at full colour and drains the rest: unpressed bullets drop to 45% opacity, flat map lines to 14%, and 3D tracks sink and blend most of the way to the Drained colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The Career Inversion Rule",
+        "body": "Career is whatever the ink is, so it flips with its surface: inside a sign or ticket line C becomes light with dark text, and in lists on the ground it follows ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Signage Width Rule",
+        "body": "Display and headline settings run at widths from 104% to 110% with negative tracking that grows with size. Body stays at normal width.",
+        "section": "typography"
+      },
+      {
+        "name": "The Mono Is Data Rule",
+        "body": "Geist Mono is for dates, counts, keys and code. Proof figures such as \"1,000+ users\" are display Archivo with tabular numerals.",
+        "section": "typography"
+      },
+      {
+        "name": "The Map Slant Rule",
+        "body": "On the wide map every name sits at one angle (-34deg), on one of two opposing sides of its stop, stroked with a 3px ground halo. If no clean position exists, a major name moves clear on a 1.5px leader and a minor one waits for hover. Tall and on-end views set names horizontally.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Route Rule",
+        "body": "Long pages hang from one unbroken track at the 44px rail (15px on phones), 8px wide (6px on phones). Each section title is a stop on it, and a white train rides at 56vh of the viewport. Project pages run their route in the project's first line colour; other pages run in Career.",
+        "section": "layout"
+      },
+      {
+        "name": "The Clear Space Rule",
+        "body": "The sign measures its own top edge and reports it, and the camera, flat map and label placement all frame the map inside what remains. Nothing on the map sits under a sign.",
+        "section": "layout"
+      },
+      {
+        "name": "The Hung Objects Rule",
+        "body": "Only objects that hang over something cast a soft shadow: frames, the ticket, the train. Signs, rows, fields and buttons do not.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Round Means Network Rule",
+        "body": "A full circle or capsule marks a part of the network: a line, a station or a train. A generic control does not get one.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do use a line colour only for its stack, and fill a whole section with it when that stack's work is the subject.",
+      "Do run body text and signage in Archivo, and save Geist Mono for dates, counts, keys and code.",
+      "Do keep the flat map complete: every station link and every page must work with WebGL or motion off.",
+      "Do generate anything drawn on the map from `data/network.ts` so the model stays an accurate index.",
+      "Do separate content with 1.5px rules and open space.",
+      "Do hang screenshots in Frame Black mounts with the Hung Frame shadow.",
+      "Do end each page on the black terminus with the route to Contact."
+    ],
+    "donts": [
+      "Don't give text content a card, tinted tile or bordered panel. The only floating text panel is the map's ticket.",
+      "Don't use circles or capsules for generic controls, or square off a bullet or station.",
+      "Don't add a small label above a heading. Above a name there may be a working control, such as the picker or the back link, and nothing else.",
+      "Don't set labels in uppercase or wide tracking; the system is sentence case throughout.",
+      "Don't add a soft shadow to signs, rows, buttons or fields.",
+      "Don't add ornamental map marks with no station or year behind them.",
+      "Don't treat the sign's gradient or the plate's sheen as finished enamel to reproduce on new surfaces."
+    ]
+  }
+}

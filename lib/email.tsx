@@ -15,7 +15,7 @@ async function email(
   };
 
   try {
-    const response = await emailjs.send(
+    await emailjs.send(
       "service_3fy6krw",
       "template_beimqbq",
       form,
@@ -23,8 +23,8 @@ async function email(
     );
 
     toast.success("Email sent successfully");
-  } catch (error: any) {
-    throw new Error(error.text);
+  } catch (error) {
+    throw new Error((error as { text?: string }).text);
   }
 }
 

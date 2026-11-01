@@ -40,7 +40,7 @@ export const fadeIn = (direction: string, delay: number) => {
         ease: [0.25, 0.25, 0.25, 0.75],
       },
     },
-  } as any;
+  };
 };
 
 const Transition = () => {

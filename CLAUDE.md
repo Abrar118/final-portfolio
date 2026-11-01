@@ -6,68 +6,66 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal developer portfolio for Abrar Mahir Esam. Live at https://www.abrarmahiresam.dev/. GitHub: https://github.com/Abrar118.
 
+`PRODUCT.md` holds audience and confirmed facts, `DESIGN.md` the visual system. The CV at `public/Abrar-Mahir-Esam-CV.pdf` and the GitHub README are the sources of truth for facts.
+
 ## Commands
 
 ```bash
 npm run dev    # Start dev server (localhost:3000)
 npm run build  # Production build
 npm run lint   # ESLint
+node scripts/check-layout.ts  # Checks map geometry and label placement
 ```
 
-No test framework is configured.
+No test framework is configured. Stop the dev server before `npm run build`: both write to `.next`.
 
 ## Architecture
 
-Next.js 15 App Router with React 19. Uses `@/*` path alias mapped to project root. Dark theme ("Dusk") by default via `next-themes`; light theme is "Dawn".
+Next.js 15 App Router with React 19. Uses `@/*` path alias mapped to project root. Light theme by default via `next-themes`; dark is a toggle.
 
-### Concept: the Forest of Code
+### Concept: The Network
 
-The site is a game-like journey through a low-poly 3D forest. Every route is a **zone** on one trail (`data/zones.ts`): `/` The Trailhead (spirit-fire camp), `/profile` The Elder Grove (ancient tree), `/projects` The Crystal Hollow (one crystal per project), `/contact` Beacon Hill (tower with a sky beam). The camera walks the trail between zones on navigation.
+The site is a transit map of the career: each stack is a line, each project or job a station, and interchanges show where stacks meet. The map is generated from data, so it is an accurate index and not decoration.
 
-- `components/world/forest/ForestWorld.ts` — framework-free three.js scene (procedural terrain, instanced trees, fireflies, aurora sky, landmarks). Lazy-loaded as its own chunk; never import it statically.
-- `components/world/forest/palette.ts` — dusk/dawn color palettes for the scene.
-- `components/world/ForestCanvas.tsx` — mounts the scene and syncs route → zone, theme, scroll, pointer, focused project, beacon flare.
-- `components/world/WorldStage.tsx` — fixed backdrop in the layout: `StaticForest` (CSS/SVG, always painted first) + the 3D canvas (loaded in idle time, fades in) + readability scrim.
-- `components/world/TitleScreen.tsx` — "press start" screen shown once per session on `/`; choose 3D or static ("quiet path").
-- `components/world/ZoneBanner.tsx` — "New area discovered" title card on zone change.
-- `lib/world.ts` — zustand store (world mode, gate, scene status, focused project, flare, visited zones) plus `worldBootScript`, an inline `<head>` script that sets `html[data-world]`/`html[data-gate]` before paint.
+- `data/network.ts` — the seven lines, non-project stops (jobs, research, contests), routes and résumé URL. Projects join lines automatically by matching their `stack`.
+- `lib/network-layout.ts` — pure geometry: rails, 45° bends, bundles at interchanges, year zones. `wide` and `tall` (phones) orientations.
+- `lib/network-labels.ts` — scores label positions against tracks, stations and other labels.
+- `components/network/NetworkWorld.ts` — framework-free three.js model on a lit enamel plate. Lazy-loaded as its own chunk; never import it statically.
+- `components/network/NetworkStage.tsx` — fixed behind every page. Paints the flat SVG (`FlatMap.tsx`), loads the model in idle time, positions station labels as real links, and maps route to camera view.
+- `components/network/parts.tsx` — `MapHero` (the black sign, which reports its top edge so the camera frames the clear space above it), `Route` and `Stopline` (the unbroken page line with its sticky train), `LinePicker`, `Bullet`.
+- `lib/network-store.ts` — zustand store: map mode, status, active line, focus, insets, dispatch.
 
-World mode (`3d`/`static`) persists in localStorage (`forest-world`); defaults to static for reduced-motion or save-data users, and falls back to static if WebGL fails. The scene adapts pixel ratio to frame time and caps mobile at ~30fps.
+Map mode (`3d`/`flat`) persists in localStorage (`network-map-mode`); defaults to flat for reduced-motion or save-data users, and falls back to flat if WebGL fails. All content must work in flat mode.
 
 ### Routes
 
-- `/` — Hero + character sheet, "Main Quests" (featured projects), "The Inventory" (skills as item slots in tabbed bags)
-- `/profile` — "The Lore": bio, "The Path So Far" timeline, "Achievements Unlocked"
-- `/projects` — "Quest Log": vertical quest tablist (roman numerals) + stage panel; keyboard-navigable; selecting a quest lights its crystal
-- `/projects/[slug]` — Quest detail (statically generated): gallery, lore, objectives, rewards (stack), prev/next quest
-- `/contact` — "Light the Beacon" EmailJS form; a successful send flares the beacon in 3D
+- `/` — Full-bleed draggable model + sign with avatar, career figures, four featured projects as colour fields, the seven lines
+- `/projects` — Work list beside the live map, which turns on end on desktop; pointing at a row lifts its station
+- `/projects/[slug]` — Statically generated; camera flies to the station, other lines drain
+- `/profile` — About: bio, career, research, contests, education
+- `/contact` — EmailJS form; a successful send runs a train to the hollow Next stop station
 
 ### Navigation
 
-`components/shared/GameMenu.tsx`: on lg+ a fixed left "pause menu" (player card, explored-zones bar, chapter bars with hotkeys 1–4, World 3D/Static and Time Dusk/Dawn toggles, résumé, socials). Below lg it becomes a bottom dock with a settings sheet. Content is offset with `.app-main` (`padding-left: 300px` on lg).
+`components/shared/SignBar.tsx`: a black sign along the top, and a bottom dock at 860px and below. Keys: 1–4 change page, a line's letter lights that line.
 
 ### Design system
 
-Forest palette: primary = chartreuse (green + yellow), secondary = teal, deep teal-black background. All colors are HSL CSS variables in `app/globals.css`. Glassmorphism via `.glass` (blurred tinted panel + chartreuse→teal rim). Other building blocks: `.btn`/`.btn-primary`, `.seg` (segmented toggle), `.hud-label`, `.chapter-chip`, `.chip`, `.quest-tag`, `.text-glow`, `.page-wrap`, `.page-title`, `.section-title`.
-
-Typography: Cinzel (`font-display`, via `next/font/google`) for titles and game UI; Geist (`font-body`) for text; Geist Mono for keys/HUD numbers. `prefers-reduced-motion` is respected (CSS + slowed scene, no camera flights).
+Colours are CSS variables in `app/globals.css`, including `--line-<id>` and `--line-<id>-ink`. The 3D palette is `THEMES` in `NetworkStage.tsx`; keep the two in step. Type is Archivo (`--font-sign`) everywhere, with Geist Mono (`.data`) only for dates and figures. See `DESIGN.md`.
 
 ### Data layer
 
 All portfolio content lives in static TypeScript files under `data/`:
-- `data/home/projects.tsx` — Project entries (type in `types/project.ts`). Order defines quest numbers and crystal order.
-- `data/home/skillsTab.ts` — Skills by category with icons and brand colors.
+- `data/home/projects.tsx` — Project entries (type in `types/project.ts`). Array order is the order shown on the Work page. Psycloud's images come from its public site, as the dashboard is behind a login.
 - `data/home/socials.ts`, `data/about/timeline.ts`, `data/about/achievements.ts`.
-- `data/zones.ts` — zones/routes, hotkeys, résumé URL.
 
-To add a project: add an entry to `data/home/projects.tsx` with a unique `slug` and images under `public/projects/<slug>/`; it appears in the quest log, gets a detail page and a crystal automatically.
+To add a project: add an entry to `data/home/projects.tsx` with a unique `slug`, a `year` and images under `public/projects/<slug>/`; it appears in the work list, gets a detail page and a station automatically.
 
 ### Key dependencies
 
-- `three` — 3D forest (dynamic import only).
-- `framer-motion` — page/title/banner transitions (`app/template.tsx`).
-- `zustand` — world store.
-- `developer-icons`, `react-icons`, `lucide-react` (prefer lucide for new UI icons).
+- `three` — the model (dynamic import only).
+- `zustand` — map store.
+- `lucide-react` for UI icons; `developer-icons` and `react-icons` for brands.
 - `@emailjs/browser`, `sonner`.
 
 ### Images

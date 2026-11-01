@@ -22,9 +22,9 @@ const config = {
     },
     extend: {
       fontFamily: {
-        heading: ["var(--font-display)", "serif"],
-        body: ["var(--font-body)", "sans-serif"],
-        display: ["var(--font-display)", "serif"],
+        heading: ["var(--font-sign)", "sans-serif"],
+        body: ["var(--font-sign)", "sans-serif"],
+        display: ["var(--font-sign)", "sans-serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
       colors: {

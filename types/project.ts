@@ -5,9 +5,12 @@ export type ProjectCategory = "web" | "mobile" | "desktop" | "backend";
 export type Project = {
   title: string;
   description: string;
-  thumbnail: StaticImageData | string;
+  /** Absent for work with nothing public to show. */
+  thumbnail?: StaticImageData | string;
   images: (StaticImageData | string)[];
   href?: string;
+  /** Further links beside the live site and source. */
+  links?: { label: string; href: string }[];
   slug?: string;
   stack?: {
     name: string;
@@ -21,4 +24,8 @@ export type Project = {
   category?: ProjectCategory;
   year?: string;
   context?: string;
+  /** Decimal year on the map, when `year` alone would misplace it. */
+  at?: number;
+  /** Network lines, when the stack alone does not say. */
+  lines?: string[];
 };

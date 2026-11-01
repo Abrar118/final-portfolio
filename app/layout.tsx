@@ -1,22 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Cinzel } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/lib/providers/theme-provider";
-import { worldBootScript } from "@/lib/world";
-import WorldStage from "@/components/world/WorldStage";
-import TitleScreen from "@/components/world/TitleScreen";
-import ZoneBanner from "@/components/world/ZoneBanner";
-import GameMenu from "@/components/shared/GameMenu";
+import NetworkStage from "@/components/network/NetworkStage";
+import SignBar from "@/components/shared/SignBar";
 import Footer from "@/components/shared/Footer";
-import RouteProgress from "@/components/shared/RouteProgress";
 import { Toaster } from "@/components/ui/sonner";
 
-const geist = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-body",
-  weight: "100 900",
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-sign",
   display: "swap",
 });
 
@@ -27,23 +23,17 @@ const geistMono = localFont({
   display: "swap",
 });
 
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Abrar Mahir Esam — Software Engineer",
+  metadataBase: new URL("https://www.abrarmahiresam.dev"),
+  title: "Abrar Mahir Esam, Software Engineer",
   description:
-    "Full-stack software engineer and competitive programmer based in Dhaka, Bangladesh. Building web, mobile, and desktop systems with Spring Boot, Next.js, Flutter, and Rust.",
+    "Full-stack software engineer in Dhaka, Bangladesh. Principal architect of Psycloud, a clinical platform serving 1,000+ users. Spring Boot, FastAPI, React, Flutter and Rust.",
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#06140f" },
-    { media: "(prefers-color-scheme: light)", color: "#e6f0d8" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e1216" },
+    { media: "(prefers-color-scheme: light)", color: "#e9ebe6" },
   ],
 };
 
@@ -54,32 +44,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: worldBootScript }} />
-      </head>
-      <body
-        className={`${geist.variable} ${geistMono.variable} ${cinzel.variable} font-body antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <WorldStage />
-          <div id="app-shell">
-            <a href="#main-content" className="skip-link">
-              Skip to content
-            </a>
-            <RouteProgress />
-            <GameMenu />
-            <ZoneBanner />
-            <div id="main-content" tabIndex={-1} className="app-main">
-              {children}
-              <Footer />
-            </div>
+      <body className={`${archivo.variable} ${geistMono.variable} font-body antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <a href="#main-content" className="skip-link">
+            Skip to content
+          </a>
+          <NetworkStage />
+          <SignBar />
+          <div id="main-content" tabIndex={-1} className="app-main">
+            {children}
+            <Footer />
           </div>
-          <TitleScreen />
           <Toaster />
         </ThemeProvider>
       </body>
