@@ -92,10 +92,7 @@ export default function Contact() {
                 <li>
                   <a href="mailto:abrarme118@gmail.com">abrarme118@gmail.com</a>
                 </li>
-                <li>
-                  <a href="tel:+8801341759355" className="data">+880 1341-759355</a>
-                </li>
-                <li>Mirpur DOHS, Dhaka-1216, Bangladesh</li>
+                <li>Contact hours: 10 AM to 7 PM BDT</li>
               </ul>
               <ul className="contact-social">
                 {socialMedia.map((s) => (

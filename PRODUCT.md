@@ -31,6 +31,8 @@ Visitors compare this site against a CV PDF, a GitHub profile and other candidat
 - Project content lives in `data/`. Adding a project must stay a single data entry.
 - The site must work with WebGL unavailable, reduced motion and save-data.
 - Real-time 3D stays as a signature, in a new concept. The forest and game language (quests, lore, inventory, zones) is retired.
+- NDA: the Psycloud and Prime Minister's Office descriptions stay exactly as written. Add no further detail about either: no case studies, architecture write-ups or new figures.
+- Public contact details are email and social links, with contact hours of 10 AM to 7 PM BDT. These are hours for getting in touch, not a statement of job availability. Street address and phone number stay off the site's pages.
 
 ## Brand Commitments
 
