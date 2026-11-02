@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Box, Map as MapIcon } from "lucide-react";
 import { lines, stopsOnLine, type LineId } from "@/data/network";
 import { lineVars } from "@/lib/line-vars";
 import { useNetwork } from "@/lib/network-store";
@@ -53,13 +54,38 @@ export function LinePicker({ showHelp = true }: { showHelp?: boolean }) {
   );
 }
 
+/* Switches the map between the 3D model and the flat map. */
+export function MapModeToggle() {
+  const mode = useNetwork((s) => s.mode);
+  const status = useNetwork((s) => s.status);
+  const setMode = useNetwork((s) => s.setMode);
+  const threeD = mode === "3d" && status !== "failed";
+
+  return (
+    <button
+      type="button"
+      className="map-control-button"
+      aria-pressed={threeD}
+      disabled={status === "failed"}
+      aria-label={status === "failed" ? "3D map is unavailable on this device" : threeD ? "Show the flat map" : "Show the 3D map"}
+      title={threeD ? "Show the flat map" : "Show the 3D map"}
+      onClick={() => setMode(threeD ? "flat" : "3d")}
+    >
+      {threeD ? <Box className="h-4 w-4" aria-hidden="true" /> : <MapIcon className="h-4 w-4" aria-hidden="true" />}
+    </button>
+  );
+}
+
 /* The black station sign at the bottom of each page's map. It reports its top
-   edge so the camera frames the model in the clear space above it. */
+   edge so the camera frames the model in the clear space above it. Controls
+   in `corners` sit on the map itself and stay put while the map is dragged. */
 export function MapHero({
   height = "full",
+  corners,
   children,
 }: {
   height?: "full" | "tall" | "short";
+  corners?: { bottomLeft?: React.ReactNode; topRight?: React.ReactNode };
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -84,6 +110,12 @@ export function MapHero({
 
   return (
     <section className={`map-hero map-hero-${height}`}>
+      {corners && (
+        <div className="map-controls">
+          {corners.topRight && <div className="map-controls-top-right">{corners.topRight}</div>}
+          {corners.bottomLeft && <div className="map-controls-bottom-left">{corners.bottomLeft}</div>}
+        </div>
+      )}
       <div ref={ref} className="sign">
         {children}
       </div>

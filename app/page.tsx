@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { LinePicker, MapHero, Route, Stopline, Bullet } from "@/components/network/parts";
+import { LinePicker, MapHero, MapModeToggle, Route, Stopline, Bullet } from "@/components/network/parts";
 import { lineVars } from "@/lib/line-vars";
 import { lines, RESUME_URL, stopById, stopsOnLine, type LineId } from "@/data/network";
 import { projects } from "@/data/home/projects";
@@ -32,10 +32,9 @@ const roles: { where: string; when: string; figure: string; text: string; href?:
 export default function Home() {
   return (
     <main>
-      <MapHero>
+      <MapHero corners={{ bottomLeft: <LinePicker />, topRight: <MapModeToggle /> }}>
         <div className="sign-grid">
           <div>
-            <LinePicker />
             <h1 className="sign-name">
               <span className="sign-avatar">
                 <Image src="/hero-portrait.jpg" alt="" width={669} height={1280} sizes="200px" priority />

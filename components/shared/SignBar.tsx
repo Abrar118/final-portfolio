@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import { ArrowUpRight, Box, Map as MapIcon, Moon, Sun } from "lucide-react";
+import { ArrowUpRight, Moon, Sun } from "lucide-react";
 import { lines, RESUME_URL, routes, type LineId } from "@/data/network";
 import { useNetwork } from "@/lib/network-store";
 
@@ -17,9 +17,6 @@ export default function SignBar() {
   const pathname = usePathname();
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
-  const mode = useNetwork((s) => s.mode);
-  const status = useNetwork((s) => s.status);
-  const setMode = useNetwork((s) => s.setMode);
   const toggleLine = useNetwork((s) => s.toggleLine);
 
   useEffect(() => {
@@ -43,7 +40,6 @@ export default function SignBar() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const dark = mounted && resolvedTheme === "dark";
-  const threeD = mode === "3d" && status !== "failed";
 
   return (
     <>
@@ -68,17 +64,6 @@ export default function SignBar() {
           <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="signbar-link">
             Résumé <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
-          <button
-            type="button"
-            className="signbar-icon"
-            aria-pressed={threeD}
-            disabled={status === "failed"}
-            aria-label={status === "failed" ? "3D map is unavailable on this device" : threeD ? "Show the flat map" : "Show the 3D map"}
-            title={threeD ? "Show the flat map" : "Show the 3D map"}
-            onClick={() => setMode(threeD ? "flat" : "3d")}
-          >
-            {threeD ? <Box className="h-4 w-4" aria-hidden="true" /> : <MapIcon className="h-4 w-4" aria-hidden="true" />}
-          </button>
           <button
             type="button"
             className="signbar-icon"

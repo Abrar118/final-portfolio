@@ -697,6 +697,53 @@
   height: 42svh;
   min-height: 320px;
 }
+/* Controls that sit on the map above the sign. The layer lets drags through
+   to the map; only the controls themselves take the pointer. */
+.map-controls {
+  position: relative;
+  flex: 1 1 auto;
+  pointer-events: none;
+}
+.map-controls-top-right,
+.map-controls-bottom-left {
+  position: absolute;
+  pointer-events: auto;
+}
+.map-controls-top-right {
+  top: 72px;
+  right: 24px;
+}
+.map-controls-bottom-left {
+  left: 24px;
+  bottom: 20px;
+  max-width: calc(100% - 48px);
+}
+.map-controls .line-picker-note {
+  padding: 6px 10px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ground) 86%, transparent);
+  color: var(--ink-soft);
+}
+.map-control-button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
+  background: var(--ground);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px var(--ink);
+  transition: background-color 0.15s, color 0.15s;
+}
+.map-control-button:hover {
+  background: var(--ink);
+  color: var(--ground);
+}
+.map-control-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .sign {
   --line-C: #f1f2ee;
   --line-C-ink: #0b0e11;
@@ -850,6 +897,14 @@
   }
   .map-hero-short {
     height: 46svh;
+  }
+  .map-controls-top-right {
+    right: 16px;
+  }
+  .map-controls-bottom-left {
+    left: 16px;
+    bottom: 14px;
+    max-width: calc(100% - 32px);
   }
   .map-hero-short .sign {
     padding-bottom: 18px;
