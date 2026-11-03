@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Block } from "@/data/blog/posts";
 
 /* Inline markup: `code`, **bold** and [text](url). Nothing else. */
@@ -11,6 +12,12 @@ function Inline({ text }: { text: string }) {
         if (part.startsWith("`")) return <code key={i}>{part.slice(1, -1)}</code>;
         if (part.startsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
         const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+        if (link && link[2].startsWith("/"))
+          return (
+            <Link key={i} href={link[2]} className="post-link">
+              {link[1]}
+            </Link>
+          );
         if (link)
           return (
             <a key={i} href={link[2]} target="_blank" rel="noopener noreferrer" className="post-link">
@@ -81,6 +88,27 @@ export default function PostBody({ body }: { body: Block[] }) {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            );
+          case "gallery":
+            return (
+              <div
+                key={i}
+                className={`post-gallery ${b.tall ? "is-tall" : ""} ${b.items.length === 1 ? "is-single" : ""}`}
+              >
+                {b.items.map((it) => (
+                  <figure key={it.label} className="post-shot">
+                    <span className="frame">
+                      <Image
+                        src={it.src}
+                        alt={`${b.name}: ${it.label}`}
+                        sizes="(max-width: 1024px) 46vw, 420px"
+                        className="frame-image"
+                      />
+                    </span>
+                    <figcaption>{it.label}</figcaption>
+                  </figure>
+                ))}
               </div>
             );
           case "img":

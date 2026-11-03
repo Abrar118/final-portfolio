@@ -1859,3 +1859,28 @@
   font-size: 0.875rem;
   color: var(--ink-soft);
 }
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 18px;
+  margin-block: 2em;
+}
+.post-gallery.is-tall {
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+.post-gallery.is-single {
+  grid-template-columns: 1fr;
+}
+.post-shot figcaption {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+@media (max-width: 640px) {
+  .post-gallery {
+    grid-template-columns: 1fr;
+  }
+  .post-gallery.is-tall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
