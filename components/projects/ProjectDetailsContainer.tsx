@@ -6,6 +6,8 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types/project";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Bullet, MapHero, Route, Stopline } from "@/components/network/parts";
+import Toc from "@/components/shared/Toc";
+import type { TocItem } from "@/lib/toc";
 import { categoryLabel, stopById, type LineId } from "@/data/network";
 
 type Neighbor = { slug: string; title: string } | null;
@@ -21,6 +23,13 @@ export default function ProjectDetailsContainer({
 }) {
   const stop = project.slug ? stopById.get(project.slug) : undefined;
   const stopLines: LineId[] = stop?.lines ?? ["T"];
+
+  const toc: TocItem[] = [
+    ...(project.content ? [{ id: "what-it-is", label: "What it is" }] : []),
+    ...(project.images.length > 0 ? [{ id: "screens", label: "Screens" }] : []),
+    ...(project.features?.length ? [{ id: "what-it-does", label: "What it does" }] : []),
+    ...(project.stack?.length ? [{ id: "built-with", label: "Built with" }] : []),
+  ];
 
   return (
     <main>
@@ -65,9 +74,9 @@ export default function ProjectDetailsContainer({
         </div>
       </MapHero>
 
-      <Route line={stopLines[0]}>
+      <Route line={stopLines[0]} rail={toc.length > 1 ? <Toc items={toc} /> : undefined}>
         {project.content && (
-          <Stopline title="What it is">
+          <Stopline id="what-it-is" title="What it is">
             <div className="prose-sign">
               {typeof project.content === "string" ? <p>{project.content}</p> : project.content}
             </div>
@@ -75,7 +84,7 @@ export default function ProjectDetailsContainer({
         )}
 
         {project.images.length > 0 && (
-        <section className="route-section gallery-section">
+        <section id="screens" className="route-section gallery-section">
           <div className="page-wrap">
             <h2 className="section-title route-stop">Screens</h2>
             <div className="gallery">
@@ -119,7 +128,7 @@ export default function ProjectDetailsContainer({
         )}
 
         {project.features && project.features.length > 0 && (
-          <Stopline title="What it does">
+          <Stopline id="what-it-does" title="What it does">
             <ul className="feature-list">
               {project.features.map((f) => (
                 <li key={f}>{f}</li>
@@ -129,7 +138,7 @@ export default function ProjectDetailsContainer({
         )}
 
         {project.stack && project.stack.length > 0 && (
-          <Stopline title="Built with">
+          <Stopline id="built-with" title="Built with">
             <ul className="stack-list">
               {project.stack.map((t) => (
                 <li key={t.name}>{t.name}</li>

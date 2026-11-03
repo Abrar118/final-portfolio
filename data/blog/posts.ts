@@ -7,7 +7,7 @@ import { projects } from "@/data/home/projects";
 
 export type Block =
   | { t: "p"; text: string }
-  | { t: "h"; text: string }
+  | { t: "h"; text: string; level?: 2 | 3 }
   | { t: "ul"; items: string[] }
   | { t: "code"; text: string }
   | { t: "table"; head: string[]; rows: string[][] }

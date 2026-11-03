@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Block } from "@/data/blog/posts";
+import { postHeadings } from "@/lib/toc";
 
 /* Inline markup: `code`, **bold** and [text](url). Nothing else. */
 const INLINE = /(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
@@ -31,16 +32,23 @@ function Inline({ text }: { text: string }) {
 }
 
 export default function PostBody({ body }: { body: Block[] }) {
+  const heads = postHeadings(body);
   return (
     <div className="post-body">
       {body.map((b, i) => {
         switch (b.t) {
-          case "h":
-            return (
-              <h2 key={i} className="post-h">
+          case "h": {
+            const h = heads.get(i)!;
+            return b.level === 3 ? (
+              <h3 key={i} id={h.id} className="post-h3">
+                {b.text}
+              </h3>
+            ) : (
+              <h2 key={i} id={h.id} className="post-h">
                 {b.text}
               </h2>
             );
+          }
           case "p":
             return (
               <p key={i}>

@@ -5,6 +5,8 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import PostBody from "@/components/blog/PostBody";
 import { MapHero, Route } from "@/components/network/parts";
 import { posts } from "@/data/blog/posts";
+import Toc from "@/components/shared/Toc";
+import { postHeadings } from "@/lib/toc";
 import { formatPostDate } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -24,6 +26,7 @@ export default async function PostPage({ params }: Props) {
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
+  const toc = [...postHeadings(post.body).values()];
 
   return (
     <main>
@@ -59,7 +62,13 @@ export default async function PostPage({ params }: Props) {
       <Route line="T">
         <section className="route-section">
           <div className="page-wrap">
-            <PostBody body={post.body} />
+            <Toc items={toc} inline />
+            <div className="post-layout">
+              <PostBody body={post.body} />
+              <aside className="toc-aside">
+                <Toc items={toc} />
+              </aside>
+            </div>
           </div>
         </section>
       </Route>

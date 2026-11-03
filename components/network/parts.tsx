@@ -125,9 +125,23 @@ export function MapHero({
 
 /* The route line that runs unbroken down a page. The train is sticky, so it
    rides along with the scroll. */
-export function Route({ line, children }: { line: LineId; children: React.ReactNode }) {
+export function Route({
+  line,
+  rail,
+  children,
+}: {
+  line: LineId;
+  /** A sticky column on the right edge, such as a table of contents. */
+  rail?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
-    <div className="route" style={lineVars(line)}>
+    <div className={`route ${rail ? "route-has-rail" : ""}`} style={lineVars(line)}>
+      {rail && (
+        <div className="toc-rail">
+          <div className="toc-rail-inner">{rail}</div>
+        </div>
+      )}
       <div className="route-track" aria-hidden="true">
         <span className="route-train" />
       </div>
