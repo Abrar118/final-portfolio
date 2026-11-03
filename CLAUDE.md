@@ -44,11 +44,12 @@ Map mode (`3d`/`flat`) persists in localStorage (`network-map-mode`); defaults t
 - `/projects` — Work list beside the live map, which turns on end on desktop; pointing at a row lifts its station
 - `/projects/[slug]` — Statically generated; camera flies to the station, other lines drain
 - `/profile` — About: bio, career, research, contests, education
+- `/blog` — Writing. Posts live in `data/blog/posts.ts` as typed blocks (images in `public/blog/<slug>/`); `/blog/[slug]` is statically generated
 - `/contact` — EmailJS form; a successful send runs a train to the hollow Next stop station
 
 ### Navigation
 
-`components/shared/SignBar.tsx`: a black sign along the top, and a bottom dock at 860px and below. Keys: 1–4 change page, a line's letter lights that line.
+`components/shared/SignBar.tsx`: a black sign along the top, and a bottom dock at 860px and below. Keys: 1–5 change page, a line's letter lights that line.
 
 ### Design system
 
@@ -58,6 +59,7 @@ Colours are CSS variables in `app/globals.css`, including `--line-<id>` and `--l
 
 All portfolio content lives in static TypeScript files under `data/`:
 - `data/home/projects.tsx` — Project entries (type in `types/project.ts`). Array order is the order shown on the Work page. Psycloud's images come from its public site, as the dashboard is behind a login.
+- `data/blog/posts.ts` — Blog posts, newest first.
 - `data/home/socials.ts`, `data/about/timeline.ts`, `data/about/achievements.ts`.
 
 To add a project: add an entry to `data/home/projects.tsx` with a unique `slug`, a `year` and images under `public/projects/<slug>/`; it appears in the work list, gets a detail page and a station automatically.
