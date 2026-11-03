@@ -146,7 +146,8 @@ export const routes = [
   { path: "/", label: "Network", hotkey: "1" },
   { path: "/projects", label: "Work", hotkey: "2" },
   { path: "/profile", label: "About", hotkey: "3" },
-  { path: "/contact", label: "Contact", hotkey: "4" },
+  { path: "/blog", label: "Blog", hotkey: "4" },
+  { path: "/contact", label: "Contact", hotkey: "5" },
 ] as const;
 
 /* The résumé lives on Google Drive and is replaced in place there, so this link
