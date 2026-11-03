@@ -149,7 +149,10 @@ export const routes = [
   { path: "/contact", label: "Contact", hotkey: "4" },
 ] as const;
 
-export const RESUME_URL = "/Abrar-Mahir-Esam-CV.pdf";
+/* The résumé lives on Google Drive and is replaced in place there, so this link
+   always opens the latest version. Don't keep a copy in public/. */
+export const RESUME_URL =
+  "https://drive.google.com/file/d/1eZUsSET8zvuxdD0g8htX1td60L3bXPXC/view?usp=sharing";
 
 export const categoryLabel = {
   web: "Web",

@@ -41,7 +41,7 @@ Visitors compare this site against a CV PDF, a GitHub profile and other candidat
 
 ## Evidence on Hand
 
-The CV at `public/Abrar-Mahir-Esam-CV.pdf` (supplied by Abrar, Nov 2026) is the source of truth and agrees with the GitHub README.
+The CV on [Google Drive](https://drive.google.com/file/d/1eZUsSET8zvuxdD0g8htX1td60L3bXPXC/view?usp=sharing) is the source of truth and agrees with the GitHub README. Abrar updates it in place there, so the site links to it rather than keeping a copy.
 
 - **Bengal Byte**, Full-Stack Software Engineer, Aug 2025 – Aug 2026: principal architect of Psycloud, a clinical platform serving 1,000+ users, on Next.js (TypeScript), FastAPI (Python), PostgreSQL, Redis and Docker; practitioner dashboard, assessment engine, EU data-protection-compliant backend.
 - **Prime Minister's Office, Bangladesh**, part-time contract, May 2024 – May 2026: Spring Boot (Java 21) backend for 300 concurrent users, with JWT/OAuth, Redis, HATEOAS REST APIs, React and Flutter clients.
