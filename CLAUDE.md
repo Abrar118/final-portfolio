@@ -59,7 +59,7 @@ Colours are CSS variables in `app/globals.css`, including `--line-<id>` and `--l
 
 All portfolio content lives in static TypeScript files under `data/`:
 - `data/home/projects.tsx` — Project entries (type in `types/project.ts`). Array order is the order shown on the Work page. Psycloud's images come from its public site, as the dashboard is behind a login.
-- `data/blog/posts.ts` — Blog posts, newest first.
+- `data/blog/posts.ts` — Blog posts, newest first. See `BLOG.md` for how to add posts, what's unverified and what's left to write.
 - `data/home/socials.ts`, `data/about/timeline.ts`, `data/about/achievements.ts`.
 
 To add a project: add an entry to `data/home/projects.tsx` with a unique `slug`, a `year` and images under `public/projects/<slug>/`; it appears in the work list, gets a detail page and a station automatically.
