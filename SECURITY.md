@@ -6,7 +6,7 @@ Email abrarme118@gmail.com with the steps to reproduce it. Please don't open a p
 
 ## Supported version
 
-Only the `master` branch, which is what the live site at https://www.abrarmahiresam.dev/ is built from, receives security fixes.
+Only the `master` branch, which is what the live site at https://www.abrarmahiresam.tech/ is built from, receives security fixes.
 
 ## Changes to `master`
 

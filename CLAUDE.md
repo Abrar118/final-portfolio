@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal developer portfolio for Abrar Mahir Esam. Live at https://www.abrarmahiresam.dev/. GitHub: https://github.com/Abrar118.
+Personal developer portfolio for Abrar Mahir Esam. Live at https://www.abrarmahiresam.tech/. GitHub: https://github.com/Abrar118.
 
 `PRODUCT.md` holds audience and confirmed facts, `DESIGN.md` the visual system. The CV ([Google Drive](https://drive.google.com/file/d/1eZUsSET8zvuxdD0g8htX1td60L3bXPXC/view?usp=sharing), linked as `RESUME_URL` in `data/network.ts`) and the GitHub README are the sources of truth for facts. The CV is updated in place on Drive; don't add a local copy to `public/`.
 

@@ -24,7 +24,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.abrarmahiresam.dev"),
+  metadataBase: new URL("https://www.abrarmahiresam.tech"),
   title: "Abrar Mahir Esam, Software Engineer",
   description:
     "Full-stack software engineer in Dhaka, Bangladesh. Principal architect of Psycloud, a clinical platform serving 1,000+ users. Spring Boot, FastAPI, React, Flutter and Rust.",

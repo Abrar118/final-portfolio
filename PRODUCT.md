@@ -36,7 +36,7 @@ Visitors compare this site against a CV PDF, a GitHub profile and other candidat
 
 ## Brand Commitments
 
-- Name: Abrar Mahir Esam. Domain: abrarmahiresam.dev.
+- Name: Abrar Mahir Esam. Domain: abrarmahiresam.tech.
 - Voice: first person, plain and factual. His own words on the site: he likes "understanding how things work — and making them work a little better."
 
 ## Evidence on Hand

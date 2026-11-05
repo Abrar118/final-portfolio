@@ -2,7 +2,7 @@
 
 The personal portfolio of Abrar Mahir Esam, a full-stack software engineer in Dhaka, Bangladesh.
 
-**Live:** [abrarmahiresam.dev](https://www.abrarmahiresam.dev/)
+**Live:** [abrarmahiresam.tech](https://www.abrarmahiresam.tech/)
 
 ## The idea
 
